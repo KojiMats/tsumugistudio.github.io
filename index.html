@@ -1,32 +1,75 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TSUMUGISTUDIO</title>
-  <link rel="stylesheet" href="css/style.css">
-  <meta property="og:title" content="TSUMUGISTUDIO公式サイト">
-  <meta property="og:description" content="個人開発のスマホゲームを制作するTSUMUGISTUDIOの公式サイトです。">
-  <meta property="og:image" content="https://www.tsumugistudio.com/images/ogp.png">
-  <meta property="og:url" content="https://www.tsumugistudio.com/">
+  <link rel="stylesheet" href="css/style.css" />
+  <meta property="og:title" content="TSUMUGISTUDIO公式サイト" />
+  <meta property="og:description" content="個人開発のスマホゲームを制作するTSUMUGISTUDIOの公式サイトです。" />
+  <meta property="og:image" content="https://www.tsumugistudio.com/images/ogp.png" />
+  <meta property="og:url" content="https://www.tsumugistudio.com/" />
   <style>
-    /* 簡易タブ切り替え用 */
-    .lang-tabs {
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: #fff;
+      color: #333;
+    }
+    header {
+      background-color: #222;
+      color: #fff;
+      padding: 15px 20px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 10px 0 0;
       display: flex;
-      margin-bottom: 1em;
-      gap: 8px;
+      gap: 20px;
+    }
+    nav ul li {
+      display: inline;
+    }
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .lang-tabs {
+      margin-top: 10px;
     }
     .lang-tab {
+      display: inline-block;
+      padding: 6px 12px;
+      background: #444;
+      color: #fff;
+      border: 1px solid #555;
+      border-radius: 4px;
       cursor: pointer;
-      padding: 8px 16px;
-      background-color: #eee;
-      border: 1px solid #ccc;
-      border-radius: 4px 4px 0 0;
+      margin-right: 5px;
+      font-size: 14px;
     }
     .lang-tab.active {
-      background-color: #fff;
+      background: #fff;
+      color: #222;
       font-weight: bold;
-      border-bottom: none;
+    }
+    main {
+      max-width: 800px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      color: #666;
+      font-size: 14px;
+      padding: 20px;
     }
     .lang-content {
       display: none;
@@ -54,73 +97,15 @@
       </ul>
     </nav>
     <div class="lang-tabs">
-      <div class="lang-tab active" data-lang="ja">日本語</div>
-      <div class="lang-tab" data-lang="en">English</div>
+      <span class="lang-tab active" data-lang="ja">日本語</span>
+      <span class="lang-tab" data-lang="en">English</span>
     </div>
   </header>
 
   <main>
-    <!-- 日本語コンテンツ -->
+    <!-- 日本語 -->
     <div class="lang-content active" id="content-ja">
       <section>
         <h2>新作脱出ゲーム制作中！</h2>
         <p>閉ざされた路地裏を探索し、謎を解いて脱出を目指す脱出ゲームを開発中です。</p>
-        <img src="images/HiddenAlleyEscape-Playing.png" alt="ゲーム画面のスクリーンショット" style="max-width: 100%;">
-      </section>
-
-      <section>
-        <h2>ダウンロードはこちら</h2>
-        <p>リリース後、以下のストアリンクを掲載予定です。</p>
-        <ul>
-          <li>Google Play（準備中）</li>
-          <li>App Store（準備中）</li>
-        </ul>
-      </section>
-    </div>
-
-    <!-- 英語コンテンツ -->
-    <div class="lang-content" id="content-en">
-      <section>
-        <h2>New Escape Game in Development!</h2>
-        <p>We are developing an escape game where you explore a hidden back alley and solve puzzles to escape.</p>
-        <img src="images/HiddenAlleyEscape-Playing.png" alt="Screenshot of the game screen" style="max-width: 100%;">
-      </section>
-
-      <section>
-        <h2>Download Coming Soon</h2>
-        <p>Store links will be added here after release.</p>
-        <ul>
-          <li>Google Play (Coming Soon)</li>
-          <li>App Store (Coming Soon)</li>
-        </ul>
-      </section>
-    </div>
-  </main>
-
-  <footer>
-    <div class="lang-content active" id="footer-ja">
-      <p>&copy; 2025 TSUMUGISTUDIO</p>
-    </div>
-    <div class="lang-content" id="footer-en">
-      <p>&copy; 2025 TSUMUGISTUDIO</p>
-    </div>
-  </footer>
-
-  <script>
-    const tabs = document.querySelectorAll('.lang-tab');
-    const contents = document.querySelectorAll('.lang-content');
-
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        tabs.forEach(t => t.classList.remove('active'));
-        contents.forEach(c => c.classList.remove('active'));
-        tab.classList.add('active');
-        const lang = tab.dataset.lang;
-        document.querySelectorAll(`#nav-${lang}, #content-${lang}, #footer-${lang}`).forEach(el => {
-          el.classList.add('active');
-        });
-      });
-    });
-  </script>
-</body>
-</html>
+        <img src="images/HiddenAlleyEscape-Playing.png" alt="ゲーム画面のスクリーンショット" style="max-width: 100%;" />
