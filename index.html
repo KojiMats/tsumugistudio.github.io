@@ -16,9 +16,22 @@
       background: #f9f9f9;
       color: #333;
     }
-    h1 {
-      font-size: 24px;
+    header {
       margin-bottom: 20px;
+    }
+    header h1 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    .nav-links {
+      margin-bottom: 20px;
+    }
+    .nav-links a {
+      margin-right: 15px;
+      text-decoration: none;
+      color: #007bff;
+      font-weight: bold;
+      font-size: 14px;
     }
     .tabs {
       border-bottom: 1px solid #ccc;
@@ -59,57 +72,87 @@
   </style>
 </head>
 <body>
-  <h1>TSUMUGISTUDIO</h1>
+  <header>
+    <h1>TSUMUGISTUDIO</h1>
+    <!-- 日本語ナビ -->
+    <div class="nav-links lang-content active" id="nav-ja">
+      <a href="index.html">トップ</a>
+      <a href="privacy.html">プライバシーポリシー</a>
+      <a href="contact.html">お問い合わせ</a>
+    </div>
+    <!-- 英語ナビ -->
+    <div class="nav-links lang-content" id="nav-en">
+      <a href="index.html">Home</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="contact.html">Contact</a>
+    </div>
 
-  <div class="tabs">
-    <div class="tab active" data-lang="ja">日本語</div>
-    <div class="tab" data-lang="en">English</div>
-  </div>
+    <div class="tabs">
+      <div class="tab active" data-lang="ja">日本語</div>
+      <div class="tab" data-lang="en">English</div>
+    </div>
+  </header>
 
-  <div class="tab-content active" id="content-ja">
-    <section>
-      <h2>新作脱出ゲーム制作中！</h2>
-      <p>閉ざされた路地裏を探索し、謎を解いて脱出を目指す脱出ゲームを開発中です。</p>
-      <img src="images/HiddenAlleyEscape-Playing.png" alt="ゲーム画面のスクリーンショット" />
-    </section>
+  <main>
+    <div class="tab-content active" id="content-ja">
+      <section>
+        <h2>新作脱出ゲーム制作中！</h2>
+        <p>閉ざされた路地裏を探索し、謎を解いて脱出を目指す脱出ゲームを開発中です。</p>
+        <img src="images/HiddenAlleyEscape-Playing.png" alt="ゲーム画面のスクリーンショット" />
+      </section>
 
-    <section>
-      <h2>ダウンロードはこちら</h2>
-      <p>リリース後、以下のストアリンクを掲載予定です。</p>
-      <ul>
-        <li>Google Play（準備中）</li>
-        <li>App Store（準備中）</li>
-      </ul>
-    </section>
-  </div>
+      <section>
+        <h2>ダウンロードはこちら</h2>
+        <p>リリース後、以下のストアリンクを掲載予定です。</p>
+        <ul>
+          <li>Google Play（準備中）</li>
+          <li>App Store（準備中）</li>
+        </ul>
+      </section>
+    </div>
 
-  <div class="tab-content" id="content-en">
-    <section>
-      <h2>New Escape Game in Development!</h2>
-      <p>We are developing an escape game where you explore hidden back alleys and solve puzzles to escape.</p>
-      <img src="images/HiddenAlleyEscape-Playing.png" alt="Screenshot of the game screen" />
-    </section>
+    <div class="tab-content" id="content-en">
+      <section>
+        <h2>New Escape Game in Development!</h2>
+        <p>We are developing an escape game where you explore hidden back alleys and solve puzzles to escape.</p>
+        <img src="images/HiddenAlleyEscape-Playing.png" alt="Screenshot of the game screen" />
+      </section>
 
-    <section>
-      <h2>Download Coming Soon</h2>
-      <p>Links to the stores will be posted here after release.</p>
-      <ul>
-        <li>Google Play (Coming Soon)</li>
-        <li>App Store (Coming Soon)</li>
-      </ul>
-    </section>
-  </div>
+      <section>
+        <h2>Download Coming Soon</h2>
+        <p>Links to the stores will be posted here after release.</p>
+        <ul>
+          <li>Google Play (Coming Soon)</li>
+          <li>App Store (Coming Soon)</li>
+        </ul>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="lang-content active" id="footer-ja">
+      <p>&copy; 2025 TSUMUGISTUDIO</p>
+    </div>
+    <div class="lang-content" id="footer-en">
+      <p>&copy; 2025 TSUMUGISTUDIO</p>
+    </div>
+  </footer>
 
   <script>
     const tabs = document.querySelectorAll('.tab');
     const contents = document.querySelectorAll('.tab-content');
+    const navs = document.querySelectorAll('.lang-content');
 
     tabs.forEach(tab => {
       tab.addEventListener('click', () => {
         tabs.forEach(t => t.classList.remove('active'));
         contents.forEach(c => c.classList.remove('active'));
+        navs.forEach(n => n.classList.remove('active'));
         tab.classList.add('active');
-        document.querySelector(`#content-${tab.dataset.lang}`).classList.add('active');
+        const lang = tab.dataset.lang;
+        document.querySelector(`#content-${lang}`).classList.add('active');
+        document.querySelector(`#nav-${lang}`).classList.add('active');
+        document.querySelector(`#footer-${lang}`).classList.add('active');
       });
     });
   </script>
