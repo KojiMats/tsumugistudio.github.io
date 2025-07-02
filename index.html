@@ -11,101 +11,107 @@
   <meta property="og:url" content="https://www.tsumugistudio.com/" />
   <style>
     body {
-      margin: 0;
       font-family: sans-serif;
-      background-color: #fff;
+      margin: 20px;
+      background: #f9f9f9;
       color: #333;
     }
-    header {
-      background-color: #222;
-      color: #fff;
-      padding: 15px 20px;
-    }
-    header h1 {
-      margin: 0;
+    h1 {
       font-size: 24px;
+      margin-bottom: 20px;
     }
-    nav ul {
-      list-style: none;
-      padding: 0;
-      margin: 10px 0 0;
+    .tabs {
+      border-bottom: 1px solid #ccc;
       display: flex;
-      gap: 20px;
+      margin-bottom: 20px;
     }
-    nav ul li {
-      display: inline;
-    }
-    nav ul li a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .lang-tabs {
-      margin-top: 10px;
-    }
-    .lang-tab {
-      display: inline-block;
-      padding: 6px 12px;
-      background: #444;
-      color: #fff;
-      border: 1px solid #555;
-      border-radius: 4px;
+    .tab {
+      padding: 8px 16px;
       cursor: pointer;
-      margin-right: 5px;
+      background: #f1f1f1;
+      border: 1px solid #ccc;
+      border-bottom: none;
+      margin-right: 4px;
+      border-radius: 4px 4px 0 0;
       font-size: 14px;
     }
-    .lang-tab.active {
+    .tab.active {
       background: #fff;
-      color: #222;
       font-weight: bold;
+      border-bottom: 1px solid #fff;
     }
-    main {
-      max-width: 800px;
-      margin: 30px auto;
-      padding: 0 20px;
-    }
-    footer {
-      text-align: center;
-      margin-top: 40px;
-      color: #666;
-      font-size: 14px;
-      padding: 20px;
-    }
-    .lang-content {
+    .tab-content {
       display: none;
+      padding: 20px;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 0 4px 4px 4px;
     }
-    .lang-content.active {
+    .tab-content.active {
       display: block;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #ccc;
+      margin-top: 10px;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>TSUMUGISTUDIO</h1>
-    <nav class="lang-content active" id="nav-ja">
-      <ul>
-        <li><a href="index.html">トップ</a></li>
-        <li><a href="privacy.html">プライバシーポリシー</a></li>
-        <li><a href="contact.html">お問い合わせ</a></li>
-      </ul>
-    </nav>
-    <nav class="lang-content" id="nav-en">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="privacy.html">Privacy Policy</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-    <div class="lang-tabs">
-      <span class="lang-tab active" data-lang="ja">日本語</span>
-      <span class="lang-tab" data-lang="en">English</span>
-    </div>
-  </header>
+  <h1>TSUMUGISTUDIO</h1>
 
-  <main>
-    <!-- 日本語 -->
-    <div class="lang-content active" id="content-ja">
-      <section>
-        <h2>新作脱出ゲーム制作中！</h2>
-        <p>閉ざされた路地裏を探索し、謎を解いて脱出を目指す脱出ゲームを開発中です。</p>
-        <img src="images/HiddenAlleyEscape-Playing.png" alt="ゲーム画面のスクリーンショット" style="max-width: 100%;" />
+  <div class="tabs">
+    <div class="tab active" data-lang="ja">日本語</div>
+    <div class="tab" data-lang="en">English</div>
+  </div>
+
+  <div class="tab-content active" id="content-ja">
+    <section>
+      <h2>新作脱出ゲーム制作中！</h2>
+      <p>閉ざされた路地裏を探索し、謎を解いて脱出を目指す脱出ゲームを開発中です。</p>
+      <img src="images/HiddenAlleyEscape-Playing.png" alt="ゲーム画面のスクリーンショット" />
+    </section>
+
+    <section>
+      <h2>ダウンロードはこちら</h2>
+      <p>リリース後、以下のストアリンクを掲載予定です。</p>
+      <ul>
+        <li>Google Play（準備中）</li>
+        <li>App Store（準備中）</li>
+      </ul>
+    </section>
+  </div>
+
+  <div class="tab-content" id="content-en">
+    <section>
+      <h2>New Escape Game in Development!</h2>
+      <p>We are developing an escape game where you explore hidden back alleys and solve puzzles to escape.</p>
+      <img src="images/HiddenAlleyEscape-Playing.png" alt="Screenshot of the game screen" />
+    </section>
+
+    <section>
+      <h2>Download Coming Soon</h2>
+      <p>Links to the stores will be posted here after release.</p>
+      <ul>
+        <li>Google Play (Coming Soon)</li>
+        <li>App Store (Coming Soon)</li>
+      </ul>
+    </section>
+  </div>
+
+  <script>
+    const tabs = document.querySelectorAll('.tab');
+    const contents = document.querySelectorAll('.tab-content');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        contents.forEach(c => c.classList.remove('active'));
+        tab.classList.add('active');
+        document.querySelector(`#content-${tab.dataset.lang}`).classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
