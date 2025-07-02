@@ -33,6 +33,9 @@
       font-weight: bold;
       font-size: 14px;
     }
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
     .tabs {
       border-bottom: 1px solid #ccc;
       display: flex;
@@ -47,9 +50,11 @@
       margin-right: 4px;
       border-radius: 4px 4px 0 0;
       font-size: 14px;
+      color: #333;
     }
     .tab.active {
       background: #fff;
+      color: #000;
       font-weight: bold;
       border-bottom: 1px solid #fff;
     }
@@ -69,19 +74,21 @@
       border: 1px solid #ccc;
       margin-top: 10px;
     }
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      color: #666;
+      font-size: 14px;
+      padding: 20px;
+    }
   </style>
 </head>
 <body>
   <header>
     <h1>TSUMUGISTUDIO</h1>
-    <!-- 日本語ナビ -->
-    <div class="nav-links lang-content active" id="nav-ja">
-      <a href="index.html">トップ</a>
-      <a href="privacy.html">プライバシーポリシー</a>
-      <a href="contact.html">お問い合わせ</a>
-    </div>
-    <!-- 英語ナビ -->
-    <div class="nav-links lang-content" id="nav-en">
+
+    <!-- ナビは英語表記に統一 -->
+    <div class="nav-links">
       <a href="index.html">Home</a>
       <a href="privacy.html">Privacy Policy</a>
       <a href="contact.html">Contact</a>
@@ -94,6 +101,7 @@
   </header>
 
   <main>
+    <!-- 日本語 -->
     <div class="tab-content active" id="content-ja">
       <section>
         <h2>新作脱出ゲーム制作中！</h2>
@@ -111,6 +119,7 @@
       </section>
     </div>
 
+    <!-- 英語 -->
     <div class="tab-content" id="content-en">
       <section>
         <h2>New Escape Game in Development!</h2>
@@ -130,29 +139,19 @@
   </main>
 
   <footer>
-    <div class="lang-content active" id="footer-ja">
-      <p>&copy; 2025 TSUMUGISTUDIO</p>
-    </div>
-    <div class="lang-content" id="footer-en">
-      <p>&copy; 2025 TSUMUGISTUDIO</p>
-    </div>
+    <p>&copy; 2025 TSUMUGISTUDIO</p>
   </footer>
 
   <script>
     const tabs = document.querySelectorAll('.tab');
     const contents = document.querySelectorAll('.tab-content');
-    const navs = document.querySelectorAll('.lang-content');
 
     tabs.forEach(tab => {
       tab.addEventListener('click', () => {
         tabs.forEach(t => t.classList.remove('active'));
         contents.forEach(c => c.classList.remove('active'));
-        navs.forEach(n => n.classList.remove('active'));
         tab.classList.add('active');
-        const lang = tab.dataset.lang;
-        document.querySelector(`#content-${lang}`).classList.add('active');
-        document.querySelector(`#nav-${lang}`).classList.add('active');
-        document.querySelector(`#footer-${lang}`).classList.add('active');
+        document.querySelector(`#content-${tab.dataset.lang}`).classList.add('active');
       });
     });
   </script>
