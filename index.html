@@ -10,77 +10,37 @@
   <meta property="og:image" content="https://www.tsumugistudio.com/images/ogp.png" />
   <meta property="og:url" content="https://www.tsumugistudio.com/" />
   <style>
-    body {
-      font-family: sans-serif;
-      margin: 20px;
-      background: #f9f9f9;
-      color: #333;
-    }
-    header {
-      margin-bottom: 20px;
-    }
-    header h1 {
-      font-size: 24px;
-      margin-bottom: 10px;
-    }
-    .nav-links {
-      margin-bottom: 20px;
-    }
-    .nav-links a {
-      margin-right: 15px;
-      text-decoration: none;
-      color: #007bff;
-      font-weight: bold;
-      font-size: 14px;
-    }
-    .nav-links a:hover {
-      text-decoration: underline;
-    }
-    .tabs {
-      border-bottom: 1px solid #ccc;
-      display: flex;
-      margin-bottom: 20px;
-    }
-    .tab {
-      padding: 8px 16px;
-      cursor: pointer;
-      background: #f1f1f1;
-      border: 1px solid #ccc;
-      border-bottom: none;
-      margin-right: 4px;
-      border-radius: 4px 4px 0 0;
-      font-size: 14px;
-      color: #333;
-    }
-    .tab.active {
-      background: #fff;
-      color: #000;
-      font-weight: bold;
-      border-bottom: 1px solid #fff;
-    }
-    .tab-content {
-      display: none;
-      padding: 20px;
-      background: #fff;
-      border: 1px solid #ccc;
-      border-radius: 0 4px 4px 4px;
-    }
-    .tab-content.active {
-      display: block;
-    }
-    img {
-      max-width: 100%;
-      height: auto;
-      border: 1px solid #ccc;
-      margin-top: 10px;
-    }
-    footer {
-      text-align: center;
-      margin-top: 40px;
-      color: #666;
-      font-size: 14px;
-      padding: 20px;
-    }
+    :root{--c:#007bff}
+    body {font-family: system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif; margin: 20px; background: #f9f9f9; color: #333;}
+    header {margin-bottom: 20px;}
+    header h1 {font-size: 24px;margin-bottom: 10px;}
+    .nav-links {margin-bottom: 20px;}
+    .nav-links a {margin-right: 15px;text-decoration: none;color: var(--c);font-weight: 600;font-size: 14px}
+    .nav-links a:hover {text-decoration: underline}
+
+    /* Language tabs */
+    .tabs {border-bottom: 1px solid #ccc; display: flex; gap:6px; margin-bottom: 20px}
+    .tab {padding: 8px 16px; cursor: pointer; background: #f1f1f1; border: 1px solid #ccc; border-bottom: none; border-radius: 4px 4px 0 0; font-size: 14px; color: #333}
+    .tab.active {background: #fff; color: #000; font-weight: 700; border-bottom: 1px solid #fff}
+    .tab:focus{outline:2px solid var(--c); outline-offset:2px}
+    [role="tabpanel"] {display:none}
+    .tab-content.active,[role="tabpanel"].active{display:block}
+
+    img {max-width: 100%; height: auto; border: 1px solid #ccc; margin-top: 10px}
+    footer {text-align: center; margin-top: 40px; color: #666; font-size: 14px; padding: 20px}
+
+    /* region tabs */
+    .region-tabs{display:flex;gap:6px;border-bottom:1px solid #ccc;margin:14px 0}
+    .region-tab{padding:6px 10px;cursor:pointer;background:#f2f5f8;border:1px solid #ccc;border-bottom:none;border-radius:4px 4px 0 0;font-size:13px}
+    .region-tab.active{background:#fff;font-weight:700}
+    .region-tab:focus{outline:2px solid var(--c); outline-offset:2px}
+    .region-panel{display:none;padding:14px 16px;background:#fff;border:1px solid #ccc;border-radius:0 4px 4px 4px}
+    .region-panel.active{display:block}
+    .badge{display:inline-block;font-size:12px;border:1px solid #ddd;border-radius:12px;padding:2px 8px;margin-left:6px}
+    .badge.ok{background:#e8f8ef;border-color:#bfe9cf;color:#2a7d4f}
+    .badge.soon{background:#fff5e6;border-color:#ffd9a6;color:#8a5a00}
+    .links a{margin-right:10px}
+    .note-small{color:#666;font-size:13px}
   </style>
 </head>
 <body>
@@ -88,54 +48,148 @@
     <h1>TSUMUGI STUDIO</h1>
 
     <!-- ナビは英語表記に統一 -->
-    <div class="nav-links">
+    <nav class="nav-links" aria-label="Primary">
       <a href="index.html">Home</a>
       <a href="privacy.html">Privacy Policy</a>
       <a href="contact.html">Contact</a>
-    </div>
+    </nav>
 
-    <div class="tabs">
-      <div class="tab active" data-lang="ja">日本語</div>
-      <div class="tab" data-lang="en">English</div>
+    <!-- 言語タブ（ARIA対応） -->
+    <div class="tabs" role="tablist" aria-label="Language">
+      <button class="tab active" role="tab" aria-selected="true" aria-controls="content-ja" id="tab-ja">日本語</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="content-en" id="tab-en">English</button>
     </div>
   </header>
 
   <main>
     <!-- 日本語 -->
-    <div class="tab-content active" id="content-ja">
-      <section>
-        <h2>新作脱出ゲーム制作中！</h2>
-        <p>閉ざされた路地裏を探索し、謎を解いて脱出を目指す脱出ゲームを開発中です。</p>
-        <img src="images/HiddenAlleyEscape-Playing.png" alt="ゲーム画面のスクリーンショット" />
-      </section>
+    <section class="tab-content active" id="content-ja" role="tabpanel" aria-labelledby="tab-ja">
+      <h2>新作脱出ゲーム制作中！</h2>
+      <p>閉ざされた路地裏を探索し、謎を解いて脱出を目指す脱出ゲームを開発中です。</p>
+      <img src="images/HiddenAlleyEscape-Playing.png" alt="ゲーム画面のスクリーンショット" />
 
-      <section>
-        <h2>ダウンロードはこちら</h2>
-        <p>リリース後、以下のストアリンクを掲載予定です。</p>
-        <ul>
-          <li>Google Play（準備中）</li>
-          <li>App Store（準備中）</li>
-        </ul>
-      </section>
-    </div>
+      <h2>ダウンロードはこちら</h2>
+      <p>リリース後、以下のストアリンクを掲載予定です。</p>
+      <ul>
+        <li>Google Play（準備中）</li>
+        <li>App Store（準備中）</li>
+      </ul>
+
+      <!-- 国別情報（日本語） -->
+      <h2>配信状況・プレス</h2>
+
+      <div class="region-tabs" role="tablist" aria-label="Regions (JA)" data-scope="ja">
+        <button class="region-tab active" role="tab" aria-selected="true" aria-controls="ja-panel-hk" id="ja-tab-hk" data-region="hk">香港</button>
+        <button class="region-tab" role="tab" aria-selected="false" aria-controls="ja-panel-tw" id="ja-tab-tw" data-region="tw">台湾</button>
+        <button class="region-tab" role="tab" aria-selected="false" aria-controls="ja-panel-kr" id="ja-tab-kr" data-region="kr">韓国</button>
+        <button class="region-tab" role="tab" aria-selected="false" aria-controls="ja-panel-jp" id="ja-tab-jp" data-region="jp">日本</button>
+      </div>
+
+      <!-- 香港（配信中） -->
+      <div class="region-panel active" id="ja-panel-hk" role="tabpanel" aria-labelledby="ja-tab-hk">
+        <p><strong>配信状況</strong>
+          <span class="badge ok">配信中（<span class="date-ja" data-date="2025-08-12"></span>）</span>
+        </p>
+        <p class="links">
+          <a href="https://play.google.com/store/apps/details?id=com.tsumugistudio.hiddenalleyescape" target="_blank" rel="noopener">Google Play</a>
+          <!-- App Store は未定のため非表示 -->
+        </p>
+        <p class="links">
+          <a href="https://www.tsumugistudio.com/press/the-hidden-alley/HK/PR_TheHiddenAlley_25081201HK.pdf" target="_blank" rel="noopener">プレスリリース（香港向け）</a>
+          <a href="https://www.tsumugistudio.com/press/the-hidden-alley/HK/PK_TheHiddenAlley_25081201HK.zip" target="_blank" rel="noopener">プレスキット（香港向け）</a>
+        </p>
+      </div>
+
+      <!-- 台湾 -->
+      <div class="region-panel" id="ja-panel-tw" role="tabpanel" aria-labelledby="ja-tab-tw">
+        <p><strong>配信状況</strong>
+          <span class="badge soon">Coming Soon</span>
+        </p>
+        <p class="note-small">配信開始後、各種リンクを掲載します。</p>
+      </div>
+
+      <!-- 韓国 -->
+      <div class="region-panel" id="ja-panel-kr" role="tabpanel" aria-labelledby="ja-tab-kr">
+        <p><strong>配信状況</strong>
+          <span class="badge soon">Coming Soon</span>
+        </p>
+        <p class="note-small">配信開始後、各種リンクを掲載します。</p>
+      </div>
+
+      <!-- 日本 -->
+      <div class="region-panel" id="ja-panel-jp" role="tabpanel" aria-labelledby="ja-tab-jp">
+        <p><strong>配信状況</strong>
+          <span class="badge soon">Coming Soon</span>
+        </p>
+        <p class="note-small">配信開始後、各種リンクを掲載します。</p>
+      </div>
+
+      <p class="note-small">※ 配信地域外の皆さまは、もう少しだけお待ちください。順次配信予定です。</p>
+    </section>
 
     <!-- 英語 -->
-    <div class="tab-content" id="content-en">
-      <section>
-        <h2>New Escape Game in Development!</h2>
-        <p>We are developing an escape game where you explore hidden back alleys and solve puzzles to escape.</p>
-        <img src="images/HiddenAlleyEscape-Playing.png" alt="Screenshot of the game screen" />
-      </section>
+    <section class="tab-content" id="content-en" role="tabpanel" aria-labelledby="tab-en" lang="en">
+      <h2>New Escape Game in Development!</h2>
+      <p>We are developing an escape game where you explore hidden back alleys and solve puzzles to escape.</p>
+      <img src="images/HiddenAlleyEscape-Playing.png" alt="Screenshot of the game screen" />
 
-      <section>
-        <h2>Download Coming Soon</h2>
-        <p>Links to the stores will be posted here after release.</p>
-        <ul>
-          <li>Google Play (Coming Soon)</li>
-          <li>App Store (Coming Soon)</li>
-        </ul>
-      </section>
-    </div>
+      <h2>Download Coming Soon</h2>
+      <p>Links to the stores will be posted here after release.</p>
+      <ul>
+        <li>Google Play (Coming Soon)</li>
+        <li>App Store (Coming Soon)</li>
+      </ul>
+
+      <!-- Region info (English) -->
+      <h2>Release & Press</h2>
+
+      <div class="region-tabs" role="tablist" aria-label="Regions (EN)" data-scope="en">
+        <button class="region-tab active" role="tab" aria-selected="true" aria-controls="en-panel-hk" id="en-tab-hk" data-region="hk">Hong Kong</button>
+        <button class="region-tab" role="tab" aria-selected="false" aria-controls="en-panel-tw" id="en-tab-tw" data-region="tw">Taiwan</button>
+        <button class="region-tab" role="tab" aria-selected="false" aria-controls="en-panel-kr" id="en-tab-kr" data-region="kr">Korea</button>
+        <button class="region-tab" role="tab" aria-selected="false" aria-controls="en-panel-jp" id="en-tab-jp" data-region="jp">Japan</button>
+      </div>
+
+      <!-- Hong Kong (Released) -->
+      <div class="region-panel active" id="en-panel-hk" role="tabpanel" aria-labelledby="en-tab-hk">
+        <p><strong>Status</strong>
+          <span class="badge ok">Released (<span class="date-en" data-date="2025-08-12"></span>)</span>
+        </p>
+        <p class="links">
+          <a href="https://play.google.com/store/apps/details?id=com.tsumugistudio.hiddenalleyescape" target="_blank" rel="noopener">Google Play</a>
+        </p>
+        <p class="links">
+          <a href="https://www.tsumugistudio.com/press/the-hidden-alley/HK/PR_TheHiddenAlley_25081201HK.pdf" target="_blank" rel="noopener">Press Release (HK)</a>
+          <a href="https://www.tsumugistudio.com/press/the-hidden-alley/HK/PK_TheHiddenAlley_25081201HK.zip" target="_blank" rel="noopener">Press Kit (HK)</a>
+        </p>
+      </div>
+
+      <!-- Taiwan -->
+      <div class="region-panel" id="en-panel-tw" role="tabpanel" aria-labelledby="en-tab-tw">
+        <p><strong>Status</strong>
+          <span class="badge soon">Coming Soon</span>
+        </p>
+        <p class="note-small">Links will be added after release.</p>
+      </div>
+
+      <!-- Korea -->
+      <div class="region-panel" id="en-panel-kr" role="tabpanel" aria-labelledby="en-tab-kr">
+        <p><strong>Status</strong>
+          <span class="badge soon">Coming Soon</span>
+        </p>
+        <p class="note-small">Links will be added after release.</p>
+      </div>
+
+      <!-- Japan -->
+      <div class="region-panel" id="en-panel-jp" role="tabpanel" aria-labelledby="en-tab-jp">
+        <p><strong>Status</strong>
+          <span class="badge soon">Coming Soon</span>
+        </p>
+        <p class="note-small">Links will be added after release.</p>
+      </div>
+
+      <p class="note-small">* If your region is not yet available, please stay tuned. We will roll out sequentially.</p>
+    </section>
   </main>
 
   <footer>
@@ -143,17 +197,119 @@
   </footer>
 
   <script>
-    const tabs = document.querySelectorAll('.tab');
-    const contents = document.querySelectorAll('.tab-content');
+    // --- Utilities ---
+    const $ = (s,root=document)=>root.querySelector(s);
+    const $$ = (s,root=document)=>Array.from(root.querySelectorAll(s));
 
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        tabs.forEach(t => t.classList.remove('active'));
-        contents.forEach(c => c.classList.remove('active'));
-        tab.classList.add('active');
-        document.querySelector(`#content-${tab.dataset.lang}`).classList.add('active');
+    // Format dates
+    function formatJa(dateStr){
+      const d = new Date(dateStr+'T00:00:00');
+      const y=d.getFullYear(), m=d.getMonth()+1, da=d.getDate();
+      return `${y}年${m}月${da}日`;
+    }
+    function formatEn(dateStr){
+      const d = new Date(dateStr+'T00:00:00');
+      const fmt = new Intl.DateTimeFormat('en-US',{month:'short', day:'numeric', year:'numeric'}).format(d);
+      return fmt.replace(',',''); // "Aug 12, 2025" -> "Aug 12 2025" (好みで)
+    }
+    $$('.date-ja').forEach(el=>{const v=el.getAttribute('data-date'); if(v) el.textContent = formatJa(v)});
+    $$('.date-en').forEach(el=>{const v=el.getAttribute('data-date'); if(v) el.textContent = formatEn(v)});
+
+    // --- Language tabs (ARIA) ---
+    const langTablist = $('.tabs[role="tablist"]');
+    const langTabs = $$('[role="tab"]', langTablist);
+    const langPanels = $$('.tab-content');
+
+    function activateLang(btn){
+      langTabs.forEach(t=>{t.classList.remove('active'); t.setAttribute('aria-selected','false')});
+      langPanels.forEach(p=>p.classList.remove('active'));
+      btn.classList.add('active'); btn.setAttribute('aria-selected','true');
+      $('#'+btn.getAttribute('aria-controls')).classList.add('active');
+      // sync hash & remember
+      const currentRegion = getActiveRegion(btn.id.endsWith('ja')?'ja':'en');
+      setHash({lang: btn.id.endsWith('ja')?'ja':'en', region: currentRegion});
+      localStorage.setItem('tsu_lang', btn.id.endsWith('ja')?'ja':'en');
+    }
+
+    langTabs.forEach(btn=>{
+      btn.addEventListener('click', ()=>activateLang(btn));
+      btn.addEventListener('keydown', e=>{
+        if(e.key==='ArrowRight' || e.key==='ArrowLeft'){
+          e.preventDefault();
+          const i = langTabs.indexOf(document.activeElement);
+          const ni = e.key==='ArrowRight' ? (i+1)%langTabs.length : (i-1+langTabs.length)%langTabs.length;
+          langTabs[ni].focus();
+        }
       });
     });
+
+    // --- Region tabs per language (ARIA) ---
+    function wireRegion(group){
+      const scope = group.dataset.scope; // 'ja' or 'en'
+      const tabs = $$('.region-tab', group);
+      const panels = $$('.region-panel', $('#content-'+scope));
+      tabs.forEach(t=>{
+        t.addEventListener('click', ()=>activateRegion(scope, t));
+        t.addEventListener('keydown', e=>{
+          if(e.key==='ArrowRight' || e.key==='ArrowLeft'){
+            e.preventDefault();
+            const i = tabs.indexOf(document.activeElement);
+            const ni = e.key==='ArrowRight' ? (i+1)%tabs.length : (i-1+tabs.length)%tabs.length;
+            tabs[ni].focus();
+          }
+        });
+      });
+      function activateRegion(scope, btn){
+        tabs.forEach(b=>{b.classList.remove('active'); b.setAttribute('aria-selected','false')});
+        panels.forEach(p=>p.classList.remove('active'));
+        btn.classList.add('active'); btn.setAttribute('aria-selected','true');
+        $('#'+btn.getAttribute('aria-controls')).classList.add('active');
+        // sync hash & remember
+        const lang = scope; const region = btn.dataset.region;
+        setHash({lang, region});
+        localStorage.setItem('tsu_region_'+lang, region);
+      }
+    }
+    $$('.region-tabs').forEach(wireRegion);
+
+    // --- Hash deep links: #lang=ja&region=hk ---
+    function parseHash(){
+      const h = location.hash.replace('#','');
+      const params = new URLSearchParams(h);
+      const lang = params.get('lang');
+      const region = params.get('region');
+      return {lang, region};
+    }
+    function setHash({lang, region}){
+      const params = new URLSearchParams();
+      if(lang) params.set('lang', lang);
+      if(region) params.set('region', region);
+      history.replaceState(null, '', '#'+params.toString());
+    }
+
+    function getActiveRegion(lang){
+      const group = $(`.region-tabs[data-scope="${lang}"]`);
+      const active = group ? group.querySelector('.region-tab.active') : null;
+      return active ? active.dataset.region : 'hk';
+    }
+
+    // Initial state: from hash -> localStorage -> defaults
+    (function init(){
+      const {lang, region} = parseHash();
+      const storedLang = localStorage.getItem('tsu_lang');
+      const initLang = lang || storedLang || 'ja';
+      // activate language
+      const targetLangTab = initLang==='en' ? $('#tab-en') : $('#tab-ja');
+      if(targetLangTab) activateLang(targetLangTab);
+
+      // region (per current lang)
+      const rKey = 'tsu_region_'+initLang;
+      const storedRegion = localStorage.getItem(rKey);
+      const initRegion = region || storedRegion || 'hk';
+      const regionBtn = $(`#${initLang}-tab-${initRegion}`);
+      if(regionBtn){ regionBtn.click(); }
+      else { setHash({lang:initLang}); }
+    })();
   </script>
 </body>
 </html>
