@@ -30,7 +30,7 @@
     footer {text-align: center; margin-top: 40px; color: #666; font-size: 14px; padding: 20px}
 
     /* region tabs */
-    .region-tabs{display:flex;gap:6px;border-bottom:1px solid #ccc;margin:14px 0}
+    .region-tabs{display:flex;gap:6px;border-bottom:1px solid #ccc;margin:14px 0;flex-wrap:wrap}
     .region-tab{padding:6px 10px;cursor:pointer;background:#f2f5f8;border:1px solid #ccc;border-bottom:none;border-radius:4px 4px 0 0;font-size:13px}
     .region-tab.active{background:#fff;font-weight:700}
     .region-tab:focus{outline:2px solid var(--c); outline-offset:2px}
@@ -47,7 +47,7 @@
   <header>
     <h1>TSUMUGI STUDIO</h1>
 
-    <!-- ナビは英語表記に統一 -->
+    <!-- ナビ -->
     <nav class="nav-links" aria-label="Primary">
       <a href="index.html">Home</a>
       <a href="privacy.html">Privacy Policy</a>
@@ -64,20 +64,11 @@
   <main>
     <!-- 日本語 -->
     <section class="tab-content active" id="content-ja" role="tabpanel" aria-labelledby="tab-ja">
-      <h2>香港向けGoogle Playで配信開始（2025年8月12日）</h2>
-      <p>謎解き脱出ゲーム『路地裏からの脱出』が、香港向けGoogle Playで配信開始となりました。</p>
+      <h2>世界9か国で配信開始（2025年8月25日）</h2>
+      <p>謎解き脱出ゲーム『路地裏からの脱出』が、Google Playで世界9か国にて配信開始となりました。</p>
       <p>美しく作り込まれた路地裏を探索し、謎を解いて脱出する本作は、ちょっとした空き時間にも楽しめる内容になっています。</p>
-      <p>香港向けの配信開始は、日本国内配信に先立つ先行リリースとなります。</p>
+      <p>Androidをお使いの皆様、遊んでいただけると嬉しいです。</p>
       <img src="images/HiddenAlleyEscape-Playing.png" alt="ゲーム画面のスクリーンショット" />
-
-      <!--
-      <h2>ダウンロードはこちら</h2>
-      <p>リリース後、以下のストアリンクを掲載予定です。</p>
-      <ul>
-        <li>Google Play（準備中）</li>
-        <li>App Store（準備中）</li>
-      </ul>
-      -->
 
       <!-- 国別情報（日本語） -->
       <h2>配信状況・プレス</h2>
@@ -87,6 +78,7 @@
         <button class="region-tab" role="tab" aria-selected="false" aria-controls="ja-panel-tw" id="ja-tab-tw" data-region="tw">台湾</button>
         <button class="region-tab" role="tab" aria-selected="false" aria-controls="ja-panel-kr" id="ja-tab-kr" data-region="kr">韓国</button>
         <button class="region-tab" role="tab" aria-selected="false" aria-controls="ja-panel-jp" id="ja-tab-jp" data-region="jp">日本</button>
+        <button class="region-tab" role="tab" aria-selected="false" aria-controls="ja-panel-en" id="ja-tab-en-region" data-region="en">English</button>
       </div>
 
       <!-- 香港（配信中） -->
@@ -96,9 +88,8 @@
         </p>
         <p class="links">
           <a href="https://play.google.com/store/apps/details?id=com.tsumugistudio.hiddenalleyescape&hl=zh-HK&gl=HK" target="_blank" rel="noopener">
-            <img src="images/GetItOnGooglePlay_Badge_Web_color_English.png" alt="Get it on Google Play" style="height:60px; border:none;">
+            <img src="images/GetItOnGooglePlay_Badge_Web_color_English.png" alt="Google Playで手に入れよう" style="height:60px; border:none;">
           </a>
-          <!-- App Store は未定のため非表示 -->
         </p>
         <p class="links">
           <a href="https://www.tsumugistudio.com/press/the-hidden-alley/HK/250813_PR_EscapeGame_TheHiddenAlley_HK.pdf" target="_blank" rel="noopener">プレスリリース（香港向け）</a>
@@ -106,47 +97,76 @@
         </p>
       </div>
 
-      <!-- 台湾 -->
+      <!-- 台湾（配信中） -->
       <div class="region-panel" id="ja-panel-tw" role="tabpanel" aria-labelledby="ja-tab-tw">
         <p><strong>配信状況</strong>
-          <span class="badge soon">Coming Soon</span>
+          <span class="badge ok">配信中（<span class="date-ja" data-date="2025-08-25"></span>）</span>
         </p>
-        <p class="note-small">配信開始後、各種リンクを掲載します。</p>
+        <p class="links">
+          <a href="https://play.google.com/store/apps/details?id=com.tsumugistudio.hiddenalleyescape&hl=zh-TW&gl=TW" target="_blank" rel="noopener">
+            <img src="images/GetItOnGooglePlay_Badge_Web_color_English.png" alt="Google Playで手に入れよう" style="height:60px; border:none;">
+          </a>
+        </p>
+        <p class="links">
+          <a href="https://www.tsumugistudio.com/press/the-hidden-alley/HK/250813_PR_EscapeGame_TheHiddenAlley_TW.pdf" target="_blank" rel="noopener">プレスリリース（台湾向け）</a>
+          <a href="https://www.tsumugistudio.com/press/the-hidden-alley/HK/presskit-tw.zip" target="_blank" rel="noopener">プレスキット（台湾向け）</a>
+        </p>
       </div>
 
-      <!-- 韓国 -->
+      <!-- 韓国（配信中） -->
       <div class="region-panel" id="ja-panel-kr" role="tabpanel" aria-labelledby="ja-tab-kr">
         <p><strong>配信状況</strong>
-          <span class="badge soon">Coming Soon</span>
+          <span class="badge ok">配信中（<span class="date-ja" data-date="2025-08-25"></span>）</span>
         </p>
-        <p class="note-small">配信開始後、各種リンクを掲載します。</p>
+        <p class="links">
+          <a href="https://play.google.com/store/apps/details?id=com.tsumugistudio.hiddenalleyescape&hl=ko-KR&gl=KR" target="_blank" rel="noopener">
+            <img src="images/GetItOnGooglePlay_Badge_Web_color_English.png" alt="Google Playで手に入れよう" style="height:60px; border:none;">
+          </a>
+        </p>
+        <p class="links">
+          <a href="https://www.tsumugistudio.com/press/the-hidden-alley/HK/250813_PR_EscapeGame_TheHiddenAlley_KR.pdf" target="_blank" rel="noopener">プレスリリース（韓国向け）</a>
+          <a href="https://www.tsumugistudio.com/press/the-hidden-alley/HK/presskit-kr.zip" target="_blank" rel="noopener">プレスキット（韓国向け）</a>
+        </p>
       </div>
 
-      <!-- 日本 -->
+      <!-- 日本（配信中） -->
       <div class="region-panel" id="ja-panel-jp" role="tabpanel" aria-labelledby="ja-tab-jp">
         <p><strong>配信状況</strong>
-          <span class="badge soon">Coming Soon</span>
+          <span class="badge ok">配信中（<span class="date-ja" data-date="2025-08-25"></span>）</span>
         </p>
-        <p class="note-small">配信開始後、各種リンクを掲載します。</p>
+        <p class="links">
+          <a href="https://play.google.com/store/apps/details?id=com.tsumugistudio.hiddenalleyescape&hl=ja-JP&gl=JP" target="_blank" rel="noopener">
+            <img src="images/GetItOnGooglePlay_Badge_Web_color_English.png" alt="Google Playで手に入れよう" style="height:60px; border:none;">
+          </a>
+        </p>
+        <p class="links">
+          <a href="https://www.tsumugistudio.com/press/the-hidden-alley/HK/250813_PR_EscapeGame_TheHiddenAlley_JP.pdf" target="_blank" rel="noopener">プレスリリース（日本向け）</a>
+          <a href="https://www.tsumugistudio.com/press/the-hidden-alley/HK/presskit-jp.zip" target="_blank" rel="noopener">プレスキット（日本向け）</a>
+        </p>
       </div>
 
-      <p class="note-small">※ 配信地域外の皆さまは、もう少しだけお待ちください。順次配信予定です。</p>
+      <!-- English（配信中） -->
+      <div class="region-panel" id="ja-panel-en" role="tabpanel" aria-labelledby="ja-tab-en-region">
+        <p><strong>配信状況</strong>
+          <span class="badge ok">配信中（<span class="date-ja" data-date="2025-08-25"></span>）</span>
+        </p>
+        <p class="links">
+          <a href="https://play.google.com/store/apps/details?id=com.tsumugistudio.hiddenalleyescape&hl=en-US&gl=US" target="_blank" rel="noopener">
+            <img src="images/GetItOnGooglePlay_Badge_Web_color_English.png" alt="Google Playで手に入れよう" style="height:60px; border:none;">
+          </a>
+        </p>
+        <p class="links">
+          <a href="https://www.tsumugistudio.com/press/the-hidden-alley/HK/250813_PR_EscapeGame_TheHiddenAlley_EN.pdf" target="_blank" rel="noopener">プレスリリース（英語版）</a>
+          <a href="https://www.tsumugistudio.com/press/the-hidden-alley/HK/presskit-en.zip" target="_blank" rel="noopener">プレスキット（英語版）</a>
+        </p>
+      </div>
     </section>
 
     <!-- 英語 -->
     <section class="tab-content" id="content-en" role="tabpanel" aria-labelledby="tab-en" lang="en">
-      <h2>Now Available on Google Play in Hong Kong (Launched on August 12, 2025)</h2>
-      <p>A puzzle-solving escape game set in a realistic back alley — now available on Google Play.</p>
+      <h2>Now Available on Google Play in 9 Countries (Launched on August 25, 2025)</h2>
+      <p>The escape game <em>The Hidden Alley: Escape</em> is now available on Google Play in 9 countries worldwide.</p>
       <img src="images/HiddenAlleyEscape-Playing.png" alt="Screenshot of the game screen" />
-
-      <!--
-      <h2>Download Coming Soon</h2>
-      <p>Links to the stores will be posted here after release.</p>
-      <ul>
-        <li>Google Play (Coming Soon)</li>
-        <li>App Store (Coming Soon)</li>
-      </ul>
-      -->
 
       <!-- Region info (English) -->
       <h2>Release & Press</h2>
@@ -156,6 +176,7 @@
         <button class="region-tab" role="tab" aria-selected="false" aria-controls="en-panel-tw" id="en-tab-tw" data-region="tw">Taiwan</button>
         <button class="region-tab" role="tab" aria-selected="false" aria-controls="en-panel-kr" id="en-tab-kr" data-region="kr">Korea</button>
         <button class="region-tab" role="tab" aria-selected="false" aria-controls="en-panel-jp" id="en-tab-jp" data-region="jp">Japan</button>
+        <button class="region-tab" role="tab" aria-selected="false" aria-controls="en-panel-en" id="en-tab-en-region" data-region="en">English</button>
       </div>
 
       <!-- Hong Kong (Released) -->
@@ -164,7 +185,7 @@
           <span class="badge ok">Released (<span class="date-en" data-date="2025-08-12"></span>)</span>
         </p>
         <p class="links">
-          <a href="https://play.google.com/store/apps/details?id=com.tsumugistudio.hiddenalleyescape&hl=en-HK&gl=HK" target="_blank" rel="noopener">
+          <a href="https://play.google.com/store/apps/details?id=com.tsumugistudio.hiddenalleyescape&hl=zh-HK&gl=HK" target="_blank" rel="noopener">
             <img src="images/GetItOnGooglePlay_Badge_Web_color_English.png" alt="Get it on Google Play" style="height:60px; border:none;">
           </a>
         </p>
@@ -177,28 +198,66 @@
       <!-- Taiwan -->
       <div class="region-panel" id="en-panel-tw" role="tabpanel" aria-labelledby="en-tab-tw">
         <p><strong>Status</strong>
-          <span class="badge soon">Coming Soon</span>
+          <span class="badge ok">Released (<span class="date-en" data-date="2025-08-25"></span>)</span>
         </p>
-        <p class="note-small">Links will be added after release.</p>
+        <p class="links">
+          <a href="https://play.google.com/store/apps/details?id=com.tsumugistudio.hiddenalleyescape&hl=zh-TW&gl=TW" target="_blank" rel="noopener">
+            <img src="images/GetItOnGooglePlay_Badge_Web_color_English.png" alt="Get it on Google Play" style="height:60px; border:none;">
+          </a>
+        </p>
+        <p class="links">
+          <a href="https://www.tsumugistudio.com/press/the-hidden-alley/HK/250813_PR_EscapeGame_TheHiddenAlley_TW.pdf" target="_blank" rel="noopener">Press Release (TW)</a>
+          <a href="https://www.tsumugistudio.com/press/the-hidden-alley/HK/presskit-tw.zip" target="_blank" rel="noopener">Press Kit (TW)</a>
+        </p>
       </div>
 
       <!-- Korea -->
       <div class="region-panel" id="en-panel-kr" role="tabpanel" aria-labelledby="en-tab-kr">
         <p><strong>Status</strong>
-          <span class="badge soon">Coming Soon</span>
+          <span class="badge ok">Released (<span class="date-en" data-date="2025-08-25"></span>)</span>
         </p>
-        <p class="note-small">Links will be added after release.</p>
+        <p class="links">
+          <a href="https://play.google.com/store/apps/details?id=com.tsumugistudio.hiddenalleyescape&hl=ko-KR&gl=KR" target="_blank" rel="noopener">
+            <img src="images/GetItOnGooglePlay_Badge_Web_color_English.png" alt="Get it on Google Play" style="height:60px; border:none;">
+          </a>
+        </p>
+        <p class="links">
+          <a href="https://www.tsumugistudio.com/press/the-hidden-alley/HK/250813_PR_EscapeGame_TheHiddenAlley_KR.pdf" target="_blank" rel="noopener">Press Release (KR)</a>
+          <a href="https://www.tsumugistudio.com/press/the-hidden-alley/HK/presskit-kr.zip" target="_blank" rel="noopener">Press Kit (KR)</a>
+        </p>
       </div>
 
       <!-- Japan -->
       <div class="region-panel" id="en-panel-jp" role="tabpanel" aria-labelledby="en-tab-jp">
         <p><strong>Status</strong>
-          <span class="badge soon">Coming Soon</span>
+          <span class="badge ok">Released (<span class="date-en" data-date="2025-08-25"></span>)</span>
         </p>
-        <p class="note-small">Links will be added after release.</p>
+        <p class="links">
+          <a href="https://play.google.com/store/apps/details?id=com.tsumugistudio.hiddenalleyescape&hl=ja-JP&gl=JP" target="_blank" rel="noopener">
+            <img src="images/GetItOnGooglePlay_Badge_Web_color_English.png" alt="Get it on Google Play" style="height:60px; border:none;">
+          </a>
+        </p>
+        <p class="links">
+          <a href="https://www.tsumugistudio.com/press/the-hidden-alley/HK/250813_PR_EscapeGame_TheHiddenAlley_JP.pdf" target="_blank" rel="noopener">Press Release (JP)</a>
+          <a href="https://www.tsumugistudio.com/press/the-hidden-alley/HK/presskit-jp.zip" target="_blank" rel="noopener">Press Kit (JP)</a>
+        </p>
       </div>
 
-      <p class="note-small">* If your region is not yet available, please stay tuned. We will roll out sequentially.</p>
+      <!-- English -->
+      <div class="region-panel" id="en-panel-en" role="tabpanel" aria-labelledby="en-tab-en-region">
+        <p><strong>Status</strong>
+          <span class="badge ok">Released (<span class="date-en" data-date="2025-08-25"></span>)</span>
+        </p>
+        <p class="links">
+          <a href="https://play.google.com/store/apps/details?id=com.tsumugistudio.hiddenalleyescape&hl=en-US&gl=US" target="_blank" rel="noopener">
+            <img src="images/GetItOnGooglePlay_Badge_Web_color_English.png" alt="Get it on Google Play" style="height:60px; border:none;">
+          </a>
+        </p>
+        <p class="links">
+          <a href="https://www.tsumugistudio.com/press/the-hidden-alley/HK/250813_PR_EscapeGame_TheHiddenAlley_EN.pdf" target="_blank" rel="noopener">Press Release (EN)</a>
+          <a href="https://www.tsumugistudio.com/press/the-hidden-alley/HK/presskit-en.zip" target="_blank" rel="noopener">Press Kit (EN)</a>
+        </p>
+      </div>
     </section>
   </main>
 
@@ -220,7 +279,7 @@
     function formatEn(dateStr){
       const d = new Date(dateStr+'T00:00:00');
       const fmt = new Intl.DateTimeFormat('en-US',{month:'short', day:'numeric', year:'numeric'}).format(d);
-      return fmt.replace(',',''); // "Aug 12, 2025" -> "Aug 12 2025" (好みで)
+      return fmt.replace(',',''); // "Aug 25, 2025" -> "Aug 25 2025"
     }
     $$('.date-ja').forEach(el=>{const v=el.getAttribute('data-date'); if(v) el.textContent = formatJa(v)});
     $$('.date-en').forEach(el=>{const v=el.getAttribute('data-date'); if(v) el.textContent = formatEn(v)});
@@ -323,15 +382,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
