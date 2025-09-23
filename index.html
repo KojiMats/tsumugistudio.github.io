@@ -310,6 +310,11 @@
       langPanels.forEach(p=>p.classList.remove('active'));
       btn.classList.add('active'); btn.setAttribute('aria-selected','true');
       $('#'+btn.getAttribute('aria-controls')).classList.add('active');
+
+      // ★追加：タブ切替時の動画制御
+      pauseAllVideos();
+      requestAnimationFrame(()=>playVisibleVideos());
+
       // sync hash & remember
       const currentRegion = getActiveRegion(btn.id.endsWith('ja')?'ja':'en');
       setHash({lang: btn.id.endsWith('ja')?'ja':'en', region: currentRegion});
@@ -429,6 +434,8 @@
 
     // Initial state: from hash -> localStorage -> defaults
     (function init(){
+      wireAllVideos(); // ★追加：まず全動画を監視対象に
+      
       const {lang, region} = parseHash();
       const storedLang = localStorage.getItem('tsu_lang');
       const initLang = lang || storedLang || 'ja';
@@ -443,10 +450,15 @@
       const regionBtn = $(`#${initLang}-tab-${initRegion}`);
       if(regionBtn){ regionBtn.click(); }
       else { setHash({lang:initLang}); }
+
+      // ★追加：初期表示で見えている動画を再生
+      requestAnimationFrame(()=>playVisibleVideos());
     })();
+    
   </script>
 </body>
 </html>
+
 
 
 
