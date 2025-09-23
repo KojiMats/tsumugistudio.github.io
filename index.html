@@ -71,22 +71,6 @@
       <!-- <img src="images/HiddenAlleyEscape-Playing.png" alt="ゲーム画面のスクリーンショット" /> -->
       <video  class="hero-video"  src="movie/UAC-W-01-Song-JP_mini.mp4"  playsinline  muted  loop  preload="none"  poster="images/HiddenAlleyEscape-Playing.png"  style="max-width:100%;height:auto;border:1px solid #ccc;margin-top:10px"></video>
 
-      <script>
-        // 画面に入ったら再生／出たら一時停止（CPU節約 & モバイル親和）
-        const v = document.querySelector('.hero-video');
-        if ('IntersectionObserver' in window && v) {
-          const io = new IntersectionObserver(([e]) => {
-            if (!e) return;
-            if (e.isIntersecting) { v.play().catch(()=>{}); }
-            else { v.pause(); }
-          }, { threshold: 0.25 });
-          io.observe(v);
-        } else {
-          // フォールバック：静かに自動再生を試みる
-          v && v.play && v.play().catch(()=>{});
-        }
-      </script>
-
       <!-- 国別情報（日本語） -->
       <h2>配信状況・プレス</h2>
 
@@ -192,22 +176,6 @@
       <p>The escape game <em>The Hidden Alley: Escape</em> is now available on Google Play in several countries worldwide.</p>
       <!-- < img src="images/HiddenAlleyEscape-Playing.png" alt="Screenshot of the game screen" /> -->
       <video  class="hero-video"  src="movie/UAC-W-01-Song-EN_mini.mp4"  playsinline  muted  loop  preload="none"  poster="images/HiddenAlleyEscape-Playing.png"  style="max-width:100%;height:auto;border:1px solid #ccc;margin-top:10px"></video>
-
-      <script>
-        // 画面に入ったら再生／出たら一時停止（CPU節約 & モバイル親和）
-        const v = document.querySelector('.hero-video');
-        if ('IntersectionObserver' in window && v) {
-          const io = new IntersectionObserver(([e]) => {
-            if (!e) return;
-            if (e.isIntersecting) { v.play().catch(()=>{}); }
-            else { v.pause(); }
-          }, { threshold: 0.25 });
-          io.observe(v);
-        } else {
-          // フォールバック：静かに自動再生を試みる
-          v && v.play && v.play().catch(()=>{});
-        }
-      </script>
 
       <!-- Region info (English) -->
       <h2>Release & Press</h2>
@@ -360,6 +328,55 @@
       });
     });
 
+    // ====== ★ 動画の共通ハンドリング ======
+    const videos = $$('.hero-video');
+  
+    function isActuallyVisible(el){
+      // display:none など祖先の非表示も考慮
+      if (!el.isConnected) return false;
+      const rect = el.getBoundingClientRect();
+      const inViewport = rect.width > 0 && rect.height > 0 &&
+                         rect.bottom >= 0 && rect.right >= 0 &&
+                         rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+                         rect.left <= (window.innerWidth || document.documentElement.clientWidth);
+      // 祖先のdisplay:noneチェック（offsetParentは厳密ではないが十分実用）
+      const notHiddenByCSS = !!el.offsetParent || window.getComputedStyle(el).position === 'fixed';
+      return inViewport && notHiddenByCSS;
+    }
+  
+    let io = null;
+    if ('IntersectionObserver' in window){
+      io = new IntersectionObserver((entries)=>{
+        entries.forEach(({target, isIntersecting})=>{
+          if (isIntersecting && isActuallyVisible(target)) {
+            target.play().catch(()=>{});
+          } else {
+            target.pause();
+          }
+        });
+      }, { threshold: 0.25 });
+    }
+  
+    function wireAllVideos(){
+      videos.forEach(v=>{
+        // 念のため自動再生も許可（scriptが動かなくても再生されやすくする）
+        v.setAttribute('autoplay','');
+        v.setAttribute('muted','');
+        v.setAttribute('playsinline','');
+  
+        if (io) io.observe(v);
+        else v.play && v.play().catch(()=>{});
+      });
+    }
+  
+    function pauseAllVideos(){ videos.forEach(v=>v.pause()); }
+  
+    function playVisibleVideos(){
+      videos.forEach(v=>{
+        if (isActuallyVisible(v)) { v.play().catch(()=>{}); }
+      });
+    }
+
     // --- Region tabs per language (ARIA) ---
     function wireRegion(group){
       const scope = group.dataset.scope; // 'ja' or 'en'
@@ -430,6 +447,7 @@
   </script>
 </body>
 </html>
+
 
 
 
