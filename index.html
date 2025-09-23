@@ -68,7 +68,24 @@
       <p>謎解き脱出ゲーム『路地裏からの脱出』が、各国のGoogle Playで配信開始となりました。</p>
       <p>美しく作り込まれた路地裏を探索し、謎を解いて脱出する本作は、ちょっとした空き時間にも楽しめる内容になっています。</p>
       <p>Androidをお使いの皆様、遊んでいただけると嬉しいです。</p>
-      <img src="images/HiddenAlleyEscape-Playing.png" alt="ゲーム画面のスクリーンショット" />
+      <!-- <img src="images/HiddenAlleyEscape-Playing.png" alt="ゲーム画面のスクリーンショット" /> -->
+      <video  class="hero-video"  src="movie/UAC-W-01-Song-JP_mini.mp4"  playsinline  muted  loop  preload="none"  poster="images/HiddenAlleyEscape-Playing.png"  style="max-width:100%;height:auto;border:1px solid #ccc;margin-top:10px"></video>
+
+      <script>
+        // 画面に入ったら再生／出たら一時停止（CPU節約 & モバイル親和）
+        const v = document.querySelector('.hero-video');
+        if ('IntersectionObserver' in window && v) {
+          const io = new IntersectionObserver(([e]) => {
+            if (!e) return;
+            if (e.isIntersecting) { v.play().catch(()=>{}); }
+            else { v.pause(); }
+          }, { threshold: 0.25 });
+          io.observe(v);
+        } else {
+          // フォールバック：静かに自動再生を試みる
+          v && v.play && v.play().catch(()=>{});
+        }
+      </script>
 
       <!-- 国別情報（日本語） -->
       <h2>配信状況・プレス</h2>
@@ -396,6 +413,7 @@
   </script>
 </body>
 </html>
+
 
 
 
