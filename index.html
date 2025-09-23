@@ -403,6 +403,11 @@
         panels.forEach(p=>p.classList.remove('active'));
         btn.classList.add('active'); btn.setAttribute('aria-selected','true');
         $('#'+btn.getAttribute('aria-controls')).classList.add('active');
+        
+        // ★追加：地域タブ切替時の動画制御
+        pauseAllVideos();
+        requestAnimationFrame(()=>playVisibleVideos());
+        
         // sync hash & remember
         const lang = scope; const region = btn.dataset.region;
         setHash({lang, region});
@@ -458,6 +463,7 @@
   </script>
 </body>
 </html>
+
 
 
 
