@@ -41,6 +41,22 @@
     .badge.soon{background:#fff5e6;border-color:#ffd9a6;color:#8a5a00}
     .links a{margin-right:10px}
     .note-small{color:#666;font-size:13px}
+
+    /* 共通スタイル */
+    .hero-video {
+      width: 100%;
+      height: auto;
+      border: 1px solid #ccc;
+      margin-top: 10px;
+    }
+    
+    /* 横長画面では横幅を 33% に制限 */
+    @media (min-aspect-ratio: 4/3) {
+      .hero-video {
+        max-width: 33%;
+      }
+    }
+    
   </style>
 </head>
 <body>
@@ -463,6 +479,7 @@
   </script>
 </body>
 </html>
+
 
 
 
