@@ -42,7 +42,7 @@
     .links a{margin-right:10px}
     .note-small{color:#666;font-size:13px}
 
-    /* 共通スタイル */
+    /* 共通（スマホ縦長などは全幅） */
     .hero-video {
       width: 100%;
       height: auto;
@@ -50,10 +50,12 @@
       margin-top: 10px;
     }
     
-    /* 横長画面では横幅を 33% に制限 */
+    /* 画面が横長のときは横幅を約1/3に、左寄せのまま */
     @media (min-aspect-ratio: 4/3) {
       .hero-video {
         max-width: 33%;
+        margin-left: 0;     /* 念のため左寄せを明示 */
+        margin-right: 0;
       }
     }
     
@@ -85,8 +87,8 @@
       <p>美しく作り込まれた路地裏を探索し、謎を解いて脱出する本作は、ちょっとした空き時間にも楽しめる内容になっています。</p>
       <p>Androidをお使いの皆様、遊んでいただけると嬉しいです。</p>
       <!-- <img src="images/HiddenAlleyEscape-Playing.png" alt="ゲーム画面のスクリーンショット" /> -->
-      <video  class="hero-video"  src="movie/UAC-W-01-Song-JP_mini.mp4"  playsinline  muted  loop  preload="none"  poster="images/HiddenAlleyEscape-Playing.png"  style="max-width:100%;height:auto;border:1px solid #ccc;margin-top:10px"></video>
-
+      <video class="hero-video"  src="movie/UAC-W-01-Song-JP_mini.mp4"  playsinline  muted  loop  preload="none"  poster="images/HiddenAlleyEscape-Playing.png"></video>
+      
       <!-- 国別情報（日本語） -->
       <h2>配信状況・プレス</h2>
 
@@ -191,7 +193,7 @@
       <h2>Now Available on Google Play (Launched on August 25, 2025)</h2>
       <p>The escape game <em>The Hidden Alley: Escape</em> is now available on Google Play in several countries worldwide.</p>
       <!-- < img src="images/HiddenAlleyEscape-Playing.png" alt="Screenshot of the game screen" /> -->
-      <video  class="hero-video"  src="movie/UAC-W-01-Song-EN_mini.mp4"  playsinline  muted  loop  preload="none"  poster="images/HiddenAlleyEscape-Playing.png"  style="max-width:100%;height:auto;border:1px solid #ccc;margin-top:10px"></video>
+      <video class="hero-video"   src="movie/UAC-W-01-Song-EN_mini.mp4"  playsinline muted loop preload="none"   poster="images/HiddenAlleyEscape-Playing.png"></video>
 
       <!-- Region info (English) -->
       <h2>Release & Press</h2>
@@ -479,6 +481,7 @@
   </script>
 </body>
 </html>
+
 
 
 
