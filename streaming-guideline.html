@@ -16,11 +16,8 @@
     body {font-family: system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif; margin: 20px; background: #f9f9f9; color: #333;}
     header {margin-bottom: 20px;}
     header h1 {font-size: 24px;margin-bottom: 10px;}
-    .nav-links {margin-bottom: 8px;}
+    .nav-links {margin-bottom: 20px;}
     .nav-links a {margin-right: 15px;text-decoration: none;color: var(--c);font-weight: 600;font-size: 14px}
-    .nav-links a:hover {text-decoration: underline}
-
-    /* Social buttons (match index.html pill style) */
     .social-links {
       margin-top: 12px;
       display: flex;
@@ -47,9 +44,16 @@
     .social-link svg {
       width: 20px; height: 20px; display: inline-block; fill: currentColor;
     }
+    
+    .social-links a svg{width:18px;height:18px;display:inline-block}
+    
+    .social-links a{display:inline-block; margin-left:12px; text-decoration:none; font-weight:600; font-size:14px; color: var(--c)}
+    .social-links a:hover{text-decoration:underline}
+    .social-links .sep{color:#bbb; margin:0 6px}
+    .nav-links a:hover {text-decoration: underline}
 
     /* Language tabs */
-    .tabs {border-bottom: 1px solid #ccc; display: flex; gap:6px; margin: 14px 0 20px}
+    .tabs {border-bottom: 1px solid #ccc; display: flex; gap:6px; margin-bottom: 20px}
     .tab {padding: 8px 16px; cursor: pointer; background: #f1f1f1; border: 1px solid #ccc; border-bottom: none; border-radius: 4px 4px 0 0; font-size: 14px; color: #333}
     .tab.active {background: #fff; color: #000; font-weight: 700; border-bottom: 1px solid #fff}
     .tab:focus{outline:2px solid var(--c); outline-offset:2px}
@@ -92,7 +96,7 @@
     <div class="tabs" role="tablist" aria-label="Language">
       <button class="tab active" role="tab" aria-selected="true" aria-controls="content-ja" id="tab-ja">日本語</button>
       <button class="tab" role="tab" aria-selected="false" aria-controls="content-en" id="tab-en">English</button>
-      <button class="tab" role="tab" aria-selected="false" aria-controls="content-zh" id="tab-zh">繁體中文</button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="content-zh" id="tab-zh">繁體中文</button>
       <button class="tab" role="tab" aria-selected="false" aria-controls="content-ko" id="tab-ko">한국어</button>
     </div>
   </header>
@@ -101,7 +105,7 @@
     <!-- 日本語 -->
     <section class="tab-content active" id="content-ja" role="tabpanel" aria-labelledby="tab-ja">
       <h2>実況・配信ガイドライン <span class="badge new">最終更新：2025年10月2日</span></h2>
-      <p>TSUMUGI STUDIO が提供するゲーム作品については、下記のルールを守っていただければ、<strong>商用・非商用を問わず</strong>、自由にプレイ動画の投稿やライブ配信（以下まとめて「配信」）を行っていただけます。</p>
+      <p>TSUMUGI STUDIO が提供するゲーム作品については、下記のルールを守っていただければ、<strong>商用・非商用を問わず</strong>、自由にプレイ動画の投稿やライブ配信（以下まとめて&#8201;「配信」）を行っていただけます。</p>
 
       <h3>禁止事項</h3>
       <ul>
@@ -142,14 +146,14 @@
     <!-- 英語 -->
     <section class="tab-content" id="content-en" role="tabpanel" aria-labelledby="tab-en" lang="en">
       <h2>Streaming & Video Guidelines <span class="badge new">Last updated: Oct 2, 2025</span></h2>
-      <p>We welcome gameplay videos and live streams (collectively, “streams”) of TSUMUGI STUDIO titles for <strong>both commercial and non-commercial use</strong>, provided you follow the rules below.</p>
+      <p>We welcome gameplay videos and live streams (collectively, “streams”) of TSUMUGI STUDIO titles for <strong>both commercial and non‑commercial use</strong>, provided you follow the rules below.</p>
 
       <h3>Prohibited</h3>
       <ul>
-        <li>Using in-game music/visuals as <strong>standalone content</strong> (e.g., turning BGM into music videos/playlists). <span class="note-small">Note: This restriction exists to comply with the license conditions of the original music providers.</span></li>
+        <li>Using in‑game music/visuals as <strong>standalone content</strong> (e.g., turning BGM into music videos/playlists). <span class="note-small">Note: This restriction exists to comply with the license conditions of the original music providers.</span></li>
         <li>Any activity that violates applicable laws or your streaming platform’s terms/guidelines</li>
         <li>Content that is offensive, unlawful, or otherwise inappropriate</li>
-        <li>Streaming with pirated or modified (i.e., non-genuine) copies of our games</li>
+        <li>Streaming with pirated or modified (i.e., non‑genuine) copies of our games</li>
       </ul>
 
       <h3>Recommended (Optional)</h3>
@@ -160,7 +164,7 @@
 
       <h3>Monetization</h3>
       <div class="block">
-        <p><strong>Monetization on your channel</strong> (ads, memberships, tips, etc.) is allowed within the scope of these guidelines. If your platform or a third-party rights holder raises a claim, please follow their terms and decisions.</p>
+        <p><strong>Monetization on your channel</strong> (ads, memberships, tips, etc.) is allowed within the scope of these guidelines. If your platform or a third‑party rights holder raises a claim, please follow their terms and decisions.</p>
       </div>
 
       <h3>Suggested Boilerplate</h3>
@@ -217,7 +221,7 @@
       <ul>
         <li>本指引可能隨時更新，恕不另行通知；請以最新版本為準。</li>
         <li>為避免權利糾紛或爭議，我們可能請您調整或下架相關內容。</li>
-        <li>如有疑問，請透過<a href="/contact" target="_self" rel="noopener">Contact</a> 與我們聯繫。</li>
+        <li>如有疑問，請透過<a href="/contact" target="_self" rel="noopener">Contact</a> 與我們聯繫。</li></li>
       </ul>
     </section>
 
@@ -258,7 +262,7 @@
       <ul>
         <li>본 가이드라인은 예고 없이 변경될 수 있습니다. 최신 버전을 확인해 주세요.</li>
         <li>권리 문제나 논란 방지를 위해 방송 수정 또는 중지를 요청드릴 수 있습니다.</li>
-        <li>문의 사항은 <a href="/contact" target="_self" rel="noopener">Contact</a> 를 통해 연락해 주세요.</li>
+        <li>문의 사항은 <a href="/contact" target="_self" rel="noopener">Contact</a> 를 통해 연락해 주세요.</li></li>
       </ul>
     </section>
   </main>
