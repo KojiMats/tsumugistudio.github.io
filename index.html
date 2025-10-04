@@ -95,7 +95,14 @@
         background: #222;
       }
     }
-
+    
+    /* --- Update Notice --- */
+    .notice{border:1px solid #ffd9a6;background:#fff9ed;padding:12px 14px;border-radius:8px;margin:12px 0}
+    .notice .title{font-weight:700;margin-bottom:6px}
+    .notice .meta{font-size:13px;color:#555;margin-top:4px}
+    .notice a.btn{display:inline-block;margin-top:8px;padding:6px 10px;border-radius:999px;border:1px solid #ddd;text-decoration:none}
+    .notice a.btn:hover{background:#f5f5f5}
+    
   </style>
 </head>
 <body>
@@ -120,6 +127,15 @@
   <main>
     <!-- 日本語 -->
     <section class="tab-content active" id="content-ja" role="tabpanel" aria-labelledby="tab-ja">
+      
+      <!-- ★ Update Notice (JA) -->
+      <div class="notice" role="status" aria-live="polite">
+        <div class="title">🔔 アップデートのお知らせ</div>
+        <div>『路地裏からの脱出』は <strong>バージョン1.0.387（2025年10月4日）</strong> をリリースし、セキュリティ脆弱性 <strong><a href="https://unity.com/ja/security/sept-2025-01">CVE-2025-59489</a>a</strong> に対応しました。安心してお楽しみいただくため、最新バージョンへのアップデートをお願いします。</div>
+        <div class="meta">※ ゲーム内容に変更はありません（安全性向上のための更新です）。</div>
+        <a class="btn" href="https://play.google.com/store/apps/details?id=com.tsumugistudio.hiddenalleyescape&hl=ja-JP&gl=JP" target="_blank" rel="noopener">Google Playでアップデート</a>
+      </div>
+      
       <h2>世界各国で配信開始（2025年8月25日）</h2>
       <p>謎解き脱出ゲーム『路地裏からの脱出』が、各国のGoogle Playで配信開始しました。</p>
       <p>美しく作り込まれた路地裏を探索し、謎を解いて脱出する本作は、ちょっとした空き時間にも楽しめる内容になっています。</p>
@@ -228,6 +244,15 @@
 
     <!-- 英語 -->
     <section class="tab-content" id="content-en" role="tabpanel" aria-labelledby="tab-en" lang="en">
+      
+      <!-- ★ Update Notice (EN) -->
+      <div class="notice" role="status" aria-live="polite">
+        <div class="title">🔔 Update Notice</div>
+        <div><em>Escape Game: The Hidden Alley</em> has released <strong>Version 1.0.387 (Oct 4, 2025)</strong>, addressing the security vulnerability <strong><a href="https://unity.com/security/sept-2025-01">CVE-2025-59489</a></strong>. For a safer experience, please update to the latest version.</div>
+        <div class="meta">No gameplay changes—this update focuses on security.</div>
+        <a class="btn" href="https://play.google.com/store/apps/details?id=com.tsumugistudio.hiddenalleyescape&hl=en-US&gl=US" target="_blank" rel="noopener">Update on Google Play</a>
+      </div>
+      
       <h2>Now Available on Google Play (Launched on August 25, 2025)</h2>
       <p>The escape game <em>The Hidden Alley: Escape</em> is now available on Google Play in several countries worldwide.</p>
       <!-- < img src="images/HiddenAlleyEscape-Playing.png" alt="Screenshot of the game screen" /> -->
@@ -533,6 +558,7 @@
   </script>
 </body>
 </html>
+
 
 
 
