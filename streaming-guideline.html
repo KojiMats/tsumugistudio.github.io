@@ -18,6 +18,25 @@
     header h1 {font-size: 24px;margin-bottom: 10px;}
     .nav-links {margin-bottom: 20px;}
     .nav-links a {margin-right: 15px;text-decoration: none;color: var(--c);font-weight: 600;font-size: 14px}
+
+    /* ヘッダのリンクを白文字に */
+    header .nav-links a,
+    header .nav-links a:visited,
+    header .nav-links a:active {
+        color: #fff;
+    }
+      
+    header .nav-links a:hover {
+        color: #fff;            /* 変わらず白 */
+        opacity: .85;           /* うっすら反応 */
+        text-decoration: underline;
+    }
+      
+    header .nav-links a:focus {
+        outline: 2px solid #fff;
+        outline-offset: 2px;
+    }
+
     .social-links {
       margin-top: 12px;
       display: flex;
