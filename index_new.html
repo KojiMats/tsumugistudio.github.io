@@ -20,7 +20,16 @@
     header {margin-bottom: 20px;}
     header h1 {font-size: 24px;margin-bottom: 10px;}
 
-    .nav-links {margin-bottom: 12px;}
+    /* ヘッダー内を nav とセレクトで左右に分ける */
+    .header-flex{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:12px;
+    }
+
+    .nav-links {margin-bottom: 0;}
     .nav-links a {
       margin-right: 15px;
       text-decoration: none;
@@ -30,7 +39,7 @@
     }
     .nav-links a:hover {text-decoration: underline}
 
-    /* ヘッダのリンクを白文字に（既存のスタイルを維持） */
+    /* ヘッダのリンクを白文字に（既存仕様維持・背景色は外部CSS側想定） */
     header .nav-links a,
     header .nav-links a:visited,
     header .nav-links a:active {
@@ -46,29 +55,22 @@
       outline-offset: 2px;
     }
 
-    /* 国・言語セレクタ */
-    .lang-select-wrap{
-      margin: 8px 0 18px;
-      padding: 10px 12px;
-      background:#fff;
-      border-radius:8px;
-      border:1px solid #ddd;
-      display:flex;
-      flex-wrap:wrap;
-      align-items:center;
-      gap:8px;
-      font-size:14px;
-    }
-    .lang-select-wrap label{
-      font-weight:600;
-      min-width:140px;
-    }
-    #lang-select{
+    /* 右側の国・言語セレクタ */
+    .lang-select-inline select{
       padding:6px 8px;
       border-radius:4px;
       border:1px solid #ccc;
       font-size:14px;
       min-width: 220px;
+      background-color:#fff;
+    }
+
+    /* モバイル時は縦並びにして詰まりを回避 */
+    @media (max-width: 680px) {
+      .header-flex{
+        flex-direction:column;
+        align-items:flex-start;
+      }
     }
 
     .lang-panel{
@@ -175,26 +177,26 @@
   <header>
     <h1>TSUMUGI STUDIO</h1>
 
-    <!-- ナビ -->
-    <nav class="nav-links" aria-label="Primary">
-      <a href="index.html">Home</a>
-      <a href="streaming-guideline.html">Guidelines</a>
-      <a href="privacy.html">Privacy Policy</a>
-      <a href="faq.html">FAQ</a>
-      <a href="contact.html">Contact</a>
-    </nav>
+    <div class="header-flex">
+      <!-- ナビ -->
+      <nav class="nav-links" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="streaming-guideline.html">Guidelines</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+      </nav>
 
-    <!-- 国・言語選択（ページ全体＋配信パートに適用） -->
-    <div class="lang-select-wrap">
-      <label for="lang-select">国・地域 / Language:</label>
-      <select id="lang-select">
-        <option value="jp">日本（日本語）</option>
-        <option value="en">United States（English）</option>
-        <option value="hk">香港（繁體中文）</option>
-        <option value="tw">台灣（繁體中文）</option>
-        <option value="kr">한국（한국어）</option>
-      </select>
-      <span class="note-small">※選択した国・地域の情報のみを表示します。</span>
+      <!-- 国・言語選択（ページ全体＋配信パートに適用） -->
+      <div class="lang-select-inline">
+        <select id="lang-select" aria-label="Region / Language">
+          <option value="jp">日本（日本語）</option>
+          <option value="en">United States（English）</option>
+          <option value="hk">香港（繁體中文）</option>
+          <option value="tw">台灣（繁體中文）</option>
+          <option value="kr">한국（한국어）</option>
+        </select>
+      </div>
     </div>
   </header>
 
@@ -217,270 +219,4 @@
         <span class="badge ok">配信中</span>
       </p>
       <p class="links">
-        <a href="https://apps.apple.com/jp/app/%E8%84%B1%E5%87%BA%E3%82%B2%E3%83%BC%E3%83%A0-%E8%B7%AF%E5%9C%B0%E8%A3%8F%E3%81%8B%E3%82%89%E3%81%AE%E8%84%B1%E5%87%BA/id6753702650"
-           target="_blank" rel="noopener">
-          <img src="images/AppStore-JP.png" alt="App Store からダウンロード" style="height:60px; border:none;">
-        </a>
-      </p>
-      <p class="links">
-        <a href="https://play.google.com/store/apps/details?id=com.tsumugistudio.hiddenalleyescape&hl=ja-JP&gl=JP"
-           target="_blank" rel="noopener">
-          <img src="images/GetItOnGooglePlay_Badge_Web_color_Japanese.png" alt="Google Playで手に入れよう" style="height:60px; border:none;">
-        </a>
-      </p>
-      <p class="links">
-        <a href="https://www.tsumugistudio.com/press/the-hidden-alley/JP/250826_PR_EscapeGame_TheHiddenAlley_JP.pdf"
-           target="_blank" rel="noopener">プレスリリース（日本向け）</a>
-        <a href="https://www.tsumugistudio.com/press/the-hidden-alley/JP/presskit-jp.zip"
-           target="_blank" rel="noopener">プレスキット（日本向け）</a>
-      </p>
-    </section>
-
-    <!-- ===================== United States（English） ===================== -->
-    <section class="lang-panel" id="lang-en" data-view="en" lang="en">
-      <h2>iOS version released on November 13, 2025</h2>
-      <p>The escape game <em>Escape Game: The Hidden Alley</em> is now available on the App Store.</p>
-      <p>Android user feedback has helped us improve the experience even further — now optimized for iPhone and iPad. We hope you enjoy it!</p>
-
-      <video class="hero-video"
-             src="movie/UAC-W-01-Song-EN_mini.mp4"
-             playsinline muted loop preload="none"
-             poster="images/HiddenAlleyEscape-Playing.png"></video>
-
-      <h2>Escape Game: The Hidden Alley — Release & Press (United States)</h2>
-      <p>
-        <strong>Status</strong>
-        <span class="badge ok">Released</span>
-      </p>
-      <p class="links">
-        <a href="https://apps.apple.com/us/app/escape-game-the-hidden-alley/id6753702650"
-           target="_blank" rel="noopener">
-          <img src="images/AppStore-US.png" alt="Download from App Store" style="height:60px; border:none;">
-        </a>
-      </p>
-      <p class="links">
-        <a href="https://play.google.com/store/apps/details?id=com.tsumugistudio.hiddenalleyescape&hl=en-US&gl=US"
-           target="_blank" rel="noopener">
-          <img src="images/GetItOnGooglePlay_Badge_Web_color_English.png" alt="Get it on Google Play" style="height:60px; border:none;">
-        </a>
-      </p>
-    </section>
-
-    <!-- ===================== 香港（繁體中文） ===================== -->
-    <section class="lang-panel" id="lang-hk" data-view="hk" lang="zh-Hant">
-      <h2>iOS 版本已於 2025 年 11 月 13 日上線</h2>
-      <p>逃脫遊戲《從巷弄中逃出》現已登上 App Store。</p>
-      <p>我們吸收了 Android 版玩家的寶貴意見，使遊戲體驗更加完善。歡迎 iPhone、iPad 用戶試玩！</p>
-
-      <video class="hero-video"
-             src="movie/UAC-W-01-Song-EN_mini.mp4"
-             playsinline muted loop preload="none"
-             poster="images/HiddenAlleyEscape-Playing.png"></video>
-
-      <h2>逃脫遊戲《從巷弄中逃出》 發佈與媒體（香港）</h2>
-      <p>
-        <strong>狀態</strong>
-        <span class="badge ok">已上線</span>
-      </p>
-      <p class="links">
-        <a href="https://apps.apple.com/hk/app/%E9%80%83%E8%84%AB%E9%81%8A%E6%88%B2-%E5%BE%9E%E5%B7%B7%E5%BC%84%E4%B8%AD%E9%80%83%E5%87%BA/id6753702650"
-           target="_blank" rel="noopener">
-          <img src="images/AppStore-TC.png" alt="Download from App Store" style="height:60px; border:none;">
-        </a>
-      </p>
-      <p class="links">
-        <a href="https://play.google.com/store/apps/details?id=com.tsumugistudio.hiddenalleyescape&hl=zh-HK&gl=HK"
-           target="_blank" rel="noopener">
-          <img src="images/GetItOnGooglePlay_Badge_Web_color_Chinese-HK.png" alt="在 Google Play 取得" style="height:60px; border:none;">
-        </a>
-      </p>
-      <p class="links">
-        <a href="https://www.tsumugistudio.com/press/the-hidden-alley/HK/250813_PR_EscapeGame_TheHiddenAlley_HK.pdf"
-           target="_blank" rel="noopener">新聞稿（香港）</a>
-        <a href="https://www.tsumugistudio.com/press/the-hidden-alley/HK/presskit-tc.zip"
-           target="_blank" rel="noopener">媒體素材包（香港）</a>
-      </p>
-    </section>
-
-    <!-- ===================== 台灣（繁體中文） ===================== -->
-    <section class="lang-panel" id="lang-tw" data-view="tw" lang="zh-Hant">
-      <h2>iOS 版本已於 2025 年 11 月 13 日上線</h2>
-      <p>逃脫遊戲《從巷弄中逃出》現已登上 App Store。</p>
-      <p>我們吸收了 Android 版玩家的寶貴意見，使遊戲體驗更加完善。歡迎 iPhone、iPad 用戶試玩！</p>
-
-      <video class="hero-video"
-             src="movie/UAC-W-01-Song-EN_mini.mp4"
-             playsinline muted loop preload="none"
-             poster="images/HiddenAlleyEscape-Playing.png"></video>
-
-      <h2>逃脫遊戲《從巷弄中逃出》 發佈與媒體（台灣）</h2>
-      <p>
-        <strong>狀態</strong>
-        <span class="badge ok">已上線</span>
-      </p>
-      <p class="links">
-        <a href="https://apps.apple.com/tw/app/%E9%80%83%E8%84%AB%E9%81%8A%E6%88%B2-%E5%BE%9E%E5%B7%B7%E5%BC%84%E4%B8%AD%E9%80%83%E5%87%BA/id6753702650"
-           target="_blank" rel="noopener">
-          <img src="images/AppStore-TC.png" alt="Download from App Store" style="height:60px; border:none;">
-        </a>
-      </p>
-      <p class="links">
-        <a href="https://play.google.com/store/apps/details?id=com.tsumugistudio.hiddenalleyescape&hl=zh-TW&gl=TW"
-           target="_blank" rel="noopener">
-          <img src="images/GetItOnGooglePlay_Badge_Web_color_Chinese-TW.png" alt="在 Google Play 取得" style="height:60px; border:none;">
-        </a>
-      </p>
-    </section>
-
-    <!-- ===================== 한국（한국어） ===================== -->
-    <section class="lang-panel" id="lang-kr" data-view="kr" lang="ko">
-      <h2>iOS 버전 2025년 11월 13일 출시</h2>
-      <p>탈출 게임 <em>골목길 탈출</em>의 iOS 버전이 App Store에 출시되었습니다.</p>
-      <p>Android 사용자 의견을 반영하여 더 즐기기 쉽도록 개선했습니다. iPhone, iPad에서 즐겨보세요!</p>
-
-      <video class="hero-video"
-             src="movie/UAC-W-01-Song-EN_mini.mp4"
-             playsinline muted loop preload="none"
-             poster="images/HiddenAlleyEscape-Playing.png"></video>
-
-      <h2>탈출 게임: 골목길 탈출　출시 & 보도자료（한국）</h2>
-      <p>
-        <strong>상태</strong>
-        <span class="badge ok">출시됨</span>
-      </p>
-      <p class="links">
-        <a href="https://apps.apple.com/kr/app/%ED%83%88%EC%B6%9C-%EA%B2%8C%EC%9E%84-%EA%B3%A8%EB%AA%A9%EA%B8%B8-%ED%83%88%EC%B6%9C/id6753702650"
-           target="_blank" rel="noopener">
-          <img src="images/AppStore-KR.png" alt="Download from App Store" style="height:60px; border:none;">
-        </a>
-      </p>
-      <p class="links">
-        <a href="https://play.google.com/store/apps/details?id=com.tsumugistudio.hiddenalleyescape&hl=ko-KR&gl=KR"
-           target="_blank" rel="noopener">
-          <img src="images/GetItOnGooglePlay_Badge_Web_color_Korean_270x80.png" alt="Get it on Google Play" style="height:60px; border:none;">
-        </a>
-      </p>
-    </section>
-  </main>
-
-  <footer>
-    <p>&copy; 2025 TSUMUGI STUDIO</p>
-    <div class="social-links">
-      <a class="social-link" href="https://x.com/Tsumugi_Studio" target="_blank" rel="noopener" aria-label="X">
-        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
-          <path d="M18.244 2H21l-6.5 7.43L22.5 22H15.9l-4.66-6.1L6 22H3.244l7.026-8.03L1.5 2H8.1l4.19 5.66L18.244 2Zm-1.17 18h1.77L7.014 4h-1.77L17.074 20Z"/>
-        </svg>
-        <span>X</span>
-      </a>
-      <a class="social-link" href="https://www.instagram.com/tsumugistudio_games/" target="_blank" rel="noopener" aria-label="Instagram">
-        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
-          <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3.5A5.5 5.5 0 1 1 6.5 13 5.5 5.5 0 0 1 12 7.5Zm0 2A3.5 3.5 0 1 0 15.5 13 3.5 3.5 0 0 0 12 9.5Zm6.25-3.25a1.25 1.25 0 1 1-1.25 1.25 1.25 1.25 0 0 1 1.25-1.25Z"/>
-        </svg>
-        <span>Instagram</span>
-      </a>
-    </div>
-  </footer>
-
-  <script>
-    // --- Utilities ---
-    const $  = (s,root=document)=>root.querySelector(s);
-    const $$ = (s,root=document)=>Array.from(root.querySelectorAll(s));
-
-    // ====== 動画の共通ハンドリング ======
-    const videos = $$('.hero-video');
-
-    function isActuallyVisible(el){
-      if (!el.isConnected) return false;
-      const rect = el.getBoundingClientRect();
-      const inViewport =
-        rect.width > 0 && rect.height > 0 &&
-        rect.bottom >= 0 && rect.right >= 0 &&
-        rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
-        rect.left <= (window.innerWidth || document.documentElement.clientWidth);
-      const notHiddenByCSS = !!el.offsetParent || window.getComputedStyle(el).position === 'fixed';
-      return inViewport && notHiddenByCSS;
-    }
-
-    let io = null;
-    if ('IntersectionObserver' in window){
-      io = new IntersectionObserver((entries)=>{
-        entries.forEach(({target, isIntersecting})=>{
-          if (isIntersecting && isActuallyVisible(target)) {
-            target.play().catch(()=>{});
-          } else {
-            target.pause();
-          }
-        });
-      }, { threshold: 0.25 });
-    }
-
-    function wireAllVideos(){
-      videos.forEach(v=>{
-        v.setAttribute('autoplay','');
-        v.setAttribute('muted','');
-        v.setAttribute('playsinline','');
-        if (io) io.observe(v);
-        else if (v.play) v.play().catch(()=>{});
-      });
-    }
-    function pauseAllVideos(){ videos.forEach(v=>v.pause()); }
-    function playVisibleVideos(){
-      videos.forEach(v=>{
-        if (isActuallyVisible(v)) {
-          v.play().catch(()=>{});
-        }
-      });
-    }
-
-    // ====== 国・言語選択によるパネル切替 ======
-    const langSelect = $('#lang-select');
-    const langPanels = $$('.lang-panel');
-
-    function parseHashView(){
-      const h = location.hash.replace('#','');
-      if(!h) return null;
-      const params = new URLSearchParams(h);
-      return params.get('view');
-    }
-
-    function setHashView(view){
-      const params = new URLSearchParams();
-      if(view) params.set('view', view);
-      history.replaceState(null, '', '#'+params.toString());
-    }
-
-    function showView(view){
-      langPanels.forEach(p=>{
-        if(p.dataset.view === view){
-          p.classList.add('active');
-        }else{
-          p.classList.remove('active');
-        }
-      });
-      pauseAllVideos();
-      requestAnimationFrame(()=>playVisibleVideos());
-      localStorage.setItem('tsu_view', view);
-      setHashView(view);
-    }
-
-    langSelect.addEventListener('change', e=>{
-      showView(e.target.value);
-    });
-
-    (function init(){
-      wireAllVideos();
-      const fromHash = parseHashView();
-      const stored = localStorage.getItem('tsu_view');
-      const initial = fromHash || stored || 'jp';
-      if ($('#lang-'+initial) === null){
-        // フォールバック
-        langSelect.value = 'jp';
-        showView('jp');
-      } else {
-        langSelect.value = initial;
-        showView(initial);
-      }
-    })();
-  </script>
-</body>
-</html>
+        <a href="https://apps.apple.com/jp/app/%E8%84%B1%E5%87%BA%E3%82%B2%E3%83%BC%E3%83%A0-%E8%B7%AF%E5%9C%B0%E8%A3%8F%E3%81%8B%E3%82%89%E3
