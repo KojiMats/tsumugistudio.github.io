@@ -27,7 +27,6 @@
       gap:12px;
     }
 
-    .nav-links { margin-bottom: 0; }
     .nav-links a {
       margin-right: 15px;
       text-decoration: none;
@@ -37,20 +36,11 @@
     }
     .nav-links a:hover { text-decoration: underline; }
 
-    /* 既存デザイン：ヘッダーリンクは白文字扱い */
+    /* 白いヘッダーに合わせたナビ文字 */
     header .nav-links a,
     header .nav-links a:visited,
     header .nav-links a:active {
       color: #fff;
-    }
-    header .nav-links a:hover {
-      color: #fff;
-      opacity: .85;
-      text-decoration: underline;
-    }
-    header .nav-links a:focus {
-      outline: 2px solid #fff;
-      outline-offset: 2px;
     }
 
     .lang-select-inline select{
@@ -84,33 +74,17 @@
     }
     .lang-panel.active{ display:block; }
 
-    h2{
-      font-size:20px;
-      margin:14px 0;
-    }
-    h3{
-      font-size:16px;
-      margin:14px 0 8px;
-    }
-    p{
-      line-height:1.7;
-      font-size:14px;
-    }
-    ul{
-      padding-left:1.4em;
-      font-size:14px;
-      line-height:1.7;
-    }
-    li+li{ margin-top:4px; }
+    h2{ font-size:20px; margin:14px 0; }
+    h3{ font-size:16px; margin:14px 0 8px; }
+    p, ul { font-size:14px; line-height:1.7; }
+    ul{ padding-left:1.4em; }
+    li + li { margin-top:4px; }
 
     .note{
       font-size:13px;
       color:#666;
       margin-top:4px;
     }
-
-    a { color: var(--c); }
-    a:hover { text-decoration: underline; }
 
     footer {
       text-align: center;
@@ -119,19 +93,12 @@
       font-size: 14px;
       padding: 20px;
     }
-
-    .footer-links{
-      margin-top:8px;
-      font-size:13px;
-    }
     .footer-links a{
       margin:0 6px;
       text-decoration:none;
       color:var(--c);
     }
-    .footer-links a:hover{
-      text-decoration:underline;
-    }
+    .footer-links a:hover{ text-decoration:underline; }
   </style>
 </head>
 <body>
@@ -148,7 +115,7 @@
       </nav>
 
       <div class="lang-select-inline">
-        <select id="lang-select" aria-label="Region / Language">
+        <select id="lang-select">
           <option value="jp">日本（日本語）</option>
           <option value="en">United States（English）</option>
           <option value="hk">香港（繁體中文）</option>
@@ -160,7 +127,7 @@
   </header>
 
   <main>
-    <!-- ===================== 日本（日本語） ===================== -->
+    <!-- ===================== 日本語 ===================== -->
     <section class="lang-panel active" id="lang-jp" data-view="jp" lang="ja">
       <h2>TSUMUGI STUDIO について</h2>
       <p>
@@ -181,16 +148,14 @@
       <p>
         ちょっと長いブランクを経てゲーム制作を再開した個人開発者です。<br>
         25年ぶりに作ったゲーム『路地裏からの脱出』を皮切りに、
-        自分自身が「遊びたい」と思える脱出ゲームを少しずつ増やしていくことを目標にしています。
+        自分自身が「作りたい」「遊びたい」と思えるアプリやゲームを
+        少しずつ形にしていくことを目標にしています。
       </p>
 
       <h3>主なタイトル</h3>
       <ul>
         <li>脱出ゲーム『路地裏からの脱出』 / Escape Game: The Hidden Alley</li>
       </ul>
-      <p class="note">
-        ※今後も、同じ世界観・テイストを大切にしながら新作タイトルの制作を続けていく予定です。
-      </p>
 
       <h3>連絡先</h3>
       <p>
@@ -201,32 +166,30 @@
       </p>
     </section>
 
-    <!-- ===================== United States（English） ===================== -->
+    <!-- ===================== English ===================== -->
     <section class="lang-panel" id="lang-en" data-view="en" lang="en">
       <h2>About TSUMUGI STUDIO</h2>
       <p>
         TSUMUGI STUDIO is an independent game studio based in Fukuoka, Japan,
-        founded in May 2025.<br>
-        The studio is led by a former console game developer who has returned to
-        game creation after a break of about 25 years, now focusing on
+        founded in May 2025. A former console game developer from the 1990s
+        returned to the industry after about 25 years and now creates
         small–scale, carefully crafted escape–room style games for smartphones.
       </p>
 
       <h3>What We’re Aiming For</h3>
       <p>
-        Our goal is to combine the joy of solving puzzles with a calm, immersive
-        visual experience. We create escape games that you can enjoy at your own pace,
-        with realistic pre–rendered 3D scenes and soothing music that invite you
-        to relax while you play.
+        Our goal is to combine the joy of solving puzzles with a calm,
+        immersive visual experience — games you can enjoy at your own pace,
+        surrounded by realistic pre–rendered 3D environments and soothing music.
       </p>
 
       <h3>Developer</h3>
       <p>
         After a long break away from the industry, the developer behind TSUMUGI STUDIO
-        has returned to making games as a solo creator.<br>
-        <em>Escape Game: The Hidden Alley</em> is the first title released after this
+        has returned to game creation as a solo creator.<br>
+        Escape Game: The Hidden Alley is the first title released after this
         25–year gap, and the plan is to slowly build a small catalog of
-        “games we ourselves would love to play.”
+        apps and games that we personally want to create and would love to play.
       </p>
 
       <h3>Main Title</h3>
@@ -236,35 +199,35 @@
 
       <h3>Contact</h3>
       <p>
-        For inquiries about development or press coverage,  
-        please visit the <a href="contact.html">Contact page</a> or email us at  
+        For inquiries or press requests, please visit the
+        <a href="contact.html">Contact page</a> or email
         <a href="mailto:info@tsumugistudio.com">info@tsumugistudio.com</a>.
       </p>
     </section>
 
-    <!-- ===================== 香港（繁體中文・香港） ===================== -->
+    <!-- ===================== 香港 ===================== -->
     <section class="lang-panel" id="lang-hk" data-view="hk" lang="zh-Hant">
       <h2>關於 TSUMUGI STUDIO（香港）</h2>
       <p>
         TSUMUGI STUDIO 是一間位於日本福岡、於 2025 年 5 月開始活動的獨立遊戲工作室。<br>
-        由一位曾在 1990 年代從事家用主機遊戲開發的前開發者重新出發，
-        在經歷約 25 年的空白期後，再次回到遊戲創作的現場，
-        以小團隊形式開發手機平台上的解謎逃脫遊戲。
+        由一位曾在 90 年代從事家用主機遊戲開發的前開發者，在經歷約 25 年的空白期後重新出發，
+        以小規模方式打造手機平台的逃脫遊戲作品。
       </p>
 
       <h3>創作理念</h3>
       <p>
-        我們希望在作品中同時呈現「解謎的樂趣」與「舒適的視覺體驗」。<br>
-        透過精緻的 3D 畫面與沉穩的音樂，打造可以慢慢遊玩、放鬆心情的逃脫遊戲，
-        讓玩家在靜謐的氛圍中享受尋找線索與推理解謎的過程。
+        我們希望把「解謎的樂趣」與「沉靜舒適的視覺體驗」融合在遊戲之中。<br>
+        透過寫實的 3D 場景與沉穩的音樂，讓玩家能以自己的步調
+        在寧靜的氛圍中探索線索、享受解謎。
       </p>
 
       <h3>開發者簡介</h3>
       <p>
-        工作室的核心成員是一位在中斷遊戲開發多年後，再次回歸的個人開發者。<br>
-        在睽違 25 年後推出的第一款作品，是逃脫遊戲
-        《從巷弄中逃出》（Escape Game: The Hidden Alley），
-        並計畫在未來持續創作更多風格相近的作品。
+        在中斷遊戲開發多年後回歸的一位個人開發者。<br>
+        睽違 25 年推出的第一款作品是
+        《從巷弄中逃出》（Escape Game: The Hidden Alley），<br>
+        並計畫在未來持續把自己「想做、也想親自玩玩看」的
+        應用程式與遊戲慢慢實現出來。
       </p>
 
       <h3>主要作品</h3>
@@ -274,33 +237,35 @@
 
       <h3>聯絡方式</h3>
       <p>
-        若有採訪或合作相關的洽詢，歡迎透過
+        採訪或合作洽詢，歡迎透過
         <a href="contact.html">聯絡頁面</a> 或  
-        電郵至 <a href="mailto:info@tsumugistudio.com">info@tsumugistudio.com</a> 與我們聯繫。
+        電郵至 <a href="mailto:info@tsumugistudio.com">info@tsumugistudio.com</a> 聯繫。
       </p>
     </section>
 
-    <!-- ===================== 台灣（繁體中文・台灣） ===================== -->
+    <!-- ===================== 台灣 ===================== -->
     <section class="lang-panel" id="lang-tw" data-view="tw" lang="zh-Hant">
       <h2>關於 TSUMUGI STUDIO（台灣）</h2>
       <p>
-        TSUMUGI STUDIO 是一間位於日本福岡的獨立遊戲工作室，於 2025 年 5 月開始營運。<br>
-        由曾在 90 年代從事家用主機遊戲開發的前開發者，在暫別業界約 25 年後重新回到創作現場，
-        目前以少量精緻的手機逃脫遊戲為主要開發方向。
+        TSUMUGI STUDIO 是一間位於日本福岡、於 2025 年 5 月起開始營運的獨立遊戲工作室。<br>
+        由曾在 90 年代參與家用主機遊戲開發的前開發者，在暫別業界約 25 年後再度回到創作領域，
+        目前以精緻小品類型的手機逃脫遊戲為主要開發方向。
       </p>
 
       <h3>創作目標</h3>
       <p>
-        我們希望結合「解謎的成就感」與「安靜、沉浸的體驗」。<br>
-        透過寫實的 3D 背景與溫柔的配樂，
-        打造可以慢慢遊玩、不追求速度、適合在睡前放鬆的逃脫類作品。
+        希望將「推理解謎的成就感」與「安靜沉浸的遊戲體驗」結合起來。<br>
+        搭配寫實的 3D 場景與溫柔的配樂，
+        打造能慢慢玩、不追求速度、適合在睡前放鬆的逃脫作品。
       </p>
 
       <h3>開發者介紹</h3>
       <p>
-        工作室由一位個人開發者主導，在經歷長時間的空白期後重新開始製作遊戲。<br>
-        相隔 25 年推出的第一款作品是《從巷弄中逃出》（Escape Game: The Hidden Alley），
-        之後也希望持續增加「自己也想好好玩一遍」的作品數量。
+        工作室由一位個人開發者主導，在長時間的空白後重新開始製作遊戲。<br>
+        相隔 25 年推出的第一款作品是
+        《從巷弄中逃出》（Escape Game: The Hidden Alley），<br>
+        之後也希望慢慢實現那些「自己想製作、也想好好玩一遍」的
+        應用程式與遊戲。
       </p>
 
       <h3>主要作品</h3>
@@ -310,35 +275,36 @@
 
       <h3>聯絡方式</h3>
       <p>
-        若有媒體採訪、合作或其他問題，歡迎透過
+        媒體採訪、合作或其他問題歡迎透過
         <a href="contact.html">聯絡我們頁面</a> 或  
-        寄信至 <a href="mailto:info@tsumugistudio.com">info@tsumugistudio.com</a> 與我們聯絡。
+        寄信至 <a href="mailto:info@tsumugistudio.com">info@tsumugistudio.com</a> 聯絡。
       </p>
     </section>
 
-    <!-- ===================== 한국（한국어） ===================== -->
+    <!-- ===================== 한국 ===================== -->
     <section class="lang-panel" id="lang-kr" data-view="kr" lang="ko">
       <h2>TSUMUGI STUDIO 소개 (한국어)</h2>
       <p>
         TSUMUGI STUDIO는 일본 후쿠오카를 기반으로 한 인디 게임 스튜디오로,
         2025년 5월부터 활동을 시작했습니다.<br>
-        1990년대에 콘솔 게임 개발에 참여했던 개발자가 약 25년의 공백을 거친 뒤
-        다시 게임 제작에 복귀하여, 소규모 체제로 모바일 탈출 게임을 중심으로 작품을 선보이고 있습니다.
+        1990년대에 콘솔 게임 개발에 참여했던 개발자가 약 25년의 공백을 거쳐
+        다시 게임 제작에 복귀하여, 모바일 탈출 게임을 중심으로 작품을 선보이고 있습니다.
       </p>
 
       <h3>지향하는 방향</h3>
       <p>
-        저희는 “퍼즐을 푸는 즐거움”과 “편안하고 아름다운 그래픽 경험”을 함께 전달하는 것을 목표로 합니다.<br>
-        현실감 있는 3D 배경과 잔잔한 음악을 통해,
-        플레이어가 천천히 걸음을 옮기듯 즐길 수 있는 탈출 게임을 만들고 있습니다.
+        “퍼즐을 푸는 즐거움”과 “편안하고 아름다운 분위기”를 동시에 전달하는 것을 목표로 합니다.<br>
+        현실감 있는 3D 배경과 차분한 음악을 통해,
+        플레이어가 자신의 속도로 천천히 즐길 수 있는 탈출 게임을 만들고 있습니다.
       </p>
 
       <h3>개발자</h3>
       <p>
-        스튜디오의 중심은, 오랜 기간 업계를 떠나 있었다가 다시 돌아온 1인 개발자입니다.<br>
+        오랜 기간 업계를 떠나 있었다가 다시 돌아온 1인 개발자입니다.<br>
         25년 만에 선보인 첫 작품은 탈출 게임
-        『골목길 탈출』(Escape Game: The Hidden Alley)이며,
-        앞으로도 “내가 직접 플레이하고 싶다”라고 느끼는 작품을 하나씩 늘려 가는 것을 목표로 하고 있습니다.
+        『골목길 탈출』(Escape Game: The Hidden Alley)이며,  
+        앞으로도 제가 “만들어 보고 싶고, 직접 플레이해 보고 싶은”
+        앱과 게임을 하나씩 형태로 남겨 가는 것을 목표로 하고 있습니다.
       </p>
 
       <h3>주요 타이틀</h3>
@@ -348,7 +314,7 @@
 
       <h3>문의</h3>
       <p>
-        개발 관련 문의나 취재・협업 제안이 있으시면,<br>
+        개발 관련 문의 또는 취재・협업 제안은<br>
         <a href="contact.html">문의 페이지</a> 또는  
         <a href="mailto:info@tsumugistudio.com">info@tsumugistudio.com</a> 으로 연락해 주세요.
       </p>
@@ -376,37 +342,25 @@
       const params = new URLSearchParams(h);
       return params.get('view');
     }
-
     function setHashView(view){
       const params = new URLSearchParams();
       if(view) params.set('view', view);
       history.replaceState(null, '', '#'+params.toString());
     }
-
     function showView(view){
       langPanels.forEach(p=>{
-        if(p.dataset.view === view){
-          p.classList.add('active');
-        }else{
-          p.classList.remove('active');
-        }
+        p.classList.toggle('active', p.dataset.view === view);
       });
       localStorage.setItem('tsu_view', view);
       setHashView(view);
     }
-
-    langSelect.addEventListener('change', e=>{
-      showView(e.target.value);
-    });
-
+    langSelect.addEventListener('change', e=> showView(e.target.value));
     (function init(){
       const fromHash = parseHashView();
       const stored = localStorage.getItem('tsu_view');
       const initial = fromHash || stored || 'jp';
-
       const supported = ['jp','en','hk','tw','kr'];
       const view = supported.includes(initial) ? initial : 'jp';
-
       langSelect.value = view;
       showView(view);
     })();
