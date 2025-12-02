@@ -11,74 +11,165 @@
   <meta property="og:url" content="https://www.tsumugistudio.com/" />
   <style>
     :root{--c:#007bff}
-    body {font-family: system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif; margin: 20px; background: #f9f9f9; color: #333;}
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+      margin: 20px;
+      background: #f9f9f9;
+      color: #333;
+    }
     header {margin-bottom: 20px;}
     header h1 {font-size: 24px;margin-bottom: 10px;}
-    .nav-links {margin-bottom: 20px;}
-    .nav-links a {margin-right: 15px;text-decoration: none;color: var(--c);font-weight: 600;font-size: 14px}
+
+    /* ヘッダー内を nav とセレクトで左右に分ける */
+    .header-flex{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:12px;
+    }
+
+    .nav-links {margin-bottom: 0;}
+    .nav-links a {
+      margin-right: 15px;
+      text-decoration: none;
+      color: var(--c);
+      font-weight: 600;
+      font-size: 14px;
+    }
     .nav-links a:hover {text-decoration: underline}
 
-    /* ヘッダのリンクを白文字に */
+    /* ヘッダのリンクを白文字に（既存仕様維持・背景色は外部CSS側想定） */
     header .nav-links a,
     header .nav-links a:visited,
     header .nav-links a:active {
       color: #fff;
     }
-    
     header .nav-links a:hover {
-      color: #fff;            /* 変わらず白 */
-      opacity: .85;           /* うっすら反応 */
+      color: #fff;
+      opacity: .85;
       text-decoration: underline;
     }
-    
     header .nav-links a:focus {
       outline: 2px solid #fff;
       outline-offset: 2px;
     }
-    
-    /* Language tabs */
-    .tabs {border-bottom: 1px solid #ccc; display: flex; gap:6px; margin-bottom: 20px; flex-wrap:wrap}
-    .tab {padding: 8px 16px; cursor: pointer; background: #f1f1f1; border: 1px solid #ccc; border-bottom: none; border-radius: 4px 4px 0 0; font-size: 14px; color: #333}
-    .tab.active {background: #fff; color: #000; font-weight: 700; border-bottom: 1px solid #fff}
-    .tab:focus{outline:2px solid var(--c); outline-offset:2px}
-    [role="tabpanel"] {display:none}
-    .tab-content.active,[role="tabpanel"].active{display:block}
+
+    /* 右側の国・言語セレクタ */
+    .lang-select-inline select{
+      padding:6px 8px;
+      border-radius:4px;
+      border:1px solid #ccc;
+      font-size:14px;
+      min-width: 220px;
+      background-color:#fff;
+    }
+
+    /* モバイル時は縦並びにして詰まりを回避 */
+    @media (max-width: 680px) {
+      .header-flex{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+    }
+
+    .lang-panel{
+      display:none;
+      background:#fff;
+      border-radius:8px;
+      padding:16px;
+      border:1px solid #ddd;
+      margin-bottom:24px;
+    }
+    .lang-panel.active{display:block}
 
     img {max-width: 100%; height: auto; border: 1px solid #ccc; margin-top: 10px}
-    footer {text-align: center; margin-top: 40px; color: #666; font-size: 14px; padding: 20px}
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      color: #666;
+      font-size: 14px;
+      padding: 20px;
+    }
 
-    /* region tabs */
-    .region-tabs{display:flex;gap:6px;border-bottom:1px solid #ccc;margin:14px 0;flex-wrap:wrap}
-    .region-tab{padding:6px 10px;cursor:pointer;background:#f2f5f8;border:1px solid #ccc;border-bottom:none;border-radius:4px 4px 0 0;font-size:13px}
-    .region-tab.active{background:#fff;font-weight:700}
-    .region-tab:focus{outline:2px solid var(--c); outline-offset:2px}
-    .region-panel{display:none;padding:14px 16px;background:#fff;border:1px solid #ccc;border-radius:0 4px 4px 4px}
-    .region-panel.active{display:block}
-    .badge{display:inline-block;font-size:12px;border:1px solid #ddd;border-radius:12px;padding:2px 8px;margin-left:6px}
-    .badge.ok{background:#e8f8ef;border-color:#bfe9cf;color:#2a7d4f}
-    .badge.soon{background:#fff5e6;border-color:#ffd9a6;color:#8a5a00}
+    .badge{
+      display:inline-block;
+      font-size:12px;
+      border:1px solid #ddd;
+      border-radius:12px;
+      padding:2px 8px;
+      margin-left:6px;
+    }
+    .badge.ok{
+      background:#e8f8ef;
+      border-color:#bfe9cf;
+      color:#2a7d4f;
+    }
     .links a{margin-right:10px}
     .note-small{color:#666;font-size:13px}
 
-    /* 共通（スマホ縦長などは全幅） */
-    .hero-video { width: 100%; height: auto; border: 1px solid #ccc; margin-top: 10px; }
-    /* 画面が横長のときは横幅を約1/3に、左寄せのまま */
-    @media (min-aspect-ratio: 4/3) { .hero-video { max-width: 33%; margin-left: 0; margin-right: 0; } }
+    /* 動画 */
+    .hero-video {
+      width: 100%;
+      height: auto;
+      border: 1px solid #ccc;
+      margin-top: 10px;
+    }
+    @media (min-aspect-ratio: 4/3) {
+      .hero-video { max-width: 33%; margin-left: 0; margin-right: 0; }
+    }
 
-    .social-links { margin-top: 12px; display: flex; justify-content: center; gap: 16px; }
-    .social-link { display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px; border-radius: 999px; text-decoration: none; font-size: 14px; background: #fff; border: 1px solid #ddd; color: #111; transition: background .2s, transform .2s; }
-    .social-link:hover { background: #f5f5f5; transform: translateY(-2px); }
+    .social-links {
+      margin-top: 12px;
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+    }
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 14px;
+      background: #fff;
+      border: 1px solid #ddd;
+      color: #111;
+      transition: background .2s, transform .2s;
+    }
+    .social-link:hover {
+      background: #f5f5f5;
+      transform: translateY(-2px);
+    }
     .social-link svg { fill: currentColor; }
     @media (prefers-color-scheme: dark) {
-      .social-link { background: #111; border-color: #333; color: #f3f3f3; }
+      .social-link {
+        background: #111;
+        border-color: #333;
+        color: #f3f3f3;
+      }
       .social-link:hover { background: #222; }
     }
 
-    /* --- Update Notice --- */
-    .notice{border:1px solid #ffd9a6;background:#fff9ed;padding:12px 14px;border-radius:8px;margin:12px 0}
+    /* --- Update Notice（既存用。今は未使用だが残しておく） --- */
+    .notice{
+      border:1px solid #ffd9a6;
+      background:#fff9ed;
+      padding:12px 14px;
+      border-radius:8px;
+      margin:12px 0
+    }
     .notice .title{font-weight:700;margin-bottom:6px}
     .notice .meta{font-size:13px;color:#555;margin-top:4px}
-    .notice a.btn{display:inline-block;margin-top:8px;padding:6px 10px;border-radius:999px;border:1px solid #ddd;text-decoration:none}
+    .notice a.btn{
+      display:inline-block;
+      margin-top:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid #ddd;
+      text-decoration:none
+    }
     .notice a.btn:hover{background:#f5f5f5}
   </style>
 </head>
@@ -86,458 +177,191 @@
   <header>
     <h1>TSUMUGI STUDIO</h1>
 
-    <!-- ナビ -->
-    <nav class="nav-links" aria-label="Primary">
-      <a href="index.html">Home</a>
-      <a href="streaming-guideline.html">Guidelines</a>
-      <a href="privacy.html">Privacy Policy</a>
-      <a href="faq.html">FAQ</a>
-      <a href="contact.html">Contact</a>
-    </nav>
+    <div class="header-flex">
+      <!-- ナビ -->
+      <nav class="nav-links" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="streaming-guideline.html">Guidelines</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+      </nav>
 
-    <!-- 言語タブ（ARIA対応） -->
-    <div class="tabs" role="tablist" aria-label="Language">
-      <button class="tab active" role="tab" aria-selected="true" aria-controls="content-ja" id="tab-ja">日本語</button>
-      <button class="tab" role="tab" aria-selected="false" aria-controls="content-en" id="tab-en">English</button>
-      <button class="tab" role="tab" aria-selected="false" aria-controls="content-tc" id="tab-tc">繁體中文</button>
-      <button class="tab" role="tab" aria-selected="false" aria-controls="content-kr" id="tab-kr">한국어</button>
+      <!-- 国・言語選択（ページ全体＋配信パートに適用） -->
+      <div class="lang-select-inline">
+        <select id="lang-select" aria-label="Region / Language">
+          <option value="jp">日本（日本語）</option>
+          <option value="en">United States（English）</option>
+          <option value="hk">香港（繁體中文）</option>
+          <option value="tw">台灣（繁體中文）</option>
+          <option value="kr">한국（한국어）</option>
+        </select>
+      </div>
     </div>
   </header>
 
   <main>
-    <!-- ===================== 日本語 ===================== -->
-    <section class="tab-content active" id="content-ja" role="tabpanel" aria-labelledby="tab-ja">
+    <!-- ===================== 日本（日本語） ===================== -->
+    <section class="lang-panel active" id="lang-jp" data-view="jp" lang="ja">
       <h2>脱出ゲーム『路地裏からの脱出』のiOS版をリリースしました（2025年11月13日）</h2>
       <p>Android版ユーザーからいただいた数々のご意見を取り入れて、さらに遊びやすくなっています。</p>
       <p>iPhone、iPadユーザーの皆様、ぜひダウンロードしてお楽しみください。</p>
       <p>Androidをお使いの皆様も引き続きご愛顧いただけると嬉しいです。</p>
 
-      <!--      
-      <h2>Google Playで配信開始（2025年8月25日）</h2>
-      <p>謎解き脱出ゲーム『路地裏からの脱出』を、各国のGoogle Playで配信開始しました。</p>
-      <p>美しく作り込まれた路地裏を探索し、謎を解いていく脱出ゲームアプリです。</p>
-      <p>Androidをお使いの皆様、遊んでいただけると嬉しいです。</p>
-      -->
-      
-      <video class="hero-video"  src="movie/UAC-W-01-Song-JP_mini.mp4"  playsinline  muted  loop  preload="none"  poster="images/HiddenAlleyEscape-Playing.png"></video>
+      <video class="hero-video"
+             src="movie/UAC-W-01-Song-JP_mini.mp4"
+             playsinline muted loop preload="none"
+             poster="images/HiddenAlleyEscape-Playing.png"></video>
 
-      <!-- 国別情報（日本語） -->
-      <h2>脱出ゲーム『路地裏からの脱出』配信状況・プレス</h2>
-
-      <div class="region-tabs" role="tablist" aria-label="Regions (JA)" data-scope="ja">
-        <button class="region-tab active" role="tab" aria-selected="true" aria-controls="ja-panel-jp" id="ja-tab-jp" data-region="jp">日本</button>
-        <button class="region-tab" role="tab" aria-selected="false" aria-controls="ja-panel-en" id="ja-tab-en-region" data-region="en">English</button>
-        <button class="region-tab" role="tab" aria-selected="false" aria-controls="ja-panel-hk" id="ja-tab-hk" data-region="hk">香港</button>
-        <button class="region-tab" role="tab" aria-selected="false" aria-controls="ja-panel-tw" id="ja-tab-tw" data-region="tw">台湾</button>
-        <button class="region-tab" role="tab" aria-selected="false" aria-controls="ja-panel-kr" id="ja-tab-kr" data-region="kr">韓国</button>
-      </div>
-
-      <div class="region-panel" id="ja-panel-jp" role="tabpanel" aria-labelledby="ja-tab-jp">
-        <p><strong>配信状況</strong>
-          <span class="badge ok">配信中</span>
-        </p>
-        <p class="links">
-          <a href="https://apps.apple.com/jp/app/%E8%84%B1%E5%87%BA%E3%82%B2%E3%83%BC%E3%83%A0-%E8%B7%AF%E5%9C%B0%E8%A3%8F%E3%81%8B%E3%82%89%E3%81%AE%E8%84%B1%E5%87%BA/id6753702650" target="_blank" rel="noopener">
-            <img src="images/AppStore-JP.png" alt="App Store からダウンロード" style="height:60px; border:none;">
-          </a>
-        </p>
-        <p class="links">
-          <a href="https://play.google.com/store/apps/details?id=com.tsumugistudio.hiddenalleyescape&hl=ja-JP&gl=JP" target="_blank" rel="noopener">
-            <img src="images/GetItOnGooglePlay_Badge_Web_color_Japanese.png" alt="Google Playで手に入れよう" style="height:60px; border:none;">
-          </a>
-        </p>
-        <p class="links">
-          <a href="https://www.tsumugistudio.com/press/the-hidden-alley/JP/250826_PR_EscapeGame_TheHiddenAlley_JP.pdf" target="_blank" rel="noopener">プレスリリース（日本向け）</a>
-          <a href="https://www.tsumugistudio.com/press/the-hidden-alley/JP/presskit-jp.zip" target="_blank" rel="noopener">プレスキット（日本向け）</a>
-        </p>
-      </div>
-
-      <div class="region-panel" id="ja-panel-en" role="tabpanel" aria-labelledby="ja-tab-en-region">
-        <p><strong>配信状況</strong>
-          <span class="badge ok">配信中</span>
-        </p>
-        <p class="links">
-          <a href="https://apps.apple.com/us/app/escape-game-the-hidden-alley/id6753702650" target="_blank" rel="noopener">
-            <img src="images/AppStore-US.png" alt="App Store からダウンロード" style="height:60px; border:none;">
-          </a>
-        </p>
-        <p class="links">
-          <a href="https://play.google.com/store/apps/details?id=com.tsumugistudio.hiddenalleyescape&hl=en-US&gl=US" target="_blank" rel="noopener">
-            <img src="images/GetItOnGooglePlay_Badge_Web_color_English.png" alt="Google Playで手に入れよう" style="height:60px; border:none;">
-          </a>
-        </p>
-      </div>
-
-      <div class="region-panel active" id="ja-panel-hk" role="tabpanel" aria-labelledby="ja-tab-hk">
-        <p><strong>配信状況</strong>
-          <span class="badge ok">配信中</span>
-        </p>
-        <p class="links">
-          <a href="https://apps.apple.com/hk/app/%E9%80%83%E8%84%AB%E9%81%8A%E6%88%B2-%E5%BE%9E%E5%B7%B7%E5%BC%84%E4%B8%AD%E9%80%83%E5%87%BA/id6753702650
-" target="_blank" rel="noopener">
-            <img src="images/AppStore-TC.png" alt="App Store からダウンロード" style="height:60px; border:none;">
-          </a>
-        </p>
-        <p class="links">
-          <a href="https://play.google.com/store/apps/details?id=com.tsumugistudio.hiddenalleyescape&hl=zh-HK&gl=HK" target="_blank" rel="noopener">
-            <img src="images/GetItOnGooglePlay_Badge_Web_color_Chinese-HK.png" alt="Google Playで手に入れよう" style="height:60px; border:none;">
-          </a>
-        </p>
-        <p class="links">
-          <a href="https://www.tsumugistudio.com/press/the-hidden-alley/HK/250813_PR_EscapeGame_TheHiddenAlley_HK.pdf" target="_blank" rel="noopener">プレスリリース（香港向け）</a>
-          <a href="https://www.tsumugistudio.com/press/the-hidden-alley/HK/presskit-tc.zip" target="_blank" rel="noopener">プレスキット（香港向け）</a>
-        </p>
-      </div>
-
-      <div class="region-panel" id="ja-panel-tw" role="tabpanel" aria-labelledby="ja-tab-tw">
-        <p><strong>配信状況</strong>
-          <span class="badge ok">配信中</span>
-        </p>
-        <p class="links">
-          <a href="https://apps.apple.com/tw/app/%E9%80%83%E8%84%AB%E9%81%8A%E6%88%B2-%E5%BE%9E%E5%B7%B7%E5%BC%84%E4%B8%AD%E9%80%83%E5%87%BA/id6753702650
-" target="_blank" rel="noopener">
-            <img src="images/AppStore-TC.png" alt="App Store からダウンロード" style="height:60px; border:none;">
-          </a>
-        </p>
-        <p class="links">
-          <a href="https://play.google.com/store/apps/details?id=com.tsumugistudio.hiddenalleyescape&hl=zh-TW&gl=TW" target="_blank" rel="noopener">
-            <img src="images/GetItOnGooglePlay_Badge_Web_color_Chinese-TW.png" alt="Google Playで手に入れよう" style="height:60px; border:none;">
-          </a>
-        </p>
-      </div>
-
-      <div class="region-panel" id="ja-panel-kr" role="tabpanel" aria-labelledby="ja-tab-kr">
-        <p><strong>配信状況</strong>
-          <span class="badge ok">配信中</span>
-        </p>
-        <p class="links">
-          <a href="https://apps.apple.com/kr/app/%ED%83%88%EC%B6%9C-%EA%B2%8C%EC%9E%84-%EA%B3%A8%EB%AA%A9%EA%B8%B8-%ED%83%88%EC%B6%9C/id6753702650
-" target="_blank" rel="noopener">
-            <img src="images/AppStore-KR.png" alt="App Store からダウンロード" style="height:60px; border:none;">
-          </a>
-        </p>
-        <p class="links">
-          <a href="https://play.google.com/store/apps/details?id=com.tsumugistudio.hiddenalleyescape&hl=ko-KR&gl=KR" target="_blank" rel="noopener">
-            <img src="images/GetItOnGooglePlay_Badge_Web_color_Korean_270x80.png" alt="Google Playで手に入れよう" style="height:60px; border:none;">
-          </a>
-        </p>
-      </div>
+      <h2>脱出ゲーム『路地裏からの脱出』 配信状況・プレス（日本）</h2>
+      <p>
+        <strong>配信状況</strong>
+        <span class="badge ok">配信中</span>
+      </p>
+      <p class="links">
+        <a href="https://apps.apple.com/jp/app/%E8%84%B1%E5%87%BA%E3%82%B2%E3%83%BC%E3%83%A0-%E8%B7%AF%E5%9C%B0%E8%A3%8F%E3%81%8B%E3%82%89%E3%81%AE%E8%84%B1%E5%87%BA/id6753702650"
+           target="_blank" rel="noopener">
+          <img src="images/AppStore-JP.png" alt="App Store からダウンロード" style="height:60px; border:none;">
+        </a>
+      </p>
+      <p class="links">
+        <a href="https://play.google.com/store/apps/details?id=com.tsumugistudio.hiddenalleyescape&hl=ja-JP&gl=JP"
+           target="_blank" rel="noopener">
+          <img src="images/GetItOnGooglePlay_Badge_Web_color_Japanese.png" alt="Google Playで手に入れよう" style="height:60px; border:none;">
+        </a>
+      </p>
+      <p class="links">
+        <a href="https://www.tsumugistudio.com/press/the-hidden-alley/JP/250826_PR_EscapeGame_TheHiddenAlley_JP.pdf"
+           target="_blank" rel="noopener">プレスリリース（日本向け）</a>
+        <a href="https://www.tsumugistudio.com/press/the-hidden-alley/JP/presskit-jp.zip"
+           target="_blank" rel="noopener">プレスキット（日本向け）</a>
+      </p>
     </section>
 
-    <!-- ===================== English ===================== -->
-    <section class="tab-content" id="content-en" role="tabpanel" aria-labelledby="tab-en" lang="en">
+    <!-- ===================== United States（English） ===================== -->
+    <section class="lang-panel" id="lang-en" data-view="en" lang="en">
       <h2>iOS version released on November 13, 2025</h2>
       <p>The escape game <em>Escape Game: The Hidden Alley</em> is now available on the App Store.</p>
       <p>Android user feedback has helped us improve the experience even further — now optimized for iPhone and iPad. We hope you enjoy it!</p>
-      <video class="hero-video" src="movie/UAC-W-01-Song-EN_mini.mp4" playsinline muted loop preload="none" poster="images/HiddenAlleyEscape-Playing.png"></video>
 
-      <h2>Escape Game: The Hidden Alley Release & Press</h2>
-      <div class="region-tabs" role="tablist" aria-label="Regions (EN)" data-scope="en">
-        <button class="region-tab" role="tab" aria-selected="false" aria-controls="en-panel-jp" id="en-tab-jp" data-region="jp">Japan</button>
-        <button class="region-tab active" role="tab" aria-selected="true" aria-controls="en-panel-en" id="en-tab-en-region" data-region="en">English</button>
-        <button class="region-tab" role="tab" aria-selected="false" aria-controls="en-panel-hk" id="en-tab-hk" data-region="hk">Hong Kong</button>
-        <button class="region-tab" role="tab" aria-selected="false" aria-controls="en-panel-tw" id="en-tab-tw" data-region="tw">Taiwan</button>
-        <button class="region-tab" role="tab" aria-selected="false" aria-controls="en-panel-kr" id="en-tab-kr" data-region="kr">Korea</button>
-      </div>
+      <video class="hero-video"
+             src="movie/UAC-W-01-Song-EN_mini.mp4"
+             playsinline muted loop preload="none"
+             poster="images/HiddenAlleyEscape-Playing.png"></video>
 
-      <div class="region-panel" id="en-panel-jp" role="tabpanel" aria-labelledby="en-tab-jp">
-        <p><strong>Status</strong>
-          <span class="badge ok">Released (<span class="date-en" data-date="2025-08-25"></span>)</span>
-        </p>
-        <p class="links">
-          <a href="https://apps.apple.com/jp/app/%E8%84%B1%E5%87%BA%E3%82%B2%E3%83%BC%E3%83%A0-%E8%B7%AF%E5%9C%B0%E8%A3%8F%E3%81%8B%E3%82%89%E3%81%AE%E8%84%B1%E5%87%BA/id6753702650" target="_blank" rel="noopener">
-            <img src="images/AppStore-JP.png" alt="Download from App Store" style="height:60px; border:none;">
-          </a>
-        </p>
-        <p class="links">
-          <a href="https://play.google.com/store/apps/details?id=com.tsumugistudio.hiddenalleyescape&hl=ja-JP&gl=JP" target="_blank" rel="noopener">
-            <img src="images/GetItOnGooglePlay_Badge_Web_color_Japanese.png" alt="Get it on Google Play" style="height:60px; border:none;">
-          </a>
-        </p>
-        <p class="links">
-          <a href="https://www.tsumugistudio.com/press/the-hidden-alley/JP/250826_PR_EscapeGame_TheHiddenAlley_JP.pdf" target="_blank" rel="noopener">Press Release (JP)</a>
-          <a href="https://www.tsumugistudio.com/press/the-hidden-alley/JP/presskit-jp.zip" target="_blank" rel="noopener">Press Kit (JP)</a>
-        </p>
-      </div>
-
-      <div class="region-panel" id="en-panel-en" role="tabpanel" aria-labelledby="en-tab-en-region">
-        <p><strong>Status</strong>
-          <span class="badge ok">Released</span>
-        </p>
-        <p class="links">
-          <a href="https://apps.apple.com/us/app/escape-game-the-hidden-alley/id6753702650" target="_blank" rel="noopener">
-            <img src="images/AppStore-US.png" alt="Download from App Store" style="height:60px; border:none;">
-          </a>
-        </p>
-        <p class="links">
-          <a href="https://play.google.com/store/apps/details?id=com.tsumugistudio.hiddenalleyescape&hl=en-US&gl=US" target="_blank" rel="noopener">
-            <img src="images/GetItOnGooglePlay_Badge_Web_color_English.png" alt="Get it on Google Play" style="height:60px; border:none;">
-          </a>
-        </p>
-      </div>
-
-      <div class="region-panel active" id="en-panel-hk" role="tabpanel" aria-labelledby="en-tab-hk">
-        <p><strong>Status</strong>
-          <span class="badge ok">Released</span>
-        </p>
-        <p class="links">
-          <a href="https://apps.apple.com/hk/app/%E9%80%83%E8%84%AB%E9%81%8A%E6%88%B2-%E5%BE%9E%E5%B7%B7%E5%BC%84%E4%B8%AD%E9%80%83%E5%87%BA/id6753702650
-" target="_blank" rel="noopener">
-            <img src="images/AppStore-TC.png" alt="Download from App Store" style="height:60px; border:none;">
-          </a>
-        </p>
-        <p class="links">
-          <a href="https://play.google.com/store/apps/details?id=com.tsumugistudio.hiddenalleyescape&hl=zh-HK&gl=HK" target="_blank" rel="noopener">
-            <img src="images/GetItOnGooglePlay_Badge_Web_color_Chinese-HK.png" alt="Get it on Google Play" style="height:60px; border:none;">
-          </a>
-        </p>
-        <p class="links">
-          <a href="https://www.tsumugistudio.com/press/the-hidden-alley/HK/250813_PR_EscapeGame_TheHiddenAlley_HK.pdf" target="_blank" rel="noopener">Press Release (HK)</a>
-          <a href="https://www.tsumugistudio.com/press/the-hidden-alley/HK/presskit-tc.zip" target="_blank" rel="noopener">Press Kit (HK)</a>
-        </p>
-      </div>
-
-      <div class="region-panel" id="en-panel-tw" role="tabpanel" aria-labelledby="en-tab-tw">
-        <p><strong>Status</strong>
-          <span class="badge ok">Released</span>
-        </p>
-        <p class="links">
-          <a href="https://apps.apple.com/tw/app/%E9%80%83%E8%84%AB%E9%81%8A%E6%88%B2-%E5%BE%9E%E5%B7%B7%E5%BC%84%E4%B8%AD%E9%80%83%E5%87%BA/id6753702650
-" target="_blank" rel="noopener">
-            <img src="images/AppStore-TC.png" alt="Download from App Store" style="height:60px; border:none;">
-          </a>
-        </p>
-        <p class="links">
-          <a href="https://play.google.com/store/apps/details?id=com.tsumugistudio.hiddenalleyescape&hl=zh-TW&gl=TW" target="_blank" rel="noopener">
-            <img src="images/GetItOnGooglePlay_Badge_Web_color_Chinese-TW.png" alt="Get it on Google Play" style="height:60px; border:none;">
-          </a>
-        </p>
-      </div>
-
-      <div class="region-panel" id="en-panel-kr" role="tabpanel" aria-labelledby="en-tab-kr">
-        <p><strong>Status</strong>
-          <span class="badge ok">Released</span>
-        </p>
-        <p class="links">
-          <a href="https://apps.apple.com/kr/app/%ED%83%88%EC%B6%9C-%EA%B2%8C%EC%9E%84-%EA%B3%A8%EB%AA%A9%EA%B8%B8-%ED%83%88%EC%B6%9C/id6753702650
-" target="_blank" rel="noopener">
-            <img src="images/AppStore-KR.png" alt="Download from App Store" style="height:60px; border:none;">
-          </a>
-        </p>
-        <p class="links">
-          <a href="https://play.google.com/store/apps/details?id=com.tsumugistudio.hiddenalleyescape&hl=ko-KR&gl=KR" target="_blank" rel="noopener">
-            <img src="images/GetItOnGooglePlay_Badge_Web_color_Korean_270x80.png" alt="Get it on Google Play" style="height:60px; border:none;">
-          </a>
-        </p>
-      </div>
+      <h2>Escape Game: The Hidden Alley — Release & Press (United States)</h2>
+      <p>
+        <strong>Status</strong>
+        <span class="badge ok">Released</span>
+      </p>
+      <p class="links">
+        <a href="https://apps.apple.com/us/app/escape-game-the-hidden-alley/id6753702650"
+           target="_blank" rel="noopener">
+          <img src="images/AppStore-US.png" alt="Download from App Store" style="height:60px; border:none;">
+        </a>
+      </p>
+      <p class="links">
+        <a href="https://play.google.com/store/apps/details?id=com.tsumugistudio.hiddenalleyescape&hl=en-US&gl=US"
+           target="_blank" rel="noopener">
+          <img src="images/GetItOnGooglePlay_Badge_Web_color_English.png" alt="Get it on Google Play" style="height:60px; border:none;">
+        </a>
+      </p>
     </section>
 
-    <!-- ===================== 繁體中文 ===================== -->
-    <section class="tab-content" id="content-tc" role="tabpanel" aria-labelledby="tab-tc" lang="zh-Hant">
+    <!-- ===================== 香港（繁體中文） ===================== -->
+    <section class="lang-panel" id="lang-hk" data-view="hk" lang="zh-Hant">
       <h2>iOS 版本已於 2025 年 11 月 13 日上線</h2>
       <p>逃脫遊戲《從巷弄中逃出》現已登上 App Store。</p>
       <p>我們吸收了 Android 版玩家的寶貴意見，使遊戲體驗更加完善。歡迎 iPhone、iPad 用戶試玩！</p>
-      <video class="hero-video" src="movie/UAC-W-01-Song-EN_mini.mp4" playsinline muted loop preload="none" poster="images/HiddenAlleyEscape-Playing.png"></video>
 
-      <h2>逃脫遊戲《從巷弄中逃出》 發佈與媒體</h2>
-      <div class="region-tabs" role="tablist" aria-label="Regions (TC)" data-scope="tc">
-        <button class="region-tab" role="tab" aria-selected="false" aria-controls="tc-panel-jp" id="tc-tab-jp" data-region="jp">日本</button>
-        <button class="region-tab" role="tab" aria-selected="false" aria-controls="tc-panel-en" id="tc-tab-en-region" data-region="en">English</button>
-        <button class="region-tab active" role="tab" aria-selected="true" aria-controls="tc-panel-hk" id="tc-tab-hk" data-region="hk">香港</button>
-        <button class="region-tab" role="tab" aria-selected="false" aria-controls="tc-panel-tw" id="tc-tab-tw" data-region="tw">台灣</button>
-        <button class="region-tab" role="tab" aria-selected="false" aria-controls="tc-panel-kr" id="tc-tab-kr" data-region="kr">韓國</button>
-      </div>
+      <video class="hero-video"
+             src="movie/UAC-W-01-Song-EN_mini.mp4"
+             playsinline muted loop preload="none"
+             poster="images/HiddenAlleyEscape-Playing.png"></video>
 
-      <div class="region-panel" id="tc-panel-jp" role="tabpanel" aria-labelledby="tc-tab-jp">
-        <p><strong>狀態</strong>
-          <span class="badge ok">已上線</span>
-        </p>
-        <p class="links">
-          <a href="https://apps.apple.com/jp/app/%E8%84%B1%E5%87%BA%E3%82%B2%E3%83%BC%E3%83%A0-%E8%B7%AF%E5%9C%B0%E8%A3%8F%E3%81%8B%E3%82%89%E3%81%AE%E8%84%B1%E5%87%BA/id6753702650" target="_blank" rel="noopener">
-            <img src="images/AppStore-JP.png" alt="Download from App Store" style="height:60px; border:none;">
-          </a>
-        </p>
-        <p class="links">
-          <a href="https://play.google.com/store/apps/details?id=com.tsumugistudio.hiddenalleyescape&hl=ja-JP&gl=JP" target="_blank" rel="noopener">
-            <img src="images/GetItOnGooglePlay_Badge_Web_color_English.png" alt="在 Google Play 取得" style="height:60px; border:none;">
-          </a>
-        </p>
-      </div>
-
-      <div class="region-panel" id="tc-panel-en" role="tabpanel" aria-labelledby="tc-tab-en-region">
-        <p><strong>狀態</strong>
-          <span class="badge ok">已上線</span>
-        </p>
-        <p class="links">
-          <a href="https://apps.apple.com/us/app/escape-game-the-hidden-alley/id6753702650" target="_blank" rel="noopener">
-            <img src="images/AppStore-US.png" alt="Download from App Store" style="height:60px; border:none;">
-          </a>
-        </p>        
-        <p class="links">
-          <a href="https://play.google.com/store/apps/details?id=com.tsumugistudio.hiddenalleyescape&hl=en-US&gl=US" target="_blank" rel="noopener">
-            <img src="images/GetItOnGooglePlay_Badge_Web_color_English.png" alt="Get it on Google Play" style="height:60px; border:none;">
-          </a>
-        </p>
-      </div>
-
-      <div class="region-panel active" id="tc-panel-hk" role="tabpanel" aria-labelledby="tc-tab-hk">
-        <p><strong>狀態</strong>
-          <span class="badge ok">已上線</span>
-        </p>
-        <p class="links">
-          <a href="https://apps.apple.com/hk/app/%E9%80%83%E8%84%AB%E9%81%8A%E6%88%B2-%E5%BE%9E%E5%B7%B7%E5%BC%84%E4%B8%AD%E9%80%83%E5%87%BA/id6753702650
-" target="_blank" rel="noopener">
-            <img src="images/AppStore-TC.png" alt="Download from App Store" style="height:60px; border:none;">
-          </a>
-        </p>
-        <p class="links">
-          <a href="https://play.google.com/store/apps/details?id=com.tsumugistudio.hiddenalleyescape&hl=zh-HK&gl=HK" target="_blank" rel="noopener">
-            <img src="images/GetItOnGooglePlay_Badge_Web_color_English.png" alt="在 Google Play 取得" style="height:60px; border:none;">
-          </a>
-        </p>
-        <p class="links">
-          <a href="https://www.tsumugistudio.com/press/the-hidden-alley/HK/250813_PR_EscapeGame_TheHiddenAlley_HK.pdf" target="_blank" rel="noopener">新聞稿（香港）</a>
-          <a href="https://www.tsumugistudio.com/press/the-hidden-alley/HK/presskit-tc.zip" target="_blank" rel="noopener">媒體素材包（香港）</a>
-        </p>
-      </div>
-
-      <div class="region-panel" id="tc-panel-tw" role="tabpanel" aria-labelledby="tc-tab-tw">
-        <p><strong>狀態</strong>
-          <span class="badge ok">已上線</span>
-        </p>
-        <p class="links">
-          <a href="https://apps.apple.com/tw/app/%E9%80%83%E8%84%AB%E9%81%8A%E6%88%B2-%E5%BE%9E%E5%B7%B7%E5%BC%84%E4%B8%AD%E9%80%83%E5%87%BA/id6753702650
-" target="_blank" rel="noopener">
-            <img src="images/AppStore-TC.png" alt="Download from App Store" style="height:60px; border:none;">
-          </a>
-        </p>  
-        <p class="links">
-          <a href="https://play.google.com/store/apps/details?id=com.tsumugistudio.hiddenalleyescape&hl=zh-TW&gl=TW" target="_blank" rel="noopener">
-            <img src="images/GetItOnGooglePlay_Badge_Web_color_English.png" alt="在 Google Play 取得" style="height:60px; border:none;">
-          </a>
-        </p>
-      </div>
-
-      <div class="region-panel" id="tc-panel-kr" role="tabpanel" aria-labelledby="tc-tab-kr">
-        <p><strong>狀態</strong>
-          <span class="badge ok">已上線</span>
-        </p>
-        <p class="links">
-          <a href="https://apps.apple.com/kr/app/%ED%83%88%EC%B6%9C-%EA%B2%8C%EC%9E%84-%EA%B3%A8%EB%AA%A9%EA%B8%B8-%ED%83%88%EC%B6%9C/id6753702650
-" target="_blank" rel="noopener">
-            <img src="images/AppStore-KR.png" alt="Download from App Store" style="height:60px; border:none;">
-          </a>
-        </p>
-        <p class="links">
-          <a href="https://play.google.com/store/apps/details?id=com.tsumugistudio.hiddenalleyescape&hl=ko-KR&gl=KR" target="_blank" rel="noopener">
-            <img src="images/GetItOnGooglePlay_Badge_Web_color_English.png" alt="在 Google Play 取得" style="height:60px; border:none;">
-          </a>
-        </p>
-      </div>
+      <h2>逃脫遊戲《從巷弄中逃出》 發佈與媒體（香港）</h2>
+      <p>
+        <strong>狀態</strong>
+        <span class="badge ok">已上線</span>
+      </p>
+      <p class="links">
+        <a href="https://apps.apple.com/hk/app/%E9%80%83%E8%84%AB%E9%81%8A%E6%88%B2-%E5%BE%9E%E5%B7%B7%E5%BC%84%E4%B8%AD%E9%80%83%E5%87%BA/id6753702650"
+           target="_blank" rel="noopener">
+          <img src="images/AppStore-TC.png" alt="Download from App Store" style="height:60px; border:none;">
+        </a>
+      </p>
+      <p class="links">
+        <a href="https://play.google.com/store/apps/details?id=com.tsumugistudio.hiddenalleyescape&hl=zh-HK&gl=HK"
+           target="_blank" rel="noopener">
+          <img src="images/GetItOnGooglePlay_Badge_Web_color_Chinese-HK.png" alt="在 Google Play 取得" style="height:60px; border:none;">
+        </a>
+      </p>
+      <p class="links">
+        <a href="https://www.tsumugistudio.com/press/the-hidden-alley/HK/250813_PR_EscapeGame_TheHiddenAlley_HK.pdf"
+           target="_blank" rel="noopener">新聞稿（香港）</a>
+        <a href="https://www.tsumugistudio.com/press/the-hidden-alley/HK/presskit-tc.zip"
+           target="_blank" rel="noopener">媒體素材包（香港）</a>
+      </p>
     </section>
 
-    <!-- ===================== 한국어 ===================== -->
-    <section class="tab-content" id="content-kr" role="tabpanel" aria-labelledby="tab-kr" lang="ko">
+    <!-- ===================== 台灣（繁體中文） ===================== -->
+    <section class="lang-panel" id="lang-tw" data-view="tw" lang="zh-Hant">
+      <h2>iOS 版本已於 2025 年 11 月 13 日上線</h2>
+      <p>逃脫遊戲《從巷弄中逃出》現已登上 App Store。</p>
+      <p>我們吸收了 Android 版玩家的寶貴意見，使遊戲體驗更加完善。歡迎 iPhone、iPad 用戶試玩！</p>
+
+      <video class="hero-video"
+             src="movie/UAC-W-01-Song-EN_mini.mp4"
+             playsinline muted loop preload="none"
+             poster="images/HiddenAlleyEscape-Playing.png"></video>
+
+      <h2>逃脫遊戲《從巷弄中逃出》 發佈與媒體（台灣）</h2>
+      <p>
+        <strong>狀態</strong>
+        <span class="badge ok">已上線</span>
+      </p>
+      <p class="links">
+        <a href="https://apps.apple.com/tw/app/%E9%80%83%E8%84%AB%E9%81%8A%E6%88%B2-%E5%BE%9E%E5%B7%B7%E5%BC%84%E4%B8%AD%E9%80%83%E5%87%BA/id6753702650"
+           target="_blank" rel="noopener">
+          <img src="images/AppStore-TC.png" alt="Download from App Store" style="height:60px; border:none;">
+        </a>
+      </p>
+      <p class="links">
+        <a href="https://play.google.com/store/apps/details?id=com.tsumugistudio.hiddenalleyescape&hl=zh-TW&gl=TW"
+           target="_blank" rel="noopener">
+          <img src="images/GetItOnGooglePlay_Badge_Web_color_Chinese-TW.png" alt="在 Google Play 取得" style="height:60px; border:none;">
+        </a>
+      </p>
+    </section>
+
+    <!-- ===================== 한국（한국어） ===================== -->
+    <section class="lang-panel" id="lang-kr" data-view="kr" lang="ko">
       <h2>iOS 버전 2025년 11월 13일 출시</h2>
       <p>탈출 게임 <em>골목길 탈출</em>의 iOS 버전이 App Store에 출시되었습니다.</p>
       <p>Android 사용자 의견을 반영하여 더 즐기기 쉽도록 개선했습니다. iPhone, iPad에서 즐겨보세요!</p>
-      <video class="hero-video" src="movie/UAC-W-01-Song-EN_mini.mp4" playsinline muted loop preload="none" poster="images/HiddenAlleyEscape-Playing.png"></video>
 
-      <h2>탈출 게임: 골목길 탈출　출시 & 보도자료</h2>
-      <div class="region-tabs" role="tablist" aria-label="Regions (KR)" data-scope="kr">
-        <button class="region-tab" role="tab" aria-selected="false" aria-controls="kr-panel-jp" id="kr-tab-jp" data-region="jp">일본</button>
-        <button class="region-tab" role="tab" aria-selected="false" aria-controls="kr-panel-en" id="kr-tab-en-region" data-region="en">English</button>
-        <button class="region-tab" role="tab" aria-selected="false" aria-controls="kr-panel-hk" id="kr-tab-hk" data-region="hk">홍콩</button>
-        <button class="region-tab" role="tab" aria-selected="false" aria-controls="kr-panel-tw" id="kr-tab-tw" data-region="tw">대만</button>
-        <button class="region-tab active" role="tab" aria-selected="true" aria-controls="kr-panel-kr" id="kr-tab-kr" data-region="kr">한국</button>
-      </div>
+      <video class="hero-video"
+             src="movie/UAC-W-01-Song-EN_mini.mp4"
+             playsinline muted loop preload="none"
+             poster="images/HiddenAlleyEscape-Playing.png"></video>
 
-      <div class="region-panel" id="kr-panel-jp" role="tabpanel" aria-labelledby="kr-tab-jp">
-        <p><strong>상태</strong>
-          <span class="badge ok">출시됨</span>
-        </p>
-        <p class="links">
-          <a href="https://apps.apple.com/jp/app/%E8%84%B1%E5%87%BA%E3%82%B2%E3%83%BC%E3%83%A0-%E8%B7%AF%E5%9C%B0%E8%A3%8F%E3%81%8B%E3%82%89%E3%81%AE%E8%84%B1%E5%87%BA/id6753702650" target="_blank" rel="noopener">
-            <img src="images/AppStore-JP.png" alt="Download from App Store" style="height:60px; border:none;">
-          </a>
-        </p>        
-        <p class="links">
-          <a href="https://play.google.com/store/apps/details?id=com.tsumugistudio.hiddenalleyescape&hl=ja-JP&gl=JP" target="_blank" rel="noopener">
-            <img src="images/GetItOnGooglePlay_Badge_Web_color_English.png" alt="Get it on Google Play" style="height:60px; border:none;">
-          </a>
-        </p>
-      </div>
-
-      <div class="region-panel" id="kr-panel-en" role="tabpanel" aria-labelledby="kr-tab-en-region">
-        <p><strong>상태</strong>
-          <span class="badge ok">출시됨</span>
-        </p>
-        <p class="links">
-          <a href="https://apps.apple.com/us/app/escape-game-the-hidden-alley/id6753702650" target="_blank" rel="noopener">
-            <img src="images/AppStore-US.png" alt="Download from App Store" style="height:60px; border:none;">
-          </a>
-        </p>
-        <p class="links">
-          <a href="https://play.google.com/store/apps/details?id=com.tsumugistudio.hiddenalleyescape&hl=en-US&gl=US" target="_blank" rel="noopener">
-            <img src="images/GetItOnGooglePlay_Badge_Web_color_English.png" alt="Get it on Google Play" style="height:60px; border:none;">
-          </a>
-        </p>
-      </div>
-
-      <div class="region-panel" id="kr-panel-hk" role="tabpanel" aria-labelledby="kr-tab-hk">
-        <p><strong>상태</strong>
-          <span class="badge ok">출시됨</span>
-        </p>
-        <p class="links">
-          <a href="https://apps.apple.com/hk/app/%E9%80%83%E8%84%AB%E9%81%8A%E6%88%B2-%E5%BE%9E%E5%B7%B7%E5%BC%84%E4%B8%AD%E9%80%83%E5%87%BA/id6753702650
-" target="_blank" rel="noopener">
-            <img src="images/AppStore-TC.png" alt="Download from App Store" style="height:60px; border:none;">
-          </a>
-        </p>        
-        <p class="links">
-          <a href="https://play.google.com/store/apps/details?id=com.tsumugistudio.hiddenalleyescape&hl=zh-HK&gl=HK" target="_blank" rel="noopener">
-            <img src="images/GetItOnGooglePlay_Badge_Web_color_English.png" alt="Get it on Google Play" style="height:60px; border:none;">
-          </a>
-        </p>
-        <p class="links">
-          <a href="https://www.tsumugistudio.com/press/the-hidden-alley/HK/250813_PR_EscapeGame_TheHiddenAlley_HK.pdf" target="_blank" rel="noopener">보도자료 (HK)</a>
-          <a href="https://www.tsumugistudio.com/press/the-hidden-alley/HK/presskit-tc.zip" target="_blank" rel="noopener">프레스 키트 (HK)</a>
-        </p>
-      </div>
-
-      <div class="region-panel" id="kr-panel-tw" role="tabpanel" aria-labelledby="kr-tab-tw">
-        <p><strong>상태</strong>
-          <span class="badge ok">출시됨</span>
-        </p>
-        <p class="links">
-          <a href="https://apps.apple.com/tw/app/%E9%80%83%E8%84%AB%E9%81%8A%E6%88%B2-%E5%BE%9E%E5%B7%B7%E5%BC%84%E4%B8%AD%E9%80%83%E5%87%BA/id6753702650
-" target="_blank" rel="noopener">
-            <img src="images/AppStore-TC.png" alt="Download from App Store" style="height:60px; border:none;">
-          </a>
-        </p>        
-        <p class="links">
-          <a href="https://play.google.com/store/apps/details?id=com.tsumugistudio.hiddenalleyescape&hl=zh-TW&gl=TW" target="_blank" rel="noopener">
-            <img src="images/GetItOnGooglePlay_Badge_Web_color_English.png" alt="Get it on Google Play" style="height:60px; border:none;">
-          </a>
-        </p>
-      </div>
-
-      <div class="region-panel active" id="kr-panel-kr" role="tabpanel" aria-labelledby="kr-tab-kr">
-        <p><strong>상태</strong>
-          <span class="badge ok">출시됨</span>
-        </p>
-        <p class="links">
-          <a href="https://apps.apple.com/kr/app/%ED%83%88%EC%B6%9C-%EA%B2%8C%EC%9E%84-%EA%B3%A8%EB%AA%A9%EA%B8%B8-%ED%83%88%EC%B6%9C/id6753702650
-" target="_blank" rel="noopener">
-            <img src="images/AppStore-KR.png" alt="Download from App Store" style="height:60px; border:none;">
-          </a>
-        </p>        
-        <p class="links">
-          <a href="https://play.google.com/store/apps/details?id=com.tsumugistudio.hiddenalleyescape&hl=ko-KR&gl=KR" target="_blank" rel="noopener">
-            <img src="images/GetItOnGooglePlay_Badge_Web_color_English.png" alt="Get it on Google Play" style="height:60px; border:none;">
-          </a>
-        </p>
-      </div>
+      <h2>탈출 게임: 골목길 탈출　출시 & 보도자료（한국）</h2>
+      <p>
+        <strong>상태</strong>
+        <span class="badge ok">출시됨</span>
+      </p>
+      <p class="links">
+        <a href="https://apps.apple.com/kr/app/%ED%83%88%EC%B6%9C-%EA%B2%8C%EC%9E%84-%EA%B3%A8%EB%AA%A9%EA%B8%B8-%ED%83%88%EC%B6%9C/id6753702650"
+           target="_blank" rel="noopener">
+          <img src="images/AppStore-KR.png" alt="Download from App Store" style="height:60px; border:none;">
+        </a>
+      </p>
+      <p class="links">
+        <a href="https://play.google.com/store/apps/details?id=com.tsumugistudio.hiddenalleyescape&hl=ko-KR&gl=KR"
+           target="_blank" rel="noopener">
+          <img src="images/GetItOnGooglePlay_Badge_Web_color_Korean_270x80.png" alt="Get it on Google Play" style="height:60px; border:none;">
+        </a>
+      </p>
     </section>
   </main>
 
@@ -561,146 +385,104 @@
 
   <script>
     // --- Utilities ---
-    const $ = (s,root=document)=>root.querySelector(s);
+    const $  = (s,root=document)=>root.querySelector(s);
     const $$ = (s,root=document)=>Array.from(root.querySelectorAll(s));
-
-    // Format dates
-    function formatJa(dateStr){ const d = new Date(dateStr+'T00:00:00'); const y=d.getFullYear(), m=d.getMonth()+1, da=d.getDate(); return `${y}年${m}月${da}日`; }
-    function formatEn(dateStr){ const d = new Date(dateStr+'T00:00:00'); const fmt = new Intl.DateTimeFormat('en-US',{month:'short', day:'numeric', year:'numeric'}).format(d); return fmt.replace(',',''); }
-    function formatTc(dateStr){ const d = new Date(dateStr+'T00:00:00'); const y=d.getFullYear(), m=d.getMonth()+1, da=d.getDate(); return `${y}年${m}月${da}日`; }
-    function formatKr(dateStr){ const d = new Date(dateStr+'T00:00:00'); const y=d.getFullYear(), m=d.getMonth()+1, da=d.getDate(); return `${y}년 ${m}월 ${da}일`; }
-
-    $$('.date-ja').forEach(el=>{const v=el.getAttribute('data-date'); if(v) el.textContent = formatJa(v)});
-    $$('.date-en').forEach(el=>{const v=el.getAttribute('data-date'); if(v) el.textContent = formatEn(v)});
-    $$('.date-tc').forEach(el=>{const v=el.getAttribute('data-date'); if(v) el.textContent = formatTc(v)});
-    $$('.date-kr').forEach(el=>{const v=el.getAttribute('data-date'); if(v) el.textContent = formatKr(v)});
 
     // ====== 動画の共通ハンドリング ======
     const videos = $$('.hero-video');
+
     function isActuallyVisible(el){
       if (!el.isConnected) return false;
       const rect = el.getBoundingClientRect();
-      const inViewport = rect.width > 0 && rect.height > 0 && rect.bottom >= 0 && rect.right >= 0 && rect.top <= (window.innerHeight || document.documentElement.clientHeight) && rect.left <= (window.innerWidth || document.documentElement.clientWidth);
+      const inViewport =
+        rect.width > 0 && rect.height > 0 &&
+        rect.bottom >= 0 && rect.right >= 0 &&
+        rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.left <= (window.innerWidth || document.documentElement.clientWidth);
       const notHiddenByCSS = !!el.offsetParent || window.getComputedStyle(el).position === 'fixed';
       return inViewport && notHiddenByCSS;
     }
+
     let io = null;
     if ('IntersectionObserver' in window){
       io = new IntersectionObserver((entries)=>{
-        entries.forEach(({target, isIntersecting})=>{ if (isIntersecting && isActuallyVisible(target)) { target.play().catch(()=>{}); } else { target.pause(); } });
-      }, { threshold: 0.25 });
-    }
-    function wireAllVideos(){ videos.forEach(v=>{ v.setAttribute('autoplay',''); v.setAttribute('muted',''); v.setAttribute('playsinline',''); if (io) io.observe(v); else v.play && v.play().catch(()=>{}); }); }
-    function pauseAllVideos(){ videos.forEach(v=>v.pause()); }
-    function playVisibleVideos(){ videos.forEach(v=>{ if (isActuallyVisible(v)) { v.play().catch(()=>{}); } }); }
-
-    // --- Language tabs (ARIA) ---
-    const langTablist = $('.tabs[role="tablist"]');
-    const langTabs = $$('[role="tab"]', langTablist);
-    const langPanels = $$('.tab-content');
-
-    function getLangFromBtnId(id){ return id.replace('tab-',''); }
-
-    function activateLang(btn){
-      langTabs.forEach(t=>{t.classList.remove('active'); t.setAttribute('aria-selected','false')});
-      langPanels.forEach(p=>p.classList.remove('active'));
-      btn.classList.add('active'); btn.setAttribute('aria-selected','true');
-      $('#'+btn.getAttribute('aria-controls')).classList.add('active');
-
-      // タブ切替時の動画制御
-      pauseAllVideos();
-      requestAnimationFrame(()=>playVisibleVideos());
-
-      // sync hash & remember
-      const lang = getLangFromBtnId(btn.id); // ja / en / tc / kr
-      const currentRegion = getActiveRegion(lang);
-      setHash({lang, region: currentRegion});
-      localStorage.setItem('tsu_lang', lang);
-    }
-
-    langTabs.forEach(btn=>{
-      btn.addEventListener('click', ()=>activateLang(btn));
-      btn.addEventListener('keydown', e=>{
-        if(e.key==='ArrowRight' || e.key==='ArrowLeft'){
-          e.preventDefault();
-          const i = langTabs.indexOf(document.activeElement);
-          const ni = e.key==='ArrowRight' ? (i+1)%langTabs.length : (i-1+langTabs.length)%langTabs.length;
-          langTabs[ni].focus();
-        }
-      });
-    });
-
-    // --- Region tabs per language (ARIA) ---
-    function wireRegion(group){
-      const scope = group.dataset.scope; // 'ja' / 'en' / 'tc' / 'kr'
-      const tabs = $$('.region-tab', group);
-      const panels = $$('.region-panel', $('#content-'+scope));
-      tabs.forEach(t=>{
-        t.addEventListener('click', ()=>activateRegion(scope, t));
-        t.addEventListener('keydown', e=>{
-          if(e.key==='ArrowRight' || e.key==='ArrowLeft'){
-            e.preventDefault();
-            const i = tabs.indexOf(document.activeElement);
-            const ni = e.key==='ArrowRight' ? (i+1)%tabs.length : (i-1+tabs.length)%tabs.length;
-            tabs[ni].focus();
+        entries.forEach(({target, isIntersecting})=>{
+          if (isIntersecting && isActuallyVisible(target)) {
+            target.play().catch(()=>{});
+          } else {
+            target.pause();
           }
         });
-      });
-      function activateRegion(scope, btn){
-        tabs.forEach(b=>{b.classList.remove('active'); b.setAttribute('aria-selected','false')});
-        panels.forEach(p=>p.classList.remove('active'));
-        btn.classList.add('active'); btn.setAttribute('aria-selected','true');
-        $('#'+btn.getAttribute('aria-controls')).classList.add('active');
-        // 地域タブ切替時の動画制御
-        pauseAllVideos();
-        requestAnimationFrame(()=>playVisibleVideos());
-        // sync hash & remember
-        const lang = scope; const region = btn.dataset.region;
-        setHash({lang, region});
-        localStorage.setItem('tsu_region_'+lang, region);
-      }
+      }, { threshold: 0.25 });
     }
-    $$('.region-tabs').forEach(wireRegion);
 
-    // --- Hash deep links: #lang=ja&region=hk ---
-    function parseHash(){ const h = location.hash.replace('#',''); const params = new URLSearchParams(h); return {lang: params.get('lang'), region: params.get('region')}; }
-    function setHash({lang, region}){ const params = new URLSearchParams(); if(lang) params.set('lang', lang); if(region) params.set('region', region); history.replaceState(null, '', '#'+params.toString()); }
-    function getActiveRegion(lang){ const group = document.querySelector(`.region-tabs[data-scope="${lang}"]`); const active = group ? group.querySelector('.region-tab.active') : null; return active ? active.dataset.region : 'hk'; }
+    function wireAllVideos(){
+      videos.forEach(v=>{
+        v.setAttribute('autoplay','');
+        v.setAttribute('muted','');
+        v.setAttribute('playsinline','');
+        if (io) io.observe(v);
+        else if (v.play) v.play().catch(()=>{});
+      });
+    }
+    function pauseAllVideos(){ videos.forEach(v=>v.pause()); }
+    function playVisibleVideos(){
+      videos.forEach(v=>{
+        if (isActuallyVisible(v)) {
+          v.play().catch(()=>{});
+        }
+      });
+    }
 
-    // Initial state
+    // ====== 国・言語選択によるパネル切替 ======
+    const langSelect = $('#lang-select');
+    const langPanels = $$('.lang-panel');
+
+    function parseHashView(){
+      const h = location.hash.replace('#','');
+      if(!h) return null;
+      const params = new URLSearchParams(h);
+      return params.get('view');
+    }
+
+    function setHashView(view){
+      const params = new URLSearchParams();
+      if(view) params.set('view', view);
+      history.replaceState(null, '', '#'+params.toString());
+    }
+
+    function showView(view){
+      langPanels.forEach(p=>{
+        if(p.dataset.view === view){
+          p.classList.add('active');
+        }else{
+          p.classList.remove('active');
+        }
+      });
+      pauseAllVideos();
+      requestAnimationFrame(()=>playVisibleVideos());
+      localStorage.setItem('tsu_view', view);
+      setHashView(view);
+    }
+
+    langSelect.addEventListener('change', e=>{
+      showView(e.target.value);
+    });
+
     (function init(){
       wireAllVideos();
-      const {lang, region} = parseHash();
-      const storedLang = localStorage.getItem('tsu_lang');
-      const initLang = lang || storedLang || 'ja';
-      const targetLangTab = $('#tab-'+initLang) || $('#tab-ja');
-      if(targetLangTab) activateLang(targetLangTab);
-
-      const rKey = 'tsu_region_'+initLang;
-      const storedRegion = localStorage.getItem(rKey);
-      const initRegion = region || storedRegion || 'hk';
-      const regionBtn = document.querySelector(`#${initLang}-tab-${initRegion}`);
-      if(regionBtn){ regionBtn.click(); } else { setHash({lang:initLang}); }
-      requestAnimationFrame(()=>playVisibleVideos());
+      const fromHash = parseHashView();
+      const stored = localStorage.getItem('tsu_view');
+      const initial = fromHash || stored || 'jp';
+      if ($('#lang-'+initial) === null){
+        // フォールバック
+        langSelect.value = 'jp';
+        showView('jp');
+      } else {
+        langSelect.value = initial;
+        showView(initial);
+      }
     })();
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
