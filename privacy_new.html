@@ -38,7 +38,7 @@
     }
     .nav-links a:hover { text-decoration: underline; }
 
-    /* 既存サイトに合わせてヘッダーのリンクは白文字扱い */
+    /* 既存デザイン：ヘッダーリンクは白文字 */
     header .nav-links a,
     header .nav-links a:visited,
     header .nav-links a:active {
@@ -54,7 +54,7 @@
       outline-offset: 2px;
     }
 
-    /* 右側の国・言語セレクタ（index / FAQ / streaming と同じ） */
+    /* 右側の国・言語セレクタ（index / FAQ / streaming と統一） */
     .lang-select-inline select{
       padding:6px 8px;
       border-radius:4px;
@@ -105,26 +105,6 @@
       line-height:1.7;
     }
     li+li{ margin-top:4px; }
-
-    .note-small{
-      color:#666;
-      font-size:13px;
-      margin-top:4px;
-    }
-
-    .badge{
-      display:inline-block;
-      font-size:12px;
-      border:1px solid #ddd;
-      border-radius:12px;
-      padding:2px 8px;
-      margin-left:6px;
-    }
-    .badge.new{
-      background:#e8f2ff;
-      border-color:#cfe0ff;
-      color:#0b4aa2;
-    }
 
     a { color: var(--c); }
     a:hover { text-decoration: underline; }
@@ -179,7 +159,7 @@
   <main>
     <!-- ===================== 日本（日本語） ===================== -->
     <section class="lang-panel active" id="lang-jp" data-view="jp" lang="ja">
-      <h2>プライバシーポリシー（日本語） <span class="badge new">最終更新：2025年10月2日</span></h2>
+      <h2>プライバシーポリシー（日本語）</h2>
       <p>TSUMUGI STUDIO（以下、「当方」といいます）は、当方が提供するアプリケーション（以下、「本アプリ」といいます）におけるユーザーの個人情報の取扱いについて、以下のとおりプライバシーポリシーを定めます。</p>
       
       <h3>1. 収集する情報</h3>
@@ -232,8 +212,8 @@
 
     <!-- ===================== United States（English） ===================== -->
     <section class="lang-panel" id="lang-en" data-view="en" lang="en">
-      <h2>Privacy Policy (English) <span class="badge new">Last updated: Oct 2, 2025</span></h2>
-      <p>TSUMUGI STUDIO (“we”, “our”, or “us”) establishes this Privacy Policy regarding the handling of users’ personal information in the applications we provide (“this App”).</p>
+      <h2>Privacy Policy (English)</h2>
+      <p>TSUMUGI STUDIO (“we”, “our” or “us”) establishes this Privacy Policy to describe how we handle users’ personal information in the applications we provide (“this App”).</p>
       
       <h3>1. Information We Collect</h3>
       <p>We may collect the following information in this App:</p>
@@ -242,7 +222,7 @@
         <li>App usage data (such as crash reports, frequency of use, and feature usage)</li>
         <li>Information obtained for responding to inquiries (such as email addresses and any information provided by users)</li>
       </ul>
-      <p>We limit the scope of information collected to the minimum necessary and do not use it for purposes other than those described in this Policy.</p>
+      <p>The scope of the information collected is kept to the minimum necessary, and we do not use it for purposes other than those described.</p>
       
       <h3>2. Purposes of Use</h3>
       <ul>
@@ -256,15 +236,15 @@
       <p>We properly manage personal information received from users and will not disclose or provide such information to third parties except in the following cases:</p>
       <ul>
         <li>When we have the user’s consent</li>
-        <li>When it is necessary to disclose information to contractors in order to provide services requested by the user</li>
+        <li>When it is necessary to disclose information to contractors to provide services requested by the user</li>
         <li>When disclosure is required by laws and regulations</li>
       </ul>
 
       <h3>4. Deletion of Personal Information</h3>
-      <p>If you wish to request the deletion of personal information you have provided to us, please contact us at info@tsumugistudio.com. We will review your request and respond promptly.</p>
+      <p>If you wish to request the deletion of any personal information you have provided to us, please contact us at info@tsumugistudio.com. We will review your request and respond promptly.</p>
 
       <h3>5. Analytics and Advertising Services</h3>
-      <p>This App may use the following third-party services for analytics and ad delivery. These services may collect user information. Please refer to each service’s privacy policy for details on the information collected and how it is used.</p>
+      <p>This App may use the following third-party services for analytics and ad delivery. These services may collect user information. Please refer to each service’s privacy policy for details on the information collected and the purposes of use:</p>
       <ul>
         <li>Google Analytics for Firebase</li>
         <li>Google AdMob</li>
@@ -272,7 +252,7 @@
       </ul>
 
       <h3>6. Changes to the Privacy Policy</h3>
-      <p>We may revise this Privacy Policy as necessary. Any changes will be announced using methods separately specified by us or notified within this App.</p>
+      <p>We may revise this Privacy Policy as necessary. Any changes will be published by methods separately specified by us or notified within this App.</p>
 
       <h3>7. Contact Information</h3>
       <p>For inquiries regarding this Privacy Policy, please contact us at:</p>
@@ -285,7 +265,7 @@
 
     <!-- ===================== 香港（繁體中文・香港） ===================== -->
     <section class="lang-panel" id="lang-hk" data-view="hk" lang="zh-Hant">
-      <h2>隱私權政策（香港） <span class="badge new">最後更新：2025年10月2日</span></h2>
+      <h2>隱私權政策（香港）</h2>
       <p>TSUMUGI STUDIO（下稱「本工作室」）就本工作室所提供的應用程式（下稱「本 App」）中，如何處理使用者的個人資料，制定本隱私權政策。</p>
 
       <h3>1. 收集的資料</h3>
@@ -338,7 +318,7 @@
 
     <!-- ===================== 台灣（繁體中文・台灣） ===================== -->
     <section class="lang-panel" id="lang-tw" data-view="tw" lang="zh-Hant">
-      <h2>隱私權政策（台灣） <span class="badge new">最後更新：2025年10月2日</span></h2>
+      <h2>隱私權政策（台灣）</h2>
       <p>TSUMUGI STUDIO（以下稱「本工作室」）就本工作室所提供之應用程式（以下稱「本 App」）中，如何處理使用者的個人資料，訂立本隱私權政策。</p>
 
       <h3>1. 收集的資料</h3>
@@ -391,7 +371,7 @@
 
     <!-- ===================== 한국（한국어） ===================== -->
     <section class="lang-panel" id="lang-kr" data-view="kr" lang="ko">
-      <h2>개인정보처리방침 (한국어) <span class="badge new">최종 업데이트: 2025-10-02</span></h2>
+      <h2>개인정보처리방침 (한국어)</h2>
       <p>TSUMUGI STUDIO(이하 “당사”)는 당사가 제공하는 애플리케이션(이하 “본 앱”)에서 이용자의 개인정보를 어떻게 처리하는지에 대해 다음과 같이 개인정보처리방침을 정합니다.</p>
 
       <h3>1. 수집하는 정보</h3>
@@ -479,7 +459,7 @@
           p.classList.remove('active');
         }
       });
-      // index / faq / streaming と同じキーで共有
+      // index / faq / streaming / contact と共有
       localStorage.setItem('tsu_view', view);
       setHashView(view);
     }
