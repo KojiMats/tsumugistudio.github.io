@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact - TSUMUGI STUDIO</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    :root{--c:#007bff;}
+
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto,
+        "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+      margin: 20px;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    header { margin-bottom: 20px; }
+    header h1 { font-size: 24px; margin-bottom: 10px; }
+
+    /* ヘッダー：ナビ＋言語セレクタ */
+    .header-flex{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:12px;
+    }
+
+    .nav-links { margin-bottom: 0; }
+    .nav-links a {
+      margin-right: 15px;
+      text-decoration: none;
+      color: var(--c);
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .nav-links a:hover { text-decoration: underline; }
+
+    /* 既存サイトに合わせてヘッダーのリンクは白文字扱い */
+    header .nav-links a,
+    header .nav-links a:visited,
+    header .nav-links a:active {
+      color: #fff;
+    }
+    header .nav-links a:hover {
+      color: #fff;
+      opacity: .85;
+      text-decoration: underline;
+    }
+    header .nav-links a:focus {
+      outline: 2px solid #fff;
+      outline-offset: 2px;
+    }
+
+    /* 右側の国・言語セレクタ（統一仕様） */
+    .lang-select-inline select{
+      padding:6px 8px;
+      border-radius:4px;
+      border:1px solid #ccc;
+      font-size:14px;
+      min-width: 220px;
+      background-color:#fff;
+    }
+
+    @media (max-width: 680px) {
+      .header-flex{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+    }
+
+    main{
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    /* 言語パネル */
+    .lang-panel{
+      display:none;
+      background:#fff;
+      border-radius:8px;
+      padding:16px;
+      border:1px solid #ddd;
+      margin-bottom:24px;
+    }
+    .lang-panel.active{ display:block; }
+
+    h2{
+      font-size:20px;
+      margin:14px 0;
+    }
+    p{
+      line-height:1.7;
+      font-size:14px;
+    }
+
+    .badge{
+      display:inline-block;
+      font-size:12px;
+      border:1px solid #ddd;
+      border-radius:12px;
+      padding:2px 8px;
+      margin-left:6px;
+    }
+    .badge.new{
+      background:#e8f2ff;
+      border-color:#cfe0ff;
+      color:#0b4aa2;
+    }
+
+    a { color: var(--c); }
+    a:hover { text-decoration: underline; }
+
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      color: #666;
+      font-size: 14px;
+      padding: 20px;
+    }
+
+    .footer-links{
+      margin-top:8px;
+      font-size:13px;
+    }
+    .footer-links a{
+      margin:0 6px;
+      text-decoration:none;
+      color:var(--c);
+    }
+    .footer-links a:hover{
+      text-decoration:underline;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>TSUMUGI STUDIO</h1>
+
+    <div class="header-flex">
+      <nav class="nav-links" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="streaming-guideline.html">Guidelines</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <div class="lang-select-inline">
+        <select id="lang-select" aria-label="Region / Language">
+          <option value="jp">日本（日本語）</option>
+          <option value="en">United States（English）</option>
+          <option value="hk">香港（繁體中文）</option>
+          <option value="tw">台灣（繁體中文）</option>
+          <option value="kr">한국（한국어）</option>
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===================== 日本（日本語） ===================== -->
+    <section class="lang-panel active" id="lang-jp" data-view="jp" lang="ja">
+      <h2>お問い合わせ（日本語） <span class="badge new">最終更新：2025年10月2日</span></h2>
+      <p>
+        ご意見・ご質問、不具合のご報告などがございましたら、<br>
+        下記メールアドレスまでお気軽にご連絡ください。
+      </p>
+      <p>
+        <a href="mailto:info@tsumugistudio.com">info@tsumugistudio.com</a>
+      </p>
+      <p>
+        お問い合わせ内容によっては、ご返信までお時間をいただく場合や、<br>
+        個別の回答が難しい場合がございます。あらかじめご了承ください。
+      </p>
+    </section>
+
+    <!-- ===================== United States（English） ===================== -->
+    <section class="lang-panel" id="lang-en" data-view="en" lang="en">
+      <h2>Contact (English) <span class="badge new">Last updated: Oct 2, 2025</span></h2>
+      <p>
+        If you have any feedback, questions, or bug reports about our games,  
+        please feel free to contact us at the email address below.
+      </p>
+      <p>
+        <a href="mailto:info@tsumugistudio.com">info@tsumugistudio.com</a>
+      </p>
+      <p>
+        Depending on the content of your inquiry, it may take some time for us to reply,  
+        and in some cases we may not be able to respond individually.  
+        Thank you for your understanding.
+      </p>
+    </section>
+
+    <!-- ===================== 香港（繁體中文・香港） ===================== -->
+    <section class="lang-panel" id="lang-hk" data-view="hk" lang="zh-Hant">
+      <h2>聯絡我們（香港） <span class="badge new">最後更新：2025年10月2日</span></h2>
+      <p>
+        如對本工作室的遊戲有任何意見、問題或錯誤回報，<br>
+        歡迎透過以下電郵地址與我們聯絡。
+      </p>
+      <p>
+        <a href="mailto:info@tsumugistudio.com">info@tsumugistudio.com</a>
+      </p>
+      <p>
+        由於查詢內容性質不同，我們的回覆可能需要一些時間，<br>
+        部分情況下亦可能無法逐一回覆，敬請見諒。
+      </p>
+    </section>
+
+    <!-- ===================== 台灣（繁體中文・台灣） ===================== -->
+    <section class="lang-panel" id="lang-tw" data-view="tw" lang="zh-Hant">
+      <h2>聯絡我們（台灣） <span class="badge new">最後更新：2025年10月2日</span></h2>
+      <p>
+        若您對本工作室的遊戲有任何建議、問題或錯誤回報，<br>
+        歡迎寄信至下列電子郵件地址與我們聯繫。
+      </p>
+      <p>
+        <a href="mailto:info@tsumugistudio.com">info@tsumugistudio.com</a>
+      </p>
+      <p>
+        由於詢問內容可能較為複雜，回覆時間有時會較長，<br>
+        或在部分情況下無法一一回覆，還請多多包涵。
+      </p>
+    </section>
+
+    <!-- ===================== 한국（한국어） ===================== -->
+    <section class="lang-panel" id="lang-kr" data-view="kr" lang="ko">
+      <h2>문의하기 (한국어) <span class="badge new">최종 업데이트: 2025-10-02</span></h2>
+      <p>
+        TSUMUGI STUDIO의 게임에 대한 의견, 질문, 버그 제보 등이 있으시다면<br>
+        아래 이메일 주소로 언제든지 연락해 주세요.
+      </p>
+      <p>
+        <a href="mailto:info@tsumugistudio.com">info@tsumugistudio.com</a>
+      </p>
+      <p>
+        문의 내용에 따라 답변까지 시간이 걸릴 수 있으며,<br>
+        경우에 따라 개별 답변이 어려울 수 있습니다. 양해 부탁드립니다.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 TSUMUGI STUDIO</p>
+    <div class="footer-links">
+      <a href="https://x.com/Tsumugi_Studio" target="_blank" rel="noopener">X</a> /
+      <a href="https://www.instagram.com/tsumugistudio_games/" target="_blank" rel="noopener">Instagram</a>
+    </div>
+  </footer>
+
+  <script>
+    const $  = (s,root=document)=>root.querySelector(s);
+    const $$ = (s,root=document)=>Array.from(root.querySelectorAll(s));
+
+    const langSelect = $('#lang-select');
+    const langPanels = $$('.lang-panel');
+
+    function parseHashView(){
+      const h = location.hash.replace('#','');
+      if(!h) return null;
+      const params = new URLSearchParams(h);
+      return params.get('view');
+    }
+
+    function setHashView(view){
+      const params = new URLSearchParams();
+      if(view) params.set('view', view);
+      history.replaceState(null, '', '#'+params.toString());
+    }
+
+    function showView(view){
+      langPanels.forEach(p=>{
+        if(p.dataset.view === view){
+          p.classList.add('active');
+        }else{
+          p.classList.remove('active');
+        }
+      });
+      // 他ページと共有
+      localStorage.setItem('tsu_view', view);
+      setHashView(view);
+    }
+
+    langSelect.addEventListener('change', e=>{
+      showView(e.target.value);
+    });
+
+    (function init(){
+      const fromHash = parseHashView();
+      const stored = localStorage.getItem('tsu_view');
+      const initial = fromHash || stored || 'jp';
+
+      const supported = ['jp','en','hk','tw','kr'];
+      const view = supported.includes(initial) ? initial : 'jp';
+
+      langSelect.value = view;
+      showView(view);
+    })();
+  </script>
+</body>
+</html>
