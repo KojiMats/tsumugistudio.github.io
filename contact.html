@@ -181,6 +181,9 @@
         <select id="lang-select" aria-label="Region / Language">
           <option value="jp">日本（日本語）</option>
           <option value="en">United States（English）</option>
+          <option value="fr">France（Français）</option>
+          <option value="de">Deutschland（Deutsch）</option>
+          <option value="es">España（Español）</option>
           <option value="hk">香港（繁體中文）</option>
           <option value="tw">台灣（繁體中文）</option>
           <option value="kr">한국（한국어）</option>
@@ -220,6 +223,57 @@
         Depending on the content of your inquiry, it may take some time for us to reply,  
         and in some cases we may not be able to respond individually.  
         Thank you for your understanding.
+      </p>
+    </section>
+   
+    <!-- ===================== France（Français） ===================== -->
+    <section class="lang-panel" id="lang-fr" data-view="fr" lang="fr">
+      <h2>Contact (Français) <span class="badge new">Dernière mise à jour : 2 octobre 2025</span></h2>
+      <p>
+        Pour toute question, retour, ou signalement de bug concernant nos jeux,<br>
+        n’hésitez pas à nous contacter à l’adresse e-mail ci-dessous.
+      </p>
+      <p>
+        <a href="mailto:info@tsumugistudio.com">info@tsumugistudio.com</a>
+      </p>
+      <p>
+        Selon le contenu de votre message, un délai de réponse peut être nécessaire,<br>
+        et il se peut que nous ne puissions pas répondre individuellement.<br>
+        Merci de votre compréhension.
+      </p>
+    </section>
+    
+    <!-- ===================== Deutschland（Deutsch） ===================== -->
+    <section class="lang-panel" id="lang-de" data-view="de" lang="de">
+      <h2>Kontakt (Deutsch) <span class="badge new">Letzte Aktualisierung: 2. Oktober 2025</span></h2>
+      <p>
+        Wenn Sie Feedback, Fragen oder Fehlermeldungen zu unseren Spielen haben,<br>
+        können Sie uns jederzeit über die untenstehende E-Mail-Adresse kontaktieren.
+      </p>
+      <p>
+        <a href="mailto:info@tsumugistudio.com">info@tsumugistudio.com</a>
+      </p>
+      <p>
+        Je nach Anfrage kann die Beantwortung etwas Zeit in Anspruch nehmen,<br>
+        und in manchen Fällen ist eine individuelle Antwort leider nicht möglich.<br>
+        Vielen Dank für Ihr Verständnis.
+      </p>
+    </section>
+    
+    <!-- ===================== España（Español） ===================== -->
+    <section class="lang-panel" id="lang-es" data-view="es" lang="es">
+      <h2>Contacto (Español) <span class="badge new">Última actualización: 2 de octubre de 2025</span></h2>
+      <p>
+        Si tienes comentarios, preguntas o deseas informar de un error en nuestros juegos,<br>
+        no dudes en escribirnos al correo electrónico que aparece a continuación.
+      </p>
+      <p>
+        <a href="mailto:info@tsumugistudio.com">info@tsumugistudio.com</a>
+      </p>
+      <p>
+        Dependiendo del contenido de tu consulta, la respuesta puede tardar un poco,<br>
+        y en algunos casos puede no ser posible responder individualmente.<br>
+        Gracias por tu comprensión.
       </p>
     </section>
 
@@ -322,7 +376,7 @@
       const stored = localStorage.getItem('tsu_view');
       const initial = fromHash || stored || 'jp';
 
-      const supported = ['jp','en','hk','tw','kr'];
+      const supported = ['jp','en','fr','de','es','hk','tw','kr'];
       const view = supported.includes(initial) ? initial : 'jp';
 
       langSelect.value = view;
@@ -331,5 +385,6 @@
   </script>
 </body>
 </html>
+
 
 
