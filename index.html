@@ -176,7 +176,26 @@
       max-width: 960px;
       margin: 0 auto;
     }
-  
+
+    /* X / Instagram アイコン共通 */
+    .sns-links img {
+      height: 40px;     /* お好みで 24〜32px くらいがバランス良い */
+      width: auto;
+      display: block;
+    }
+    
+    /* SVGを直接埋め込んでいる場合はこちらも */
+    .sns-links svg {
+      height: 40px;
+      width: 40px;      /* 正方形にしたい場合 */
+    }
+
+    .sns-links {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    
   </style>
 </head>
 <body>
@@ -193,6 +212,15 @@
         <a href="about.html">About</a>
         <a href="contact.html">Contact</a>
       </nav>
+
+      <div class="sns-links">
+        <a href="https://x.com/Tsumugi_Studio" target="_blank" aria-label="X公式">
+          <img src="images/icon_x.png" alt="X">
+        </a>
+        <a href="https://www.instagram.com/tsumugistudio_games" target="_blank" aria-label="Instagram公式">
+          <img src="images/icon_instagram.png" alt="Instagram">
+        </a>
+      </div>
 
       <!-- 国・言語選択（ページ全体＋配信パートに適用） -->
       <div class="lang-select-inline">
@@ -493,5 +521,6 @@
   </script>
 </body>
 </html>
+
 
 
