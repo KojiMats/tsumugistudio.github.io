@@ -177,6 +177,9 @@
         <select id="lang-select" aria-label="Region / Language">
           <option value="jp">日本（日本語）</option>
           <option value="en">United States（English）</option>
+          <option value="fr">France（Français）</option>
+          <option value="de">Deutschland（Deutsch）</option>
+          <option value="es">España（Español）</option>
           <option value="hk">香港（繁體中文）</option>
           <option value="tw">台灣（繁體中文）</option>
           <option value="kr">한국（한국어）</option>
@@ -615,7 +618,7 @@
       const stored = localStorage.getItem('tsu_view');
       const initial = fromHash || stored || 'jp';
 
-      const supported = ['jp','en','hk','tw','kr'];
+      const supported = ['jp','en','fr','de','es','hk','tw','kr'];
       const view = supported.includes(initial) ? initial : 'jp';
 
       langSelect.value = view;
@@ -624,6 +627,7 @@
   </script>
 </body>
 </html>
+
 
 
 
