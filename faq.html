@@ -11,6 +11,7 @@
   <meta property="og:url" content="https://www.tsumugistudio.com/faq.html" />
   <style>
     :root{--c:#007bff}
+
     body {
       font-family: system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans JP",
         "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
@@ -18,9 +19,20 @@
       background: #f9f9f9;
       color: #333;
     }
+
     header {margin-bottom: 20px;}
     header h1 {font-size: 24px;margin-bottom: 10px;}
-    .nav-links {margin-bottom: 20px;}
+
+    /* ヘッダー：ナビ＋言語セレクタを左右に配置 */
+    .header-flex{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:12px;
+    }
+
+    .nav-links {margin-bottom: 0;}
     .nav-links a {
       margin-right: 15px;
       text-decoration: none;
@@ -28,9 +40,9 @@
       font-weight: 600;
       font-size: 14px;
     }
-    .nav-links a:hover {text-decoration: underline;}
+    .nav-links a:hover {text-decoration: underline}
 
-    /* ヘッダのリンクを白文字に（index.html と同じ指定） */
+    /* ヘッダのリンクは既存デザインに合わせて白文字扱い */
     header .nav-links a,
     header .nav-links a:visited,
     header .nav-links a:active {
@@ -46,44 +58,62 @@
       outline-offset: 2px;
     }
 
-    footer {
-      text-align: center;
-      margin-top: 40px;
-      color: #666;
+    /* 右側の国・言語セレクタ */
+    .lang-select-inline select{
+      padding:6px 8px;
+      border-radius:4px;
+      border:1px solid #ccc;
+      font-size:14px;
+      min-width: 220px;
+      background-color:#fff;
+    }
+
+    @media (max-width: 680px) {
+      .header-flex{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+    }
+
+    /* 言語別パネル（index.htmlと同じ方式） */
+    .lang-panel{
+      display:none;
+      background:#fff;
+      border-radius:8px;
+      padding:16px;
+      border:1px solid #ddd;
+      margin-bottom:24px;
+    }
+    .lang-panel.active{display:block}
+
+    h2 {
+      font-size: 20px;
+      margin-top: 0;
+    }
+    .lead {
       font-size: 14px;
-      padding: 20px;
-    }
-
-    /* FAQ 用レイアウト */
-    main {
-      max-width: 800px;
-      margin: 0 auto;
-      background: #fff;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      padding: 20px 20px 30px;
-    }
-
-    h2 {font-size: 20px;margin-top:0;margin-bottom:10px;}
-    p.lead {margin-bottom: 18px;}
-
-    .faq-section {margin-top: 24px;}
-    .faq-section h3 {
-      font-size: 16px;
-      margin-bottom: 6px;
-    }
-    .faq-section p {
-      margin: 4px 0;
       line-height: 1.6;
+      margin-bottom: 8px;
     }
-    .faq-section ul {
-      margin: 4px 0 4px 1.2em;
-      padding: 0;
+
+    .faq-section {
+      margin-top: 24px;
+      padding: 16px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      background: #fff;
+    }
+    .faq-section + .faq-section {
+      margin-top: 16px;
+    }
+    .faq-section h3 {
+      margin-top: 0;
+      font-size: 16px;
     }
 
     details {
-      border: 1px solid #ddd;
-      border-radius: 6px;
+      border-radius: 8px;
+      border: 1px solid #e0e0e0;
       padding: 10px 12px;
       background: #fafafa;
       margin-bottom: 10px;
@@ -122,155 +152,808 @@
       margin-top: 24px;
       font-size: 14px;
     }
+
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      color: #666;
+      font-size: 14px;
+      padding: 20px;
+    }
   </style>
 </head>
 <body>
   <header>
     <h1>TSUMUGI STUDIO</h1>
-    <nav class="nav-links" aria-label="Primary">
-      <a href="index.html">Home</a>
-      <a href="streaming-guideline.html">Guidelines</a>
-      <a href="privacy.html">Privacy Policy</a>
-      <a href="faq.html">FAQ</a>
-      <a href="contact.html">Contact</a>
-    </nav>
+
+    <div class="header-flex">
+      <nav class="nav-links" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="streaming-guideline.html">Guidelines</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <div class="lang-select-inline">
+        <select id="lang-select" aria-label="Region / Language">
+          <option value="jp">日本（日本語）</option>
+          <option value="en">United States（English）</option>
+          <option value="hk">香港（繁體中文）</option>
+          <option value="tw">台灣（繁體中文）</option>
+          <option value="kr">한국（한국어）</option>
+        </select>
+      </div>
+    </div>
   </header>
 
   <main>
-    <h2>『路地裏からの脱出』 FAQ</h2>
-    <p class="lead">
-      脱出ゲーム『路地裏からの脱出』でよくいただくご質問をまとめました。<br>
-      操作方法やヒントの見方で迷われたときの参考になれば幸いです。
-    </p>
-    <p>
-      ※FAQの性質上、どうしてもネタバレがありますので、お困りのトピック以外は開かないようご注意ください。
-    </p>
+    <!-- ===================== 日本（日本語） ===================== -->
+    <section class="lang-panel active" id="lang-jp" data-view="jp" lang="ja">
+      <h2>『路地裏からの脱出』 FAQ</h2>
+      <p class="lead">
+        脱出ゲーム『路地裏からの脱出』でよくいただくご質問をまとめました。<br>
+        操作方法やヒントの見方で迷われたときの参考になれば幸いです。
+      </p>
+      <p class="lead">
+        ※FAQの性質上、どうしてもネタバレがありますので、お困りのトピック以外は開かないようご注意ください。
+      </p>
 
-    <section class="faq-section" aria-label="ゲームの操作・謎解き">
-      <details>
-        <summary>アイテムが使えない（反応しない）</summary>
-        <p>
-          アイテムはドラッグ＆ドロップで使用します。
-        </p>
-        <p>
-          画面下の青い帯に表示されているアイテムを、ゲーム画面内の目的の場所にドラッグ＆ドロップしてみてください。
-          （アイテムをドロップしたときに「ガッ！」と音がしたら当たり、ドロップしたときに「ピロピロッ！」と音がしたら外れです）
-        </p>
-        <p>
-          ※アイテムの使い方などの操作説明は「？」印のプレートからも見ることができます。
-        </p>
-        <p>
-          スタート地点近くの木の幹と、銀色のポストの左側にあります。探してみてください。
-        </p>
-      </details>
+      <section class="faq-section" aria-label="ゲームの操作・謎解き">
+        <h3>ゲームの操作・謎解きについて</h3>
 
-      <details>
-        <summary>飛行機を取るところで早送りしたらアイテムが(飛行機)無くなった</summary>
-        <p>
-          飛行機がどこかに飛んで行っています、付近を探してみてください。
-        </p>
-      </details>
+        <details>
+          <summary>アイテムが使えない（反応しない）</summary>
+          <p>
+            アイテムはドラッグ＆ドロップで使用します。
+          </p>
+          <p>
+            画面下の青い帯に表示されているアイテムを、ゲーム画面内の目的の場所にドラッグ＆ドロップしてみてください。<br>
+            （アイテムをドロップしたときに「ガッ！」と音がしたら当たり、ドロップしたときに「ピロピロッ！」と音がしたら外れです）
+          </p>
+          <p>
+            ※アイテムの使い方などの操作説明は「？」印のプレートからも見ることができます。
+          </p>
+          <p>
+            スタート地点近くの木の幹と、銀色のポストの左側にあります。探してみてください。
+          </p>
+        </details>
 
-      <details>      
-        <summary>机上の缶の並び替え</summary>
-        <p>
-          持ち上げた缶をすぐ隣の缶と入れ替えることで、並び替えを進めることができます。
-        </p>
-        <ul>
-          <li>缶をタップして持ち上げる</li>
-          <li>持ち上げた缶の隣の缶をタップする</li>
-        </ul>
-      </details>
+        <details>
+          <summary>飛行機を取るところで早送りしたらアイテムが（飛行機）無くなった</summary>
+          <p>
+            飛行機がどこかに飛んで行っています。付近を探してみてください。
+          </p>
+        </details>
 
-      <details>
-        <summary>謎の解き方がわからない（ヒントと答えの見方）</summary>
-        <p>ヒントと答えを見るには、次の手順をお試しください。</p>
-        <ul>
-          <li>ゲーム画面右上の電球マークをタップ</li>
-          <li>左に「ヒント」、右に「答え」の引き出しがあります</li>
-        </ul>
-        <p>まずは左の引き出しを開けて、ヒントをみてください。</p>
-        <p>その後、右の引き出し（答え）の窓が灯り、右の引き出しも開けられるようになります</p>
-        <p class="note-small">
-          ※ 引き出しの鍵は、ヒント画面右下の「広告を見る」ボタンから手に入ります。
-          （広告OFFアイテムを購入すると広告なしで引き出しの鍵を入手できるようになります）
-        </p>
-      </details>
+        <details>
+          <summary>机上の缶の並び替え</summary>
+          <p>
+            持ち上げた缶をすぐ隣の缶と入れ替えることで、並び替えを進めることができます。
+          </p>
+          <ul>
+            <li>缶をタップして持ち上げる</li>
+            <li>持ち上げた缶の隣の缶をタップする</li>
+          </ul>
+        </details>
 
-      <details>
-        <summary>望遠鏡の使い方</summary>
-        <p>
-          梯子を登った先で、ぼやけて見える風景に、望遠鏡をドラッグ＆ドロップしてみてください。<br>
-          何かが起こります。
-        </p>
-      </details>
+        <details>
+          <summary>謎の解き方がわからない（ヒントと答えの見方）</summary>
+          <p>ヒントと答えを見るには、次の手順をお試しください。</p>
+          <ul>
+            <li>ゲーム画面右上の電球マークをタップ</li>
+            <li>左に「ヒント」、右に「答え」の引き出しがあります</li>
+          </ul>
+          <p>まずは左の引き出しを開けて、ヒントをみてください。</p>
+          <p>その後、右の引き出し（答え）の窓が灯り、右の引き出しも開けられるようになります。</p>
+          <p class="note-small">
+            ※ 引き出しの鍵は、ヒント画面右下の「広告を見る」ボタンから手に入ります。<br>
+            （広告OFFアイテムを購入すると広告なしで引き出しの鍵を入手できるようになります）
+          </p>
+        </details>
 
-      <details>
-        <summary>ふきんの使い方</summary>
-        <p>
-          ふきんをある場所で使うと、画面上にふきんが表示された状態になります。
-        </p>
-        <p>
-          その状態で、画面上のふきんに別のアイテムをドラッグ＆ドロップすると、何かが起こりますので、お試しください。
-        </p>
-      </details>
+        <details>
+          <summary>望遠鏡の使い方</summary>
+          <p>
+            梯子を登った先で、ぼやけて見える風景に、望遠鏡をドラッグ＆ドロップしてみてください。<br>
+            何かが起こります。
+          </p>
+        </details>
 
-      <details>
-        <summary>ネジ4本を外す操作</summary>
-        <p>
-          テンキーパッドの四隅にドライバーをドラッグアンドドロップしてみてください。
-        </p>
-        <p>
-          右上のネジは「緩んだ状態」、その他のネジは「外れた状態」になります（所持品のドライバーは消えます）。
-        </p>
-      </details>
+        <details>
+          <summary>ふきんの使い方</summary>
+          <p>
+            ふきんをある場所で使うと、画面上にふきんが表示された状態になります。
+          </p>
+          <p>
+            その状態で、画面上のふきんに別のアイテムをドラッグ＆ドロップすると、何かが起こりますので、お試しください。
+          </p>
+        </details>
 
-      <details>
-        <summary>釣り竿の使い方</summary>
-        <p>
-          釣り竿の使用操作についてお問い合わせを多くいただいているため、短い動画を用意しました。
-        </p>
-        <p class="youtube-link">
-          🎥 動画はこちら：<br>
-          <a href="https://youtube.com/shorts/bS9Eg3MhhQY" target="_blank" rel="noopener">
-            https://youtube.com/shorts/bS9Eg3MhhQY
-          </a>
-        </p>
-        <p class="note-small">
-          動画と同じ操作をしても反応しない場合は、アイテムをドラッグ＆ドロップできない等の症状を、
-          お手数ですが問い合わせフォームにできるだけ詳しくご記載ください。
-        </p>
-      </details>
+        <details>
+          <summary>ネジ4本を外す操作</summary>
+          <p>
+            テンキーパッドの四隅にドライバーをドラッグアンドドロップしてみてください。
+          </p>
+          <p>
+            右上のネジは「緩んだ状態」、その他のネジは「外れた状態」になります（所持品のドライバーは消えます）。
+          </p>
+        </details>
 
-      <details>
-        <summary>動画・実況配信しても良いですか？</summary>
+        <details>
+          <summary>釣り竿の使い方</summary>
+          <p>
+            釣り竿の使用操作についてお問い合わせを多くいただいているため、短い動画を用意しました。
+          </p>
+          <p class="youtube-link">
+            🎥 動画はこちら：<br>
+            <a href="https://youtube.com/shorts/bS9Eg3MhhQY" target="_blank" rel="noopener">
+              https://youtube.com/shorts/bS9Eg3MhhQY
+            </a>
+          </p>
+          <p class="note-small">
+            動画と同じ操作をしても反応しない場合は、アイテムをドラッグ＆ドロップできない等の症状を、
+            お手数ですが問い合わせフォームにできるだけ詳しくご記載ください。
+          </p>
+        </details>
+
+        <details>
+          <summary>動画・実況配信しても良いですか？</summary>
+          <p>
+            配信を歓迎いたします。
+          </p>
+          <p>
+            <a href="streaming-guideline.html">配信のガイドライン</a>を掲載していますので、ご一読お願いいたします。
+          </p>
+          <p>
+            配信に関してご不明な点がありましたら、<a href="contact.html">メール</a>又は
+            <a href="https://x.com/Tsumugi_Studio" target="_blank" rel="noopener">公式X</a>のダイレクトメッセージでお問い合わせください。
+          </p>
+        </details>
+      </section>
+
+      <section class="faq-section" aria-label="お問い合わせについて">
+        <h3>バグ報告・ご意見フォームについて</h3>
         <p>
-          配信を歓迎いたします。
+          ゲームプレイ中の不具合やご意見がありましたら、下記フォームからお知らせください。<br>
+          個別に返信はできませんが、いただいた内容は端末ごとの検証や今後のアップデート改善に活かしてまいります。
         </p>
-        <p>
-          <a href="/streaming-guideline.html#lang=ja">配信のガイドライン</a>を掲載していますので、ご一読お願いいたします。
+        <p class="back-to-form">
+          👉 <a href="https://forms.gle/c8Y4knQpz3s53pad6">バグ報告・ご意見フォームへのリンク</a>
         </p>
-        <p>
-          配信に関してご不明な点がありましたら、<a href="/contact.html">メール</a>又は<a href="https://x.com/Tsumugi_Studio">公式X</a>のダイレクトメッセージでお問い合わせください。
-        </p>
-      </details>
-     
+      </section>
     </section>
 
-    <section class="faq-section" aria-label="お問い合わせについて">
-      <h3>バグ報告・ご意見フォームについて</h3>
-      <p>
-        ゲームプレイ中の不具合やご意見がありましたら、下記フォームからお知らせください。
-        個別に返信はできませんが、いただいた内容は端末ごとの検証や今後のアップデート改善に活かしてまいります。
+    <!-- ===================== United States（English） ===================== -->
+    <section class="lang-panel" id="lang-en" data-view="en" lang="en">
+      <h2>Escape Game: The Hidden Alley – FAQ</h2>
+      <p class="lead">
+        Here you’ll find frequently asked questions about <em>Escape Game: The Hidden Alley</em>.<br>
+        If you’re unsure about the controls or how to view hints and answers, please take a look here.
       </p>
-      <p class="back-to-form">
-        👉 <a href="https://docs.google.com/forms/d/e/1FAIpQLSfzeaXHW9nWzVLjD1x_uSKdZmyquJ_QWyInPbbuEag2_YcAQA/viewform?usp=header">バグ報告・ご意見フォームへのリンク</a>
+      <p class="lead">
+        Because this is an FAQ, some answers contain spoilers. To avoid spoiling the puzzles,
+        we recommend opening only the topics you’re currently stuck on.
       </p>
+
+      <section class="faq-section" aria-label="Gameplay & puzzles">
+        <h3>Gameplay & puzzles</h3>
+
+        <details>
+          <summary>Items don’t work / nothing happens</summary>
+          <p>
+            Items are used by drag &amp; drop.
+          </p>
+          <p>
+            Try dragging an item from the blue bar at the bottom of the screen onto the place
+            where you want to use it in the game.<br>
+            If you hear a solid “clunk!” sound when you drop it, that means you’re correct.
+            A light “pip-pip!” sound means the item doesn’t go there.
+          </p>
+          <p>
+            You can also check the basic controls (including how to use items) from the plate marked with a “?”.
+          </p>
+          <p>
+            You can find these plates on the tree trunk near the starting point,
+            and on the left side of the silver mailbox. Please look around that area.
+          </p>
+        </details>
+
+        <details>
+          <summary>The paper glider item disappeared when I fast-forwarded</summary>
+          <p>
+            The paper glider flies off to a nearby spot. Please look carefully around the area —
+            it has fallen somewhere close by.
+          </p>
+        </details>
+
+        <details>
+          <summary>How do I rearrange the cans on the desk?</summary>
+          <p>
+            You can rearrange the cans by swapping a lifted can with the one right next to it.
+          </p>
+          <ul>
+            <li>Tap a can to lift it.</li>
+            <li>Then tap the adjacent can to swap their positions.</li>
+          </ul>
+        </details>
+
+        <details>
+          <summary>I don’t know how to solve a puzzle (how to see hints and answers)</summary>
+          <p>To view hints and answers, please try the steps below:</p>
+          <ul>
+            <li>Tap the light-bulb icon at the top-right of the game screen.</li>
+            <li>You’ll see two drawers: “Hint” on the left, and “Answer” on the right.</li>
+          </ul>
+          <p>Please open the left drawer first and read the hint.</p>
+          <p>
+            After that, the window on the right (Answer) will light up, and you’ll be able to open the answer drawer as well.
+          </p>
+          <p class="note-small">
+            Notes: You can obtain keys for the drawers via the “Watch Ad” button at the bottom-right
+            of the hint screen. If you purchase the Remove Ads item, you’ll be able to get keys without watching ads.
+          </p>
+        </details>
+
+        <details>
+          <summary>How do I use the telescope?</summary>
+          <p>
+            After climbing the ladder, drag &amp; drop the telescope onto the blurry scenery you see in the distance.<br>
+            Something will happen.
+          </p>
+        </details>
+
+        <details>
+          <summary>How do I use the cloth?</summary>
+          <p>
+            If you use the cloth in a certain spot, a large cloth will appear over the screen.
+          </p>
+          <p>
+            While the cloth is showing, try dragging &amp; dropping another item onto it.
+            Something will happen, so please give it a try.
+          </p>
+        </details>
+
+        <details>
+          <summary>How do I remove the four screws?</summary>
+          <p>
+            Try dragging and dropping the screwdriver onto each of the four corners of the keypad.
+          </p>
+          <p>
+            The top-right screw will be left in a “loosened” state,
+            and the other screws will be “removed”. (The screwdriver item will disappear from your inventory.)
+          </p>
+        </details>
+
+        <details>
+          <summary>How do I use the fishing rod?</summary>
+          <p>
+            We’ve received many questions about how to operate the fishing rod,
+            so we’ve prepared a short video.
+          </p>
+          <p class="youtube-link">
+            🎥 Watch the video here:<br>
+            <a href="https://youtube.com/shorts/bS9Eg3MhhQY" target="_blank" rel="noopener">
+              https://youtube.com/shorts/bS9Eg3MhhQY
+            </a>
+          </p>
+          <p class="note-small">
+            If the game still doesn’t react even when you perform the same actions as in the video
+            (for example, if you can’t drag &amp; drop items),
+            please let us know via the contact form and describe your situation in as much detail as possible.
+          </p>
+        </details>
+
+        <details>
+          <summary>Can I stream or upload gameplay videos?</summary>
+          <p>
+            Yes — you’re very welcome to stream or create videos.
+          </p>
+          <p>
+            Please read our <a href="streaming-guideline.html">streaming guidelines</a> in advance.
+          </p>
+          <p>
+            If you have any questions about streaming, feel free to contact us via
+            <a href="contact.html">email (contact form)</a> or direct message on our
+            <a href="https://x.com/Tsumugi_Studio" target="_blank" rel="noopener">official X account</a>.
+          </p>
+        </details>
+      </section>
+
+      <section class="faq-section" aria-label="Bug report & feedback form">
+        <h3>About the bug report / feedback form</h3>
+        <p>
+          If you find any issues while playing, or have feedback you’d like to share,
+          please use the form below.<br>
+          We’re not able to reply to each submission individually, but we use all reports
+          to help us test devices and improve future updates.
+        </p>
+        <p class="back-to-form">
+          👉 <a href="https://forms.gle/Wc3hrPJBoBMu9mYD9">Bug report &amp; feedback form</a>
+        </p>
+      </section>
+    </section>
+
+    <!-- ===================== 香港（繁體中文・香港） ===================== -->
+    <section class="lang-panel" id="lang-hk" data-view="hk" lang="zh-Hant">
+      <h2>《從巷弄中逃出》常見問題（FAQ）</h2>
+      <p class="lead">
+        這裡整理了關於逃脫遊戲《從巷弄中逃出》的常見問題。<br>
+        當你不確定操作方式，或不知道怎麼查看提示／答案時，可以參考本頁內容。
+      </p>
+      <p class="lead">
+        由於 FAQ 的性質，內容難免會包含解謎相關的提示。<br>
+        若不想被劇透，建議只打開自己卡關的項目。
+      </p>
+
+      <section class="faq-section" aria-label="遊戲操作與解謎">
+        <h3>遊戲操作與解謎</h3>
+
+        <details>
+          <summary>道具無法使用（沒有反應）</summary>
+          <p>
+            道具需要透過拖曳（Drag &amp; Drop）來使用。
+          </p>
+          <p>
+            請把畫面下方藍色欄位中的道具，拖曳到遊戲畫面中想使用的地方。<br>
+            若放下時聽到「咔！」的一聲，代表位置正確；若是輕快的「叮叮～」聲，
+            則表示這裡不能使用。
+          </p>
+          <p>
+            道具的使用方式等操作說明，也可以從標有「？」的牌子查看。
+          </p>
+          <p>
+            牌子位於起點附近的樹幹，以及銀色郵筒左邊的位置，請在附近找找看。
+          </p>
+        </details>
+
+        <details>
+          <summary>在拿飛機的地方快轉後，道具（飛機）不見了</summary>
+          <p>
+            紙飛機會飛到附近的某個地方。請仔細在周圍找找看，其實就掉在不遠處。
+          </p>
+        </details>
+
+        <details>
+          <summary>桌上的罐子要怎麼重新排列？</summary>
+          <p>
+            將拿起來的罐子與緊鄰的罐子交換位置，就能慢慢完成排序。
+          </p>
+          <ul>
+            <li>點一下罐子，讓它被舉起。</li>
+            <li>再點擊旁邊的罐子，就會和手上的罐子交換位置。</li>
+          </ul>
+        </details>
+
+        <details>
+          <summary>看不懂謎題怎麼解（提示與答案的查看方式）</summary>
+          <p>若想查看提示或答案，請依照以下步驟操作：</p>
+          <ul>
+            <li>點擊遊戲畫面右上角的燈泡圖示。</li>
+            <li>畫面會出現兩個抽屜：左邊是「提示」，右邊是「答案」。</li>
+          </ul>
+          <p>請先打開左邊的抽屜，看看提示內容。</p>
+          <p>之後右邊（答案）那一側的窗格會亮起，就可以打開答案的抽屜。</p>
+          <p class="note-small">
+            ※ 抽屜的鑰匙可以從提示畫面右下方的「觀看廣告」按鈕取得。<br>
+            若購買了「移除廣告」道具，就能在不看廣告的情況下獲得鑰匙。
+          </p>
+        </details>
+
+        <details>
+          <summary>望遠鏡怎麼用？</summary>
+          <p>
+            爬上梯子之後，將望遠鏡拖曳到遠方模糊的景色上試試看，會有些變化發生。
+          </p>
+        </details>
+
+        <details>
+          <summary>抹布怎麼用？</summary>
+          <p>
+            在某個地方使用抹布後，畫面上會顯示一塊放大的抹布。
+          </p>
+          <p>
+            在抹布顯示的狀態下，把其他道具拖曳到抹布上，就會發生一些事情，請試試看。
+          </p>
+        </details>
+
+        <details>
+          <summary>四顆螺絲要怎麼拆？</summary>
+          <p>
+            請試著把螺絲起子拖曳到數字鍵盤的四個角落。
+          </p>
+          <p>
+            右上角的螺絲會變成「鬆開但還留著」的狀態，
+            其他三顆則會「被拆下來」（道具欄中的螺絲起子會消失）。
+          </p>
+        </details>
+
+        <details>
+          <summary>釣竿的使用方式</summary>
+          <p>
+            由於收到不少關於釣竿操作的詢問，我們另行準備了一支簡短的示範影片。
+          </p>
+          <p class="youtube-link">
+            🎥 影片連結：<br>
+            <a href="https://youtube.com/shorts/bS9Eg3MhhQY" target="_blank" rel="noopener">
+              https://youtube.com/shorts/bS9Eg3MhhQY
+            </a>
+          </p>
+          <p class="note-small">
+            如果照著影片中的操作，遊戲仍然沒有反應（例如道具無法拖曳）等情況，<br>
+            麻煩在回報表單中盡量詳細描述你的狀況。
+          </p>
+        </details>
+
+        <details>
+          <summary>可以錄製或直播遊戲實況嗎？</summary>
+          <p>
+            非常歡迎你錄製影片或進行直播。
+          </p>
+          <p>
+            請先閱讀我們的<a href="streaming-guideline.html">直播／錄製指南</a>。
+          </p>
+          <p>
+            若對實況相關規則有任何疑問，歡迎透過
+            <a href="contact.html">電子郵件（聯絡表單）</a>或
+            <a href="https://x.com/Tsumugi_Studio" target="_blank" rel="noopener">官方 X 帳號私訊</a>與我們聯繫。
+          </p>
+        </details>
+      </section>
+
+      <section class="faq-section" aria-label="錯誤回報與意見表單">
+        <h3>關於錯誤回報／意見表單</h3>
+        <p>
+          如果在遊戲中遇到問題，或有任何建議，歡迎透過下方表單告訴我們。<br>
+          我們無法一一回覆，但所有回饋都會用於不同裝置的測試，以及未來更新的改善。
+        </p>
+        <p class="back-to-form">
+          👉 <a href="https://forms.gle/XXuWb3CJpoecTyFF9">錯誤回報／意見表單</a>
+        </p>
+      </section>
+    </section>
+
+    <!-- ===================== 台灣（繁體中文・台灣） ===================== -->
+    <section class="lang-panel" id="lang-tw" data-view="tw" lang="zh-Hant">
+      <h2>《從巷弄中逃出》常見問題（FAQ）</h2>
+      <p class="lead">
+        這裡整理了關於逃脫遊戲《從巷弄中逃出》的常見問題。<br>
+        當你不確定操作方式，或不知道怎麼查看提示／答案時，可以參考本頁內容。
+      </p>
+      <p class="lead">
+        因為 FAQ 難免包含解謎相關的提示，<br>
+        若不想被劇透，建議只打開自己卡關的項目。
+      </p>
+
+      <!-- 本文は香港版と共通。必要なら将来分岐可 -->
+      <section class="faq-section" aria-label="遊戲操作與解謎">
+        <h3>遊戲操作與解謎</h3>
+
+        <!-- 同じ内容を再掲（翻訳はHKと共通） -->
+        <details>
+          <summary>道具無法使用（沒有反應）</summary>
+          <p>
+            道具需要透過拖曳（Drag &amp; Drop）來使用。
+          </p>
+          <p>
+            請把畫面下方藍色欄位中的道具，拖曳到遊戲畫面中想使用的地方。<br>
+            若放下時聽到「咔！」的一聲，代表位置正確；若是輕快的「叮叮～」聲，
+            則表示這裡不能使用。
+          </p>
+          <p>
+            道具的使用方式等操作說明，也可以從標有「？」的牌子查看。
+          </p>
+          <p>
+            牌子位於起點附近的樹幹，以及銀色郵筒左邊的位置，請在附近找找看。
+          </p>
+        </details>
+
+        <details>
+          <summary>在拿飛機的地方快轉後，道具（飛機）不見了</summary>
+          <p>
+            紙飛機會飛到附近的某個地方。請仔細在周圍找找看，其實就掉在不遠處。
+          </p>
+        </details>
+
+        <details>
+          <summary>桌上的罐子要怎麼重新排列？</summary>
+          <p>
+            將拿起來的罐子與緊鄰的罐子交換位置，就能慢慢完成排序。
+          </p>
+          <ul>
+            <li>點一下罐子，讓它被舉起。</li>
+            <li>再點擊旁邊的罐子，就會和手上的罐子交換位置。</li>
+          </ul>
+        </details>
+
+        <details>
+          <summary>看不懂謎題怎麼解（提示與答案的查看方式）</summary>
+          <p>若想查看提示或答案，請依照以下步驟操作：</p>
+          <ul>
+            <li>點擊遊戲畫面右上角的燈泡圖示。</li>
+            <li>畫面會出現兩個抽屜：左邊是「提示」，右邊是「答案」。</li>
+          </ul>
+          <p>請先打開左邊的抽屜，看看提示內容。</p>
+          <p>之後右邊（答案）那一側的窗格會亮起，就可以打開答案的抽屜。</p>
+          <p class="note-small">
+            ※ 抽屜的鑰匙可以從提示畫面右下方的「觀看廣告」按鈕取得。<br>
+            若購買了「移除廣告」道具，就能在不看廣告的情況下獲得鑰匙。
+          </p>
+        </details>
+
+        <details>
+          <summary>望遠鏡怎麼用？</summary>
+          <p>
+            爬上梯子之後，將望遠鏡拖曳到遠方模糊的景色上試試看，會有些變化發生。
+          </p>
+        </details>
+
+        <details>
+          <summary>抹布怎麼用？</summary>
+          <p>
+            在某個地方使用抹布後，畫面上會顯示一塊放大的抹布。
+          </p>
+          <p>
+            在抹布顯示的狀態下，把其他道具拖曳到抹布上，就會發生一些事情，請試試看。
+          </p>
+        </details>
+
+        <details>
+          <summary>四顆螺絲要怎麼拆？</summary>
+          <p>
+            請試著把螺絲起子拖曳到數字鍵盤的四個角落。
+          </p>
+          <p>
+            右上角的螺絲會變成「鬆開但還留著」的狀態，
+            其他三顆則會「被拆下來」（道具欄中的螺絲起子會消失）。
+          </p>
+        </details>
+
+        <details>
+          <summary>釣竿的使用方式</summary>
+          <p>
+            由於收到不少關於釣竿操作的詢問，我們另行準備了一支簡短的示範影片。
+          </p>
+          <p class="youtube-link">
+            🎥 影片連結：<br>
+            <a href="https://youtube.com/shorts/bS9Eg3MhhQY" target="_blank" rel="noopener">
+              https://youtube.com/shorts/bS9Eg3MhhQY
+            </a>
+          </p>
+          <p class="note-small">
+            如果照著影片中的操作，遊戲仍然沒有反應（例如道具無法拖曳）等情況，<br>
+            麻煩在回報表單中盡量詳細描述你的狀況。
+          </p>
+        </details>
+
+        <details>
+          <summary>可以錄製或直播遊戲實況嗎？</summary>
+          <p>
+            非常歡迎你錄製影片或進行直播。
+          </p>
+          <p>
+            請先閱讀我們的<a href="streaming-guideline.html">直播／錄製指南</a>。
+          </p>
+          <p>
+            若對實況相關規則有任何疑問，歡迎透過
+            <a href="contact.html">電子郵件（聯絡表單）</a>或
+            <a href="https://x.com/Tsumugi_Studio" target="_blank" rel="noopener">官方 X 帳號私訊</a>與我們聯繫。
+          </p>
+        </details>
+      </section>
+
+      <section class="faq-section" aria-label="錯誤回報與意見表單">
+        <h3>關於錯誤回報／意見表單</h3>
+        <p>
+          如果在遊戲中遇到問題，或有任何建議，歡迎透過下方表單告訴我們。<br>
+          我們無法一一回覆，但所有回饋都會用於不同裝置的測試，以及未來更新的改善。
+        </p>
+        <p class="back-to-form">
+          👉 <a href="https://forms.gle/XXuWb3CJpoecTyFF9">錯誤回報／意見表單</a>
+        </p>
+      </section>
+    </section>
+
+    <!-- ===================== 한국（한국어） ===================== -->
+    <section class="lang-panel" id="lang-kr" data-view="kr" lang="ko">
+      <h2>『골목길 탈출』 자주 묻는 질문 (FAQ)</h2>
+      <p class="lead">
+        탈출 게임 『골목길 탈출』을 플레이할 때 자주 받는 질문을 정리했습니다.<br>
+        조작 방법이나 힌트・정답을 보는 방법이 궁금할 때 참고해 주세요.
+      </p>
+      <p class="lead">
+        FAQ 특성상 일부 답변에는 스포일러가 포함될 수 있습니다.<br>
+        스포일러를 피하고 싶으신 분은, 막힌 부분만 열어 보시는 것을 추천드립니다.
+      </p>
+
+      <section class="faq-section" aria-label="조작과 퍼즐">
+        <h3>게임 조작 및 퍼즐 관련</h3>
+
+        <details>
+          <summary>아이템이 사용되지 않아요 (반응이 없어요)</summary>
+          <p>
+            아이템은 드래그 앤 드롭으로 사용합니다.
+          </p>
+          <p>
+            화면 아래의 파란 바에 표시된 아이템을, 게임 화면 안에서 사용하고 싶은 위치로
+            드래그 앤 드롭해 보세요.<br>
+            떨어뜨렸을 때 “꽉!” 하는 소리가 나면 정답 위치이고,
+            “띠리릭♪” 같은 가벼운 소리가 나면 그곳에는 사용할 수 없다는 의미입니다.
+          </p>
+          <p>
+            아이템 사용 방법 등 기본 조작 설명은 “?” 표시가 있는 안내판에서도 확인할 수 있습니다.
+          </p>
+          <p>
+            안내판은 시작 지점 근처의 나무 기둥과, 은색 우체통 왼쪽에 있습니다. 주변을 잘 찾아보세요.
+          </p>
+        </details>
+
+        <details>
+          <summary>비행기를 줍는 장면에서 빠르게 넘겼더니 아이템(비행기)이 사라졌어요</summary>
+          <p>
+            종이비행기가 근처 다른 곳으로 날아가 있습니다. 주변을 천천히 살펴보시면,
+            가까운 곳에 떨어져 있는 것을 찾을 수 있습니다.
+          </p>
+        </details>
+
+        <details>
+          <summary>책상 위 깡통을 어떻게 정렬하나요?</summary>
+          <p>
+            들어 올린 깡통을 바로 옆 깡통과 교체하면서 순서를 맞춰 나가는 퍼즐입니다.
+          </p>
+          <ul>
+            <li>깡통을 탭하여 들어 올립니다.</li>
+            <li>들어 올린 깡통의 옆에 있는 깡통을 탭하면, 두 깡통의 위치가 바뀝니다.</li>
+          </ul>
+        </details>
+
+        <details>
+          <summary>퍼즐을 어떻게 풀어야 할지 모르겠어요 (힌트와 정답 보는 법)</summary>
+          <p>힌트와 정답을 보려면 아래 단계를 따라 주세요.</p>
+          <ul>
+            <li>게임 화면 오른쪽 위의 전구 아이콘을 탭합니다.</li>
+            <li>왼쪽에는 “힌트”, 오른쪽에는 “정답” 서랍이 표시됩니다.</li>
+          </ul>
+          <p>먼저 왼쪽 서랍을 열어 힌트를 확인해 보세요.</p>
+          <p>
+            그 뒤에 오른쪽(정답) 쪽 창이 밝아지며, 정답 서랍도 열 수 있게 됩니다.
+          </p>
+          <p class="note-small">
+            ※ 서랍의 열쇠는 힌트 화면 오른쪽 아래의 “광고 보기” 버튼을 통해 얻을 수 있습니다.<br>
+            광고 제거 아이템을 구매하시면 광고를 보지 않고도 열쇠를 받을 수 있습니다.
+          </p>
+        </details>
+
+        <details>
+          <summary>망원경 사용 방법</summary>
+          <p>
+            사다리를 올라간 뒤, 멀리 흐릿하게 보이는 풍경 위에 망원경을 드래그 앤 드롭해 보세요.<br>
+            어떤 변화가 일어납니다.
+          </p>
+        </details>
+
+        <details>
+          <summary>행주의 사용 방법</summary>
+          <p>
+            특정 장소에서 행주를 사용하면, 화면 위에 큰 행주가 펼쳐진 상태가 됩니다.
+          </p>
+          <p>
+            그 상태에서 화면의 행주 위로 다른 아이템을 드래그 앤 드롭하면
+            무언가가 일어나니 꼭 시도해 보세요.
+          </p>
+        </details>
+
+        <details>
+          <summary>나사 4개를 어떻게 모두 풀어야 하나요?</summary>
+          <p>
+            숫자 키패드 네 모서리 각각에 드라이버를 드래그 앤 드롭해 보세요.
+          </p>
+          <p>
+            오른쪽 위 나사는 “느슨해진 상태”로 남고,
+            나머지 나사들은 “빠진 상태”가 됩니다. (소지품 목록의 드라이버는 사라집니다.)
+          </p>
+        </details>
+
+        <details>
+          <summary>낚싯대 사용 방법</summary>
+          <p>
+            낚싯대 조작에 대한 문의가 많아, 짧은 설명 영상을 준비했습니다.
+          </p>
+          <p class="youtube-link">
+            🎥 영상 보기:<br>
+            <a href="https://youtube.com/shorts/bS9Eg3MhhQY" target="_blank" rel="noopener">
+              https://youtube.com/shorts/bS9Eg3MhhQY
+            </a>
+          </p>
+          <p class="note-small">
+            영상과 똑같이 조작해도 반응이 없는 경우
+            (예: 아이템을 드래그 앤 드롭할 수 없다 등)에는,<br>
+            문의 폼에 증상을 가능한 한 자세히 적어 보내 주시면 도움이 됩니다.
+          </p>
+        </details>
+
+        <details>
+          <summary>게임 영상을 녹화하거나 방송해도 되나요?</summary>
+          <p>
+            네, 플레이 영상 및 방송을 환영합니다.
+          </p>
+          <p>
+            먼저 <a href="streaming-guideline.html">영상・방송 가이드라인</a>을 읽어 주세요.
+          </p>
+          <p>
+            방송에 대해 궁금한 점이 있으시면,
+            <a href="contact.html">문의 메일(폼)</a>이나
+            <a href="https://x.com/Tsumugi_Studio" target="_blank" rel="noopener">공식 X 계정 DM</a>으로 연락해 주세요.
+          </p>
+        </details>
+      </section>
+
+      <section class="faq-section" aria-label="버그 신고 및 의견 폼">
+        <h3>버그 신고・의견 폼에 대하여</h3>
+        <p>
+          플레이 중 문제가 발생했거나, 전하고 싶은 의견이 있으시다면
+          아래 폼을 통해 알려 주세요.<br>
+          개별 회신은 어려우나, 모든 피드백은 기기별 검증과 향후 업데이트 개선에 적극 반영하고 있습니다.
+        </p>
+        <p class="back-to-form">
+          👉 <a href="https://forms.gle/6GAi2JsCwJL8pY2z5">버그 신고・의견 폼</a>
+        </p>
+      </section>
     </section>
   </main>
 
   <footer>
     <p>&copy; 2025 TSUMUGI STUDIO</p>
   </footer>
+
+  <script>
+    const $  = (s,root=document)=>root.querySelector(s);
+    const $$ = (s,root=document)=>Array.from(root.querySelectorAll(s));
+
+    const langSelect = $('#lang-select');
+    const langPanels = $$('.lang-panel');
+
+    function parseHashView(){
+      const h = location.hash.replace('#','');
+      if(!h) return null;
+      const params = new URLSearchParams(h);
+      return params.get('view');
+    }
+
+    function setHashView(view){
+      const params = new URLSearchParams();
+      if(view) params.set('view', view);
+      history.replaceState(null, '', '#'+params.toString());
+    }
+
+    function showView(view){
+      langPanels.forEach(p=>{
+        if(p.dataset.view === view){
+          p.classList.add('active');
+        }else{
+          p.classList.remove('active');
+        }
+      });
+      localStorage.setItem('tsu_view', view);
+      setHashView(view);
+    }
+
+    langSelect.addEventListener('change', e=>{
+      showView(e.target.value);
+    });
+
+    (function init(){
+      const fromHash = parseHashView();
+      const stored = localStorage.getItem('tsu_view');
+      const initial = fromHash || stored || 'jp';
+      if (!$('#lang-'+initial)) {
+        langSelect.value = 'jp';
+        showView('jp');
+      } else {
+        langSelect.value = initial;
+        showView(initial);
+      }
+    })();
+  </script>
 </body>
 </html>
