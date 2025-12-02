@@ -4,368 +4,865 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Streaming Guidelines | TSUMUGI STUDIO</title>
-  <meta name="description" content="TSUMUGI STUDIO 作品の実況・動画配信ガイドライン（日本語／英語）。" />
+  <meta name="description" content="TSUMUGI STUDIO 作品の実況・動画配信ガイドライン（日本語／英語／繁體中文／한국어）。" />
   <meta property="og:title" content="TSUMUGI STUDIO｜実況・配信ガイドライン" />
-  <meta property="og:description" content="TSUMUGI STUDIO 作品の実況・動画配信ガイドライン（日本語／英語）。" />
+  <meta property="og:description" content="TSUMUGI STUDIO 作品の実況・動画配信ガイドライン（日本語／英語／繁體中文／한국어）。" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://www.tsumugistudio.com/streaming-guidelines.html" />
-  <link rel="canonical" href="https://www.tsumugistudio.com/streaming-guidelines.html" />
+  <meta property="og:url" content="https://www.tsumugistudio.com/streaming-guideline.html" />
+  <link rel="canonical" href="https://www.tsumugistudio.com/streaming-guideline.html" />
   <link rel="stylesheet" href="css/style.css" />
   <style>
-    :root{--c:#007bff}
-    body {font-family: system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif; margin: 20px; background: #f9f9f9; color: #333;}
-    header {margin-bottom: 20px;}
-    header h1 {font-size: 24px;margin-bottom: 10px;}
-    .nav-links {margin-bottom: 20px;}
-    .nav-links a {margin-right: 15px;text-decoration: none;color: var(--c);font-weight: 600;font-size: 14px}
+    :root{--c:#007bff;}
 
-    /* ヘッダのリンクを白文字に */
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto,
+        "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+      margin: 20px;
+      background: #f9f9f9;
+      color: #333;
+    }
+
+    header { margin-bottom: 20px; }
+    header h1 { font-size: 24px; margin-bottom: 10px; }
+
+    /* ヘッダー：ナビ＋言語セレクタを左右に配置 */
+    .header-flex{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:12px;
+    }
+
+    .nav-links { margin-bottom: 0; }
+    .nav-links a {
+      margin-right: 15px;
+      text-decoration: none;
+      color: var(--c);
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .nav-links a:hover { text-decoration: underline; }
+
+    /* ヘッダのリンクは既存デザインに合わせて白文字扱い */
     header .nav-links a,
     header .nav-links a:visited,
     header .nav-links a:active {
-        color: #fff;
+      color: #fff;
     }
-      
     header .nav-links a:hover {
-        color: #fff;            /* 変わらず白 */
-        opacity: .85;           /* うっすら反応 */
-        text-decoration: underline;
+      color: #fff;
+      opacity: .85;
+      text-decoration: underline;
     }
-      
     header .nav-links a:focus {
-        outline: 2px solid #fff;
-        outline-offset: 2px;
+      outline: 2px solid #fff;
+      outline-offset: 2px;
     }
 
-    .social-links {
-      margin-top: 12px;
-      display: flex;
-      justify-content: center;
-      gap: 16px;
+    /* 右側の国・言語セレクタ（index / FAQ と同じスタイル） */
+    .lang-select-inline select{
+      padding:6px 8px;
+      border-radius:4px;
+      border:1px solid #ccc;
+      font-size:14px;
+      min-width: 220px;
+      background-color:#fff;
     }
-    .social-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      text-decoration: none;
+
+    @media (max-width: 680px) {
+      .header-flex{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+    }
+
+    /* 言語パネル（共通） */
+    .lang-panel{
+      display:none;
+      background:#fff;
+      border-radius:8px;
+      padding:16px;
+      border:1px solid #ddd;
+      margin-bottom:24px;
+    }
+    .lang-panel.active{ display:block; }
+
+    main{
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    h2{
+      font-size:20px;
+      margin:14px 0;
+    }
+    h3{
+      font-size:16px;
+      margin:14px 0 8px;
+    }
+    p{
+      line-height:1.7;
+      font-size:14px;
+    }
+    ul{
+      padding-left:1.4em;
+      font-size:14px;
+      line-height:1.7;
+    }
+    li+li{ margin-top:4px; }
+
+    .note-small{
+      color:#666;
+      font-size:13px;
+      margin-top:4px;
+    }
+
+    .badge{
+      display:inline-block;
+      font-size:12px;
+      border:1px solid #ddd;
+      border-radius:12px;
+      padding:2px 8px;
+      margin-left:6px;
+    }
+    .badge.new{
+      background:#e8f2ff;
+      border-color:#cfe0ff;
+      color:#0b4aa2;
+    }
+
+    .block{
+      border:1px solid #e5e5e5;
+      border-radius:8px;
+      padding:12px;
+      margin:12px 0;
+      background:#fafafa;
+      font-size:14px;
+    }
+
+    code, .mono{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco,
+        Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 13px;
+    }
+
+    .dl-table{
+      width:100%;
+      border-collapse:collapse;
+      margin:10px 0;
+      font-size:14px;
+    }
+    .dl-table th,
+    .dl-table td{
+      border:1px solid #e5e5e5;
+      padding:8px;
+      text-align:left;
+      vertical-align:top;
+    }
+    .dl-table th{
+      width:140px;
+      background:#f5f5f5;
+      font-weight:600;
+    }
+
+    a { color: var(--c); }
+    a:hover { text-decoration: underline; }
+
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      color: #666;
       font-size: 14px;
-      background: #fff;
-      border: 1px solid #ddd;
-      color: #111;
-      transition: background .2s, transform .2s;
+      padding: 20px;
     }
-    .social-link:hover {
-      background: #f7f7f7;
-      transform: translateY(-2px);
-    }
-    .social-link svg {
-      width: 20px; height: 20px; display: inline-block; fill: currentColor;
-    }
-    
-    .social-links a svg{width:18px;height:18px;display:inline-block}
-    
-    .social-links a{display:inline-block; margin-left:12px; text-decoration:none; font-weight:600; font-size:14px; color: var(--c)}
-    .social-links a:hover{text-decoration:underline}
-    .social-links .sep{color:#bbb; margin:0 6px}
-    .nav-links a:hover {text-decoration: underline}
-
-    /* Language tabs */
-    .tabs {border-bottom: 1px solid #ccc; display: flex; gap:6px; margin-bottom: 20px}
-    .tab {padding: 8px 16px; cursor: pointer; background: #f1f1f1; border: 1px solid #ccc; border-bottom: none; border-radius: 4px 4px 0 0; font-size: 14px; color: #333}
-    .tab.active {background: #fff; color: #000; font-weight: 700; border-bottom: 1px solid #fff}
-    .tab:focus{outline:2px solid var(--c); outline-offset:2px}
-    [role="tabpanel"] {display:none}
-    .tab-content.active,[role="tabpanel"].active{display:block}
-
-    main{background:#fff;border:1px solid #ccc;border-radius:8px;padding:16px}
-    h2{font-size:20px;margin:14px 0}
-    h3{font-size:16px;margin:14px 0 8px}
-    ul{padding-left:1.2em}
-    .note-small{color:#666;font-size:13px}
-    .badge{display:inline-block;font-size:12px;border:1px solid #ddd;border-radius:12px;padding:2px 8px;margin-left:6px}
-    .badge.new{background:#e8f2ff;border-color:#cfe0ff;color:#0b4aa2}
-    footer {text-align: center; margin-top: 40px; color: #666; font-size: 14px; padding: 20px}
-    .block{border:1px solid #e5e5e5;border-radius:8px;padding:12px;margin:12px 0;background:#fafafa}
-    code, .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}
-    .dl-table{width:100%;border-collapse:collapse;margin:10px 0}
-    .dl-table th, .dl-table td{border:1px solid #e5e5e5;padding:8px;text-align:left}
   </style>
 </head>
 <body>
   <header>
     <h1>TSUMUGI STUDIO</h1>
-    <nav class="nav-links" aria-label="Primary">
-      <a href="index.html">Home</a>
-      <a href="streaming-guideline.html">Guidelines</a>
-      <a href="privacy.html">Privacy Policy</a>
-      <a href="faq.html">FAQ</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-    <!--
-    <div class="social-links" aria-label="Social links">
-      <a class="social-link" href="https://x.com/Tsumugi_Studio" target="_blank" rel="noopener" aria-label="X">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2H21l-6.33 7.23L22 22h-6.77l-4.39-5.95L5.6 22H3l6.77-7.73L2 2h6.77l4 5.6L18.244 2Zm-1.19 18h1.75L7.07 4H5.32l11.73 16Z"/></svg>
-        <span>X</span>
-      </a>
-      <a class="social-link" href="https://www.instagram.com/tsumugistudio_games/" target="_blank" rel="noopener" aria-label="Instagram">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3.5a5.5 5.5 0 1 1 0 11 5.5 5.5 0 0 1 0-11Zm0 2a3.5 3.5 0 1 0 .001 7.001A3.5 3.5 0 0 0 12 9.5ZM18 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2Z"/></svg>
-        <span>Instagram</span>
-      </a>
-    </div>
-    -->
-    <!-- 言語タブ（ARIA対応） -->
-    <div class="tabs" role="tablist" aria-label="Language">
-      <button class="tab active" role="tab" aria-selected="true" aria-controls="content-ja" id="tab-ja">日本語</button>
-      <button class="tab" role="tab" aria-selected="false" aria-controls="content-en" id="tab-en">English</button>
-          <button class="tab" role="tab" aria-selected="false" aria-controls="content-zh" id="tab-zh">繁體中文</button>
-      <button class="tab" role="tab" aria-selected="false" aria-controls="content-ko" id="tab-ko">한국어</button>
+
+    <div class="header-flex">
+      <nav class="nav-links" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="streaming-guideline.html">Guidelines</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <!-- ★ index / FAQ と同じ 5言語 -->
+      <div class="lang-select-inline">
+        <select id="lang-select" aria-label="Region / Language">
+          <option value="jp">日本（日本語）</option>
+          <option value="en">United States（English）</option>
+          <option value="hk">香港（繁體中文）</option>
+          <option value="tw">台灣（繁體中文）</option>
+          <option value="kr">한국（한국어）</option>
+        </select>
+      </div>
     </div>
   </header>
 
   <main>
-    <!-- 日本語 -->
-    <section class="tab-content active" id="content-ja" role="tabpanel" aria-labelledby="tab-ja">
+    <!-- ===================== 日本（日本語） ===================== -->
+    <section class="lang-panel active" id="lang-jp" data-view="jp" lang="ja">
       <h2>実況・配信ガイドライン <span class="badge new">最終更新：2025年10月2日</span></h2>
-      <p>TSUMUGI STUDIO が提供するゲーム作品については、下記のルールを守っていただければ、<strong>商用・非商用を問わず</strong>、自由にプレイ動画の投稿やライブ配信（以下、&#8201;「配信」&#8201;）を行っていただけます。</p>
+      <p>
+        TSUMUGI STUDIO が提供するゲーム作品については、下記のルールを守っていただければ、
+        <strong>個人での実況・配信・アーカイブ公開を、商用・非商用を問わず歓迎</strong> いたします。
+      </p>
+      <p>
+        ここでの「配信」とは、プレイ動画の投稿、ライブ配信、切り抜き動画など、
+        動画プラットフォーム上での公開全般を含みます。
+      </p>
+
+      <h3>対象作品</h3>
+      <ul>
+        <li>脱出ゲーム『路地裏からの脱出』（Escape Game: The Hidden Alley）</li>
+        <li>今後 TSUMUGI STUDIO 名義で配信されるゲーム作品全般</li>
+      </ul>
+      <p class="note-small">
+        ※ 作品ごとに個別のガイドラインが公開された場合は、そちらが優先されます。
+      </p>
 
       <h3>禁止事項</h3>
       <ul>
-        <li>ゲーム内の音楽や映像を、作品紹介ではなく <strong>音源そのものを主体</strong> とした配信・再利用（例：ミュージックビデオ化、BGMのプレイリスト公開 など）。<span class="note-small">※音源素材の提供元ライセンス条件に準拠するため</span></li>
-        <li>各国の法令および配信プラットフォームの規約・ガイドラインに反する配信</li>
-        <li>公序良俗に反する表現、違法・不適切と判断される配信</li>
-        <li>不正入手、改造など<strong>正規でないゲーム</strong>を用いた配信</li>
+        <li>
+          ゲーム内音源・BGM・効果音のみを抜き出して使用するなど、
+          <strong>音楽そのものを主目的とした動画・配信</strong>（いわゆる「音源アップロード」「作業用BGM」等）
+        </li>
+        <li>
+          ゲーム内画像・動画を編集素材として大量に再配布する行為
+          （スプライト・背景・UI を素材集として配布する等）
+        </li>
+        <li>
+          各国の法令、ならびにプラットフォーム（YouTube / Twitch / X 等）の規約・ガイドラインに反する配信
+        </li>
+        <li>
+          誹謗中傷、差別的表現、過度に攻撃的なコンテンツなど、
+          公序良俗に反し不適切と判断される内容
+        </li>
+        <li>
+          不正入手・改造など、
+          <strong>正規の手段で入手していないゲーム</strong> を用いた配信
+        </li>
+        <li>
+          TSUMUGI STUDIO 又は関係者を名乗る／公式を装うなど、
+          誤解を与える名義での配信
+        </li>
       </ul>
 
       <h3>推奨事項（任意）</h3>
       <ul>
-        <li>ネタバレを含む場合は、タイトルや概要欄に <span class="mono">「ネタバレあり」</span> と明記してください</li>
-        <li>動画説明欄などに、公式ストアへのリンク（Google Play / App Store）を記載していただけると嬉しいです</li>
+        <li>
+          ネタバレを多く含む配信の場合、
+          タイトルや概要欄に <span class="mono">「ネタバレあり」</span> 等の表記を入れていただけると親切です。
+        </li>
+        <li>
+          概要欄などに、作品名と開発者名を記載していただけると嬉しいです。<br />
+          例）<span class="mono">「ゲーム名：脱出ゲーム『路地裏からの脱出』／開発：TSUMUGI STUDIO」</span>
+        </li>
+        <li>
+          可能であれば、公式サイトやストアページへのリンクを概要欄に記載していただけると助かります。
+        </li>
+        <li>
+          配信に関するご要望・ご質問がある場合は、
+          事前・事後を問わず <a href="contact.html">お問い合わせフォーム</a> からご連絡ください。
+        </li>
       </ul>
 
-      <h3>収益化（マネタイズ）について</h3>
+      <h3>収益化について</h3>
       <div class="block">
-        <p>配信プラットフォームの機能（広告収益、チャンネルメンバーシップ、投げ銭等）を利用した <strong>配信者様側での収益化</strong> は本ガイドラインの範囲内で許可します。ただし、プラットフォームや第三者の権利者からの申し立てがある場合は、その規約・判断に従ってください。</p>
+        <p>
+          YouTube パートナープログラム、広告収益、投げ銭（Super Chat 等）、
+          メンバーシップ／サブスク 等の
+          <strong>配信者側の一般的な収益化機能の利用は自由</strong> です。
+        </p>
+        <p class="note-small">
+          ※ ただし、配信内容の主体はあくまでゲームプレイ・実況・解説等であり、
+          ゲーム内リソースの「再配布」や音源の「代替的な販売」にならない範囲に限ります。
+        </p>
+        <p>
+          BGM など一部の素材は外部クリエイター／素材サイト様からご提供いただいています。<br />
+          これら第三者の権利に基づく音楽 ID マッチング等が発生した場合は、各サービスのルールに従ってください。
+        </p>
       </div>
 
-      <h3>表示のお願い（任意テンプレート）</h3>
+      <h3>表示のテンプレート例（任意）</h3>
       <table class="dl-table" aria-label="テンプレート">
-        <tr><th>タイトル例</th><td>【ネタバレあり】 『脱出ゲーム 路地裏からの脱出』実況プレイ #1</td></tr>
-        <tr><th>概要欄例</th><td>
-          本配信は TSUMUGI STUDIO の配信ガイドラインに基づいて実施しています。<br/>
-          Google Play: https://play.google.com/store/apps/details?id=com.tsumugistudio.hiddenalleyescape
-        </td></tr>
+        <tr>
+          <th>タイトル例</th>
+          <td>【ネタバレあり】脱出ゲーム『路地裏からの脱出』実況プレイ #1</td>
+        </tr>
+        <tr>
+          <th>概要欄例</th>
+          <td>
+            本配信は TSUMUGI STUDIO の配信ガイドラインに基づいて実施しています。
+          </td>
+        </tr>
       </table>
 
       <h3>免責・その他</h3>
       <ul>
-        <li>本ガイドラインは予告なく変更される場合があります。最新の内容をご確認ください。</li>
-        <li>権利侵害・炎上予防の観点から、当社判断で配信の中止や修正をお願いする場合があります。</li>
-        <li>ご不明点は <a href="/contact" target="_self" rel="noopener">お問い合わせ</a> よりご連絡ください。</li>
+        <li>
+          本ガイドラインは、予告なく内容を変更する場合があります。
+          最新の内容は本ページをご確認ください。
+        </li>
+        <li>
+          著作権その他の権利保護や炎上防止の観点から、
+          配信内容によっては、当方から削除・非公開などの対応をお願いする場合があります。
+        </li>
+        <li>
+          ご不明な点がありましたら、
+          <a href="contact.html">お問い合わせフォーム</a> よりご連絡ください。
+        </li>
       </ul>
     </section>
 
-    <!-- 英語 -->
-    <section class="tab-content" id="content-en" role="tabpanel" aria-labelledby="tab-en" lang="en">
+    <!-- ===================== United States（English） ===================== -->
+    <section class="lang-panel" id="lang-en" data-view="en" lang="en">
       <h2>Streaming & Video Guidelines <span class="badge new">Last updated: Oct 2, 2025</span></h2>
-      <p>We welcome gameplay videos and live streams (collectively, “streams”) of TSUMUGI STUDIO titles for <strong>both commercial and non‑commercial use</strong>, provided you follow the rules below.</p>
+      <p>
+        We’re very happy if you’d like to stream or create videos of our games.
+        As long as you follow the rules below, we
+        <strong>welcome both non-commercial and monetized content</strong>
+        on your own channels.
+      </p>
+      <p>
+        “Streaming” here includes live streams, VOD uploads, edited videos,
+        and clips on video platforms.
+      </p>
+
+      <h3>Scope</h3>
+      <ul>
+        <li>
+          <em>Escape Game: The Hidden Alley</em> (original Japanese title: 脱出ゲーム『路地裏からの脱出』)
+        </li>
+        <li>
+          Any future TSUMUGI STUDIO titles, unless a separate guideline is published for that game
+        </li>
+      </ul>
 
       <h3>Prohibited</h3>
       <ul>
-        <li>Using in‑game music/visuals as <strong>standalone content</strong> (e.g., turning BGM into music videos/playlists). <span class="note-small">Note: This restriction exists to comply with the license conditions of the original music providers.</span></li>
-        <li>Any activity that violates applicable laws or your streaming platform’s terms/guidelines</li>
-        <li>Content that is offensive, unlawful, or otherwise inappropriate</li>
-        <li>Streaming with pirated or modified (i.e., non‑genuine) copies of our games</li>
+        <li>
+          Uploading in-game music/BGM/effects as
+          <strong>standalone audio content</strong>
+          (e.g., “soundtrack uploads,” “BGM only” videos) that are not primarily about the game itself
+        </li>
+        <li>
+          Redistributing in-game images or assets as
+          “asset packs” or reusable asset libraries (backgrounds, UI, sprites, etc.)
+        </li>
+        <li>
+          Any activity that violates applicable laws or your streaming platform’s
+          terms and community guidelines
+        </li>
+        <li>
+          Content that is defamatory, discriminatory, or otherwise offensive and inappropriate
+        </li>
+        <li>
+          Streaming using pirated, modified, or otherwise non-genuine copies of our games
+        </li>
+        <li>
+          Presenting your channel/content as if it were an “official” TSUMUGI STUDIO channel
+          or otherwise misrepresenting our involvement
+        </li>
       </ul>
 
       <h3>Recommended (Optional)</h3>
       <ul>
-        <li>If your stream contains spoilers, please include <span class="mono">“Contains Spoilers”</span> in the title or description</li>
-        <li>Please consider adding official store links (Google Play / App Store) in your video description</li>
+        <li>
+          If your content contains major story or puzzle spoilers,
+          please consider adding a note such as
+          <span class="mono">“Contains Spoilers”</span> to the title or description.
+        </li>
+        <li>
+          We would appreciate it if you include the game title and our studio name
+          somewhere in the description. <br />
+          Example:
+          <span class="mono">
+            “Game: Escape Game: The Hidden Alley / Developer: TSUMUGI STUDIO”
+          </span>
+        </li>
+        <li>
+          When possible, please add links to our official website or store pages
+          so that viewers can easily find the game.
+        </li>
+        <li>
+          If you have requests or questions about streaming our games,
+          feel free to contact us before or after your stream via the
+          <a href="contact.html">contact form</a>.
+        </li>
       </ul>
 
       <h3>Monetization</h3>
       <div class="block">
-        <p><strong>Monetization on your channel</strong> (ads, memberships, tips, etc.) is allowed within the scope of these guidelines. If your platform or a third‑party rights holder raises a claim, please follow their terms and decisions.</p>
+        <p>
+          You are free to use standard monetization features on your channels, such as:
+          ad revenue, memberships/subscriptions, Super Chats, tips, and similar systems —
+          <strong>as long as the main purpose of the content is gameplay, commentary,
+          or critique of the game itself</strong>.
+        </p>
+        <p class="note-small">
+          In other words, your stream/video should not function as a replacement
+          for distributing our game’s assets (music, art, etc.).
+        </p>
+        <p>
+          Some in-game music and assets are provided by third-party creators.
+          If a music rights holder issues a claim or ContentID match,
+          please follow the platform’s rules and their decision.
+        </p>
       </div>
 
       <h3>Suggested Boilerplate</h3>
       <table class="dl-table" aria-label="Boilerplate">
-        <tr><th>Title Example</th><td>[Contains Spoilers] Escape Game: The Hidden Alley – Gameplay #1</td></tr>
-        <tr><th>Description Example</th><td>
-          This stream follows TSUMUGI STUDIO’s Streaming Guidelines.<br/>
-          Google Play: https://play.google.com/store/apps/details?id=com.tsumugistudio.hiddenalleyescape
-        </td></tr>
+        <tr>
+          <th>Title Example</th>
+          <td>[Contains Spoilers] Escape Game: The Hidden Alley – Gameplay #1</td>
+        </tr>
+        <tr>
+          <th>Description Example</th>
+          <td>
+            This stream follows TSUMUGI STUDIO’s Streaming Guidelines.
+          </td>
+        </tr>
       </table>
 
       <h3>Notes</h3>
       <ul>
-        <li>These guidelines may be updated without prior notice. Please check back for the latest version.</li>
-        <li>We may ask you to modify or remove a stream to prevent rights issues or controversy.</li>
-        <li>If you have any questions, please contact us via the <a href="/contact" target="_self" rel="noopener">Contact</a>.</li>
+        <li>
+          These guidelines may be updated without prior notice.
+          Please check this page for the latest version.
+        </li>
+        <li>
+          To protect rights holders and avoid controversy,
+          we may ask you to modify or remove a stream in certain cases.
+        </li>
+        <li>
+          If you have any questions, please contact us via the
+          <a href="contact.html">Contact</a> page.
+        </li>
       </ul>
     </section>
 
-    <!-- 繁體中文 -->
-    <section class="tab-content" id="content-zh" role="tabpanel" aria-labelledby="tab-zh" lang="zh-Hant">
-      <h2>直播與影片發布指引 <span class="badge new">最後更新：2025年10月2日</span></h2>
-      <p>歡迎各位實況主／創作者以<strong>商業或非商業</strong>目的直播或發布 TSUMUGI STUDIO 之遊戲實況（以下統稱「直播／影片」&#8201;）。請遵守下列規範。</p>
+    <!-- ===================== 香港（繁體中文・香港） ===================== -->
+    <section class="lang-panel" id="lang-hk" data-view="hk" lang="zh-Hant">
+      <h2>實況／影片發佈 指南 <span class="badge new">最後更新：2025年10月2日</span></h2>
+      <p>
+        感謝你對 TSUMUGI STUDIO 作品的支持。<br>
+        只要遵守以下規則，
+        <strong>我們歡迎個人實況、影片發佈與存檔，無論是否開啟收益</strong>。
+      </p>
+      <p>
+        這裡所說的「實況／影片」包含：直播、VOD、剪輯影片、Shorts 等在影片平台上公開的內容。
+      </p>
+
+      <h3>適用作品</h3>
+      <ul>
+        <li>逃脫遊戲《從巷弄中逃出》（Escape Game: The Hidden Alley）</li>
+        <li>今後以 TSUMUGI STUDIO 名義發布的遊戲作品</li>
+      </ul>
+      <p class="note-small">
+        ※ 若未來某款作品另外公開專用指南，則以該作品專用指南為優先。
+      </p>
 
       <h3>禁止事項</h3>
       <ul>
-        <li>將遊戲內 BGM／影像作為<strong>獨立內容</strong>再利用（例如：製作音樂 MV、BGM 播放清單等）。<span class="note-small">※因應音源提供方之授權條款</span></li>
-        <li>違反各國法律或直播平台規範／準則之內容</li>
-        <li>含有違反公序良俗、具攻擊性或不當之內容</li>
-        <li>以盜版、修改版等<strong>非正規</strong>遊戲進行直播</li>
+        <li>
+          將遊戲內 BGM／音效單獨抽出，做成
+          <strong>以音樂本身為主體</strong> 的影片或配信<br>
+          （例如純 BGM 上傳、作業用音樂等，已不再以遊戲實況為主的內容）
+        </li>
+        <li>
+          將遊戲內圖像、影片大量整理成「素材包」或素材集再配布
+          （背景、UI、角色圖像等作為可重用素材公開）
+        </li>
+        <li>
+          違反各國法律或各平台（YouTube / Twitch / X 等）規約、社群守則的配信
+        </li>
+        <li>
+          帶有誹謗、歧視或其他公序良俗上不適當的內容
+        </li>
+        <li>
+          使用盜版、改造版等
+          <strong>並非正規管道取得的遊戲</strong> 進行配信
+        </li>
+        <li>
+          自稱 TSUMUGI STUDIO 官方帳號、或讓觀眾誤以為是官方發佈渠道的行為
+        </li>
       </ul>
 
-      <h3>建議事項（選擇性）</h3>
+      <h3>建議事項（非必須）</h3>
       <ul>
-        <li>若內容含有劇情洩漏，請於標題或說明中標註 <span class="mono">「含劇透」</span></li>
-        <li>建議在說明欄附上官方商店連結（Google Play / App Store）</li>
+        <li>
+          若內容包含大量劇情或謎題相關的劇透，
+          建議在標題或說明欄標註
+          <span class="mono">「含劇透」</span> 等字樣，方便觀眾判斷。
+        </li>
+        <li>
+          若能在影片說明中標明遊戲名稱與開發者名稱，我們會非常感謝。<br>
+          例：
+          <span class="mono">「遊戲：逃脫遊戲《從巷弄中逃出》／開發：TSUMUGI STUDIO」</span>
+        </li>
+        <li>
+          若方便的話，也歡迎在說明欄附上官方網站或商店頁面的連結，
+          讓觀眾可以輕鬆找到遊戲。
+        </li>
+        <li>
+          若對實況相關規則有任何疑問或需求，
+          歡迎隨時透過 <a href="contact.html">聯絡表單</a> 與我們聯繫。
+        </li>
       </ul>
 
-      <h3>營利（獲利）</h3>
+      <h3>關於收益化</h3>
       <div class="block">
-        <p>在您頻道上進行之<strong>營利行為</strong>（廣告分潤、會員、打賞等）於本指引範圍內予以允許。若平台或第三方權利人提出主張，請遵循其規定與處置。</p>
+        <p>
+          你可以自由使用平台提供的一般收益功能，
+          例如廣告收益、會員／訂閱、Super Chat、打賞等。<br>
+          前提是影片／實況的主體為遊戲實況、解說、評論等，
+          而非單純再配布遊戲內素材。
+        </p>
+        <p class="note-small">
+          換言之，請避免將影片做成「代替販售遊戲 BGM／圖像素材」之類的內容。
+        </p>
+        <p>
+          部分音樂與素材來自第三方創作者或素材網站。<br>
+          若因第三方權利產生音樂識別（Content ID）或版權聲明，
+          請依照各平台的規則及權利方決定處理。
+        </p>
       </div>
 
-      <h3>範例文案</h3>
-      <table class="dl-table" aria-label="Boilerplate (ZH)">
-        <tr><th>標題範例</th><td>【含劇透】&#8201;《逃脫遊戲 從巷弄中逃出》&#8201;實況 #1</td></tr>
-        <tr><th>說明範例</th><td>
-          本影片依據 TSUMUGI STUDIO 之直播指引進行。<br/>
-          Google Play：https://play.google.com/store/apps/details?id=com.tsumugistudio.hiddenalleyescape
-        </td></tr>
+      <h3>標示範例（可自由修改）</h3>
+      <table class="dl-table" aria-label="範例">
+        <tr>
+          <th>標題範例</th>
+          <td>【含劇透】逃脫遊戲《從巷弄中逃出》實況直播 #1</td>
+        </tr>
+        <tr>
+          <th>說明欄範例</th>
+          <td>
+            本實況依照 TSUMUGI STUDIO 的配信指南進行。
+          </td>
+        </tr>
       </table>
 
-      <h3>其他</h3>
+      <h3>免責事項・其他</h3>
       <ul>
-        <li>本指引可能隨時更新，恕不另行通知；請以最新版本為準。</li>
-        <li>為避免權利糾紛或爭議，我們可能請您調整或下架相關內容。</li>
-        <li>如有疑問，請透過<a href="/contact" target="_self" rel="noopener">Contact</a> 與我們聯繫。</li></li>
+        <li>
+          本指南內容可能會在未事先通知的情況下更新。
+          請以本頁面最新版本為準。
+        </li>
+        <li>
+          基於著作權與風評等考量，我們有時可能會請求你修改或下架部分影片。
+        </li>
+        <li>
+          若有任何疑問，請透過
+          <a href="contact.html">聯絡表單</a> 與我們聯繫。
+        </li>
       </ul>
     </section>
 
-    <!-- 한국어 -->
-    <section class="tab-content" id="content-ko" role="tabpanel" aria-labelledby="tab-ko" lang="ko">
-      <h2>방송 · 영상 가이드라인 <span class="badge new">최종 업데이트: 2025년 10월 2일</span></h2>
-      <p>TSUMUGI STUDIO 작품의 플레이 영상 업로드 및 라이브 스트리밍(이하 통칭하여 “방송”)은 <strong>상업·비상업 목적 모두</strong> 허용합니다. 아래 규정을 준수해 주세요.</p>
+    <!-- ===================== 台灣（繁體中文・台灣） ===================== -->
+    <section class="lang-panel" id="lang-tw" data-view="tw" lang="zh-Hant">
+      <h2>實況直播／影片發布 指南 <span class="badge new">最後更新：2025年10月2日</span></h2>
+      <p>
+        感謝你遊玩 TSUMUGI STUDIO 的作品。<br>
+        只要遵守以下規則，
+        <strong>我們歡迎個人實況、影片發布與存檔，無論是否開啟收益</strong>。
+      </p>
+      <p>
+        這裡的「實況／影片」包含：直播、VOD、剪輯影片、Shorts 等在影音平台上公開的內容。
+      </p>
+
+      <h3>適用作品</h3>
+      <ul>
+        <li>逃脫遊戲《從巷弄中逃出》（Escape Game: The Hidden Alley）</li>
+        <li>未來以 TSUMUGI STUDIO 名義推出的遊戲作品</li>
+      </ul>
+      <p class="note-small">
+        ※ 如果未來針對某款作品另外發布專用指南，則以該指南為優先。
+      </p>
+
+      <h3>禁止事項</h3>
+      <ul>
+        <li>
+          將遊戲內 BGM／音效抽出，製作成
+          <strong>以音樂本身為主題</strong> 的影片或直播<br>
+          （例如純 BGM 上傳、作業用音樂等，不再以遊戲實況為主的內容）
+        </li>
+        <li>
+          將遊戲內圖片或影片整理成「素材包」或素材集公開下載
+          （背景、UI、角色圖等重複利用之素材）
+        </li>
+        <li>
+          違反各國法律或各平台（YouTube / Twitch / X 等）使用條款、
+          社群規範的直播或影片
+        </li>
+        <li>
+          含有誹謗、歧視或其他公序良俗上不適當的內容
+        </li>
+        <li>
+          使用盜版、改造版等
+          <strong>非正規管道取得的遊戲</strong> 進行實況
+        </li>
+        <li>
+          冒充 TSUMUGI STUDIO 官方帳號，或讓觀眾誤以為是官方頻道的行為
+        </li>
+      </ul>
+
+      <h3>建議事項（非必須）</h3>
+      <ul>
+        <li>
+          若影片中有較多劇情或謎題的劇透，
+          建議在標題或說明欄加入
+          <span class="mono">「含劇透」</span> 之類的提示字樣。
+        </li>
+        <li>
+          若可以在說明欄中標示遊戲名稱與開發者名稱，我們會非常感謝。<br>
+          例：
+          <span class="mono">「遊戲：逃脫遊戲《從巷弄中逃出》／開發：TSUMUGI STUDIO」</span>
+        </li>
+        <li>
+          若方便，也歡迎在說明欄附上官方網站或商店頁面的連結，
+          讓更多玩家可以找到這款遊戲。
+        </li>
+        <li>
+          若對實況相關規定有任何需求或疑問，
+          歡迎隨時透過 <a href="contact.html">聯絡表單</a> 與我們聯繫。
+        </li>
+      </ul>
+
+      <h3>關於收益化</h3>
+      <div class="block">
+        <p>
+          你可以自由使用平台的一般收益功能，
+          例如廣告分潤、會員／訂閱、Super Chat、斗內等。<br>
+          前提是影片內容的主體為遊戲實況、解說、心得等，
+          而不是單純再配布遊戲內素材。
+        </p>
+        <p class="note-small">
+          換句話說，請避免將影片做成「代替販售遊戲 BGM／圖像素材」之類的內容。
+        </p>
+        <p>
+          部分遊戲音樂與素材由第三方創作者或素材網站提供。<br>
+          如果因第三方權利發生 Content ID 或版權聲明，
+          請依平台規定與權利人決定處理。
+        </p>
+      </div>
+
+      <h3>說明文字範例（可自由調整）</h3>
+      <table class="dl-table" aria-label="範例">
+        <tr>
+          <th>標題範例</th>
+          <td>【含劇透】逃脫遊戲《從巷弄中逃出》實況直播 #1</td>
+        </tr>
+        <tr>
+          <th>說明欄範例</th>
+          <td>
+            本實況依照 TSUMUGI STUDIO 的實況／影片發布指南進行。
+          </td>
+        </tr>
+      </table>
+
+      <h3>免責事項與其他</h3>
+      <ul>
+        <li>
+          本指南可能在未事先通知的情況下調整內容。
+          最新版本請以本頁面為準。
+        </li>
+        <li>
+          為保護著作權與整體風評，在部分情況下，我們可能會請你配合修改或下架影片。
+        </li>
+        <li>
+          若有任何疑問，請透過
+          <a href="contact.html">聯絡表單</a> 與我們聯絡。
+        </li>
+      </ul>
+    </section>
+
+    <!-- ===================== 한국（한국어） ===================== -->
+    <section class="lang-panel" id="lang-kr" data-view="kr" lang="ko">
+      <h2>스트리밍 &amp; 영상 가이드라인 <span class="badge new">최종 업데이트: 2025-10-02</span></h2>
+      <p>
+        TSUMUGI STUDIO 게임을 방송하거나 영상을 제작해 주시는 것에 깊이 감사드립니다.<br>
+        아래 규칙을 지켜 주신다면,
+        <strong>개인 방송・영상 공개・아카이브를 수익 창출 여부와 관계없이 환영</strong>합니다.
+      </p>
+      <p>
+        여기에서 말하는 “스트리밍/영상”은 라이브 방송, 다시보기(VOD),
+        편집 영상, 쇼츠 등 영상 플랫폼에 공개되는 콘텐츠 전반을 포함합니다.
+      </p>
+
+      <h3>대상 작품</h3>
+      <ul>
+        <li>탈출 게임 『골목길 탈출』 (Escape Game: The Hidden Alley)</li>
+        <li>향후 TSUMUGI STUDIO 명의로 출시되는 게임 전체</li>
+      </ul>
+      <p class="note-small">
+        ※ 특정 작품에 대해 별도의 가이드라인이 공개된 경우,
+        해당 작품에는 별도 가이드라인이 우선 적용됩니다.
+      </p>
 
       <h3>금지 사항</h3>
       <ul>
-        <li>게임 내 음악/영상 자체를 <strong>독립 콘텐츠</strong>로 재활용(예: BGM로 뮤직비디오·재생목록 제작 등). <span class="note-small">※ 이는 음원 제공자의 라이선스 조건을 준수하기 위함입니다</span></li>
-        <li>각국의 법령 또는 플랫폼 약관·정책을 위반하는 방송</li>
-        <li>공서양속에 반하거나 불법·부적절한 내용</li>
-        <li>불법 다운로드판, 개조판 등 <strong>비정규</strong> 게임을 사용한 방송</li>
+        <li>
+          게임 내 BGM・효과음을 따로 추출하여,
+          <strong>음원 자체를 주된 목적으로 하는 콘텐츠</strong>를 업로드하는 행위<br>
+          (예: BGM 모음, “작업용 음악” 등 게임 플레이가 주된 내용이 아닌 영상)
+        </li>
+        <li>
+          게임 내 이미지・영상 등을 모아
+          “소재 팩”이나 에셋 묶음으로 재배포하는 행위
+          (배경・UI・스프라이트 등을 재사용 가능한 자료로 공개)
+        </li>
+        <li>
+          각 국가의 법률이나 플랫폼(YouTube / Twitch / X 등)의
+          약관・커뮤니티 가이드라인을 위반하는 방송
+        </li>
+        <li>
+          명백한 비방, 차별 표현, 과도하게 공격적인 표현 등
+          공공질서 및 미풍양속에 어긋나는 내용
+        </li>
+        <li>
+          불법 복제판・개조판 등
+          <strong>정식 경로로 입수하지 않은 게임</strong>을 이용한 방송
+        </li>
+        <li>
+          TSUMUGI STUDIO 또는 관계자를 사칭하거나,
+          공식 채널로 오인될 수 있는 방식으로 방송하는 행위
+        </li>
       </ul>
 
-      <h3>권장 사항(선택)</h3>
+      <h3>권장 사항 (선택)</h3>
       <ul>
-        <li>네타바레(스포일러)가 있는 경우 제목이나 설명에 <span class="mono">“스포일러 포함”</span>을 표기해 주세요.</li>
-        <li>가능하면 영상 설명에 공식 스토어 링크(Google Play / App Store)를 첨부해 주세요.</li>
+        <li>
+          스포일러가 많이 포함된 방송・영상의 경우,
+          제목이나 설명란에
+          <span class="mono">“스포일러 포함”</span> 등의 문구를 적어 주시면
+          시청자에게 더 친절합니다.
+        </li>
+        <li>
+          가능하다면 설명란에 게임 제목과 개발사를 표기해 주시면 감사하겠습니다.<br>
+          예:
+          <span class="mono">“게임: 골목길 탈출 / 개발: TSUMUGI STUDIO”</span>
+        </li>
+        <li>
+          여유가 되신다면, 설명란에 공식 웹사이트나 스토어 페이지 링크를 함께 적어 주시면
+          시청자들이 게임을 더 쉽게 찾을 수 있습니다.
+        </li>
+        <li>
+          방송과 관련해 문의나 요청 사항이 있으시면,
+          방송 전후를 막론하고
+          <a href="contact.html">문의 폼</a>을 통해 연락해 주세요.
+        </li>
       </ul>
 
-      <h3>수익화</h3>
+      <h3>수익 창출에 대하여</h3>
       <div class="block">
-        <p>본 가이드라인 범위 내에서 채널의 <strong>수익화</strong>(광고, 멤버십, 후원 등)를 허용합니다. 플랫폼 또는 제3자 권리자가 이의를 제기하는 경우 해당 규정을 따르세요.</p>
+        <p>
+          광고 수익, 멤버십/구독, Super Chat, 후원 등
+          플랫폼에서 제공하는 일반적인 수익 창출 기능은
+          자유롭게 사용하셔도 됩니다.<br>
+          단, 콘텐츠의 주된 목적이 게임 플레이・해설・리뷰 등이어야 하며,
+          게임 리소스를 대신 유통하는 형태가 되어서는 안 됩니다.
+        </p>
+        <p class="note-small">
+          다시 말해, 영상을 통해 게임 BGM이나 그래픽 에셋을
+          “별도의 상품처럼” 제공하는 형태는 지양해 주시기 바랍니다.
+        </p>
+        <p>
+          일부 BGM 및 에셋은 외부 크리에이터/소재 사이트로부터 제공받고 있습니다.<br>
+          이와 관련하여 저작권 클레임이나 Content ID가 발생할 경우,
+          각 플랫폼의 규칙과 권리자의 결정에 따라 처리해 주세요.
+        </p>
       </div>
 
-      <h3>예시 문구</h3>
-      <table class="dl-table" aria-label="Boilerplate (KO)">
-        <tr><th>제목 예시</th><td>[스포일러 포함] 탈출게임: 골목길 탈출 – 플레이 #1</td></tr>
-        <tr><th>설명 예시</th><td>
-          본 방송은 TSUMUGI STUDIO의 방송 가이드라인을 따릅니다.<br/>
-          Google Play: https://play.google.com/store/apps/details?id=com.tsumugistudio.hiddenalleyescape
-        </td></tr>
+      <h3>표기 예시 (선택)</h3>
+      <table class="dl-table" aria-label="예시">
+        <tr>
+          <th>제목 예시</th>
+          <td>[스포일러 포함] 골목길 탈출 – 플레이 영상 #1</td>
+        </tr>
+        <tr>
+          <th>설명란 예시</th>
+          <td>
+            이 방송은 TSUMUGI STUDIO의 스트리밍 &amp; 영상 가이드라인을 준수하여 진행됩니다.
+          </td>
+        </tr>
       </table>
 
-      <h3>기타</h3>
+      <h3>면책 조항 및 기타</h3>
       <ul>
-        <li>본 가이드라인은 예고 없이 변경될 수 있습니다. 최신 버전을 확인해 주세요.</li>
-        <li>권리 문제나 논란 방지를 위해 방송 수정 또는 중지를 요청드릴 수 있습니다.</li>
-        <li>문의 사항은 <a href="/contact" target="_self" rel="noopener">Contact</a> 를 통해 연락해 주세요.</li></li>
+        <li>
+          본 가이드라인의 내용은 예고 없이 변경될 수 있습니다.
+          최신 내용은 항상 이 페이지에서 확인해 주세요.
+        </li>
+        <li>
+          저작권 보호 및 분쟁 방지를 위해,
+          경우에 따라 당사에서 영상 수정 또는 비공개/삭제를 요청드릴 수 있습니다.
+        </li>
+        <li>
+          기타 궁금한 점이 있으시면,
+          <a href="contact.html">문의 폼</a>을 통해 연락해 주세요.
+        </li>
       </ul>
     </section>
   </main>
 
   <footer>
     <p>&copy; 2025 TSUMUGI STUDIO</p>
-    <div class="social-links">
-      <a class="social-link" href="https://x.com/Tsumugi_Studio" target="_blank" rel="noopener" aria-label="X">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2H21l-6.33 7.23L22 22h-6.77l-4.39-5.95L5.6 22H3l6.77-7.73L2 2h6.77l4 5.6L18.244 2Zm-1.19 18h1.75L7.07 4H5.32l11.73 16Z"/></svg>
-        <span>X</span>
-      </a>
-      <a class="social-link" href="https://www.instagram.com/tsumugistudio_games/" target="_blank" rel="noopener" aria-label="Instagram">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3.5a5.5 5.5 0 1 1 0 11 5.5 5.5 0 0 1 0-11Zm0 2a3.5 3.5 0 1 0 .001 7.001A3.5 3.5 0 0 0 12 9.5ZM18 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2Z"/></svg>
-        <span>Instagram</span>
-      </a>
-    </div>
   </footer>
 
   <script>
-    // --- Utilities ---
-    const $ = (s,root=document)=>root.querySelector(s);
+    const $  = (s,root=document)=>root.querySelector(s);
     const $$ = (s,root=document)=>Array.from(root.querySelectorAll(s));
 
-    // --- Language tabs (ARIA) ---
-    const langTablist = $('.tabs[role="tablist"]');
-    const langTabs = $$('[role="tab"]', langTablist);
-    const langPanels = $$('.tab-content');
+    const langSelect = $('#lang-select');
+    const langPanels = $$('.lang-panel');
 
-    function activateLang(btn){
-      langTabs.forEach(t=>{t.classList.remove('active'); t.setAttribute('aria-selected','false')});
-      langPanels.forEach(p=>p.classList.remove('active'));
-      btn.classList.add('active'); btn.setAttribute('aria-selected','true');
-      $('#'+btn.getAttribute('aria-controls')).classList.add('active');
-      // sync hash & remember
-      let lang = 'ja';
-      if(btn.id==='tab-en') lang='en';
-      else if(btn.id==='tab-zh') lang='zh';
-      else if(btn.id==='tab-ko') lang='ko';
-      setHash({lang});
-      localStorage.setItem('tsu_lang_guideline', lang);
-    }
-
-    langTabs.forEach(btn=>{
-      btn.addEventListener('click', ()=>activateLang(btn));
-      btn.addEventListener('keydown', e=>{
-        if(e.key==='ArrowRight' || e.key==='ArrowLeft'){
-          e.preventDefault();
-          const i = langTabs.indexOf(document.activeElement);
-          const ni = e.key==='ArrowRight' ? (i+1)%langTabs.length : (i-1+langTabs.length)%langTabs.length;
-          langTabs[ni].focus();
-        }
-      });
-    });
-
-    // --- Hash deep links: #lang=ja ---
-    function parseHash(){
+    function parseHashView(){
       const h = location.hash.replace('#','');
+      if(!h) return null;
       const params = new URLSearchParams(h);
-      const lang = params.get('lang');
-      return {lang};
+      return params.get('view');
     }
-    function setHash({lang}){
+
+    function setHashView(view){
       const params = new URLSearchParams();
-      if(lang) params.set('lang', lang);
+      if(view) params.set('view', view);
       history.replaceState(null, '', '#'+params.toString());
     }
 
-    // Initial state: from hash -> localStorage -> default
+    function showView(view){
+      langPanels.forEach(p=>{
+        if(p.dataset.view === view){
+          p.classList.add('active');
+        }else{
+          p.classList.remove('active');
+        }
+      });
+      // index / faq と同じキーで共有
+      localStorage.setItem('tsu_view', view);
+      setHashView(view);
+    }
+
+    langSelect.addEventListener('change', e=>{
+      showView(e.target.value);
+    });
+
     (function init(){
-      const {lang} = parseHash();
-      const storedLang = localStorage.getItem('tsu_lang_guideline');
-      let initLang = lang || storedLang || 'ja';
-      if(!lang && !storedLang && navigator.language){
-        const nl = navigator.language.toLowerCase();
-        if(nl.startsWith('en')) initLang = 'en';
-        else if(nl.startsWith('zh') || nl.includes('hant')) initLang = 'zh';
-        else if(nl.startsWith('ko')) initLang = 'ko';
-      }
-      const target = initLang==='en' ? $('#tab-en') : initLang==='zh' ? $('#tab-zh') : initLang==='ko' ? $('#tab-ko') : $('#tab-ja');
-      if(target) activateLang(target);
+      const fromHash = parseHashView();
+      const stored = localStorage.getItem('tsu_view');
+      const initial = fromHash || stored || 'jp';
+
+      // 対応していない値が来たら jp にフォールバック
+      const supported = ['jp','en','hk','tw','kr'];
+      const view = supported.includes(initial) ? initial : 'jp';
+
+      langSelect.value = view;
+      showView(view);
     })();
   </script>
 </body>
