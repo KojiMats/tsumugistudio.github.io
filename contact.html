@@ -187,6 +187,9 @@
           <option value="hk">香港（繁體中文）</option>
           <option value="tw">台灣（繁體中文）</option>
           <option value="kr">한국（한국어）</option>
+          <option value="uk">Україна（Українська）</option>
+          <option value="az">Azərbaycan（Azərbaycan dili）</option>
+          <option value="hi">India（हिन्दी）</option>
         </select>
       </div>
     </div>
@@ -324,6 +327,59 @@
         경우에 따라 개별 답변이 어려울 수 있습니다. 양해 부탁드립니다.
       </p>
     </section>
+
+    <!-- ===================== ウクライナ ===================== -->
+    <section class="lang-panel" id="lang-uk" data-view="uk" lang="uk">
+      <h2>Контакти (Українська)</h2>
+      <p>
+        Якщо у вас є відгуки, запитання або повідомлення про помилки щодо наших ігор,<br>
+        будь ласка, зв’яжіться з нами за електронною адресою нижче.
+      </p>
+      <p>
+        <a href="mailto:info@tsumugistudio.com">info@tsumugistudio.com</a>
+      </p>
+      <p>
+        Залежно від змісту звернення, відповідь може зайняти певний час,<br>
+        а в деяких випадках ми не зможемо відповісти індивідуально.<br>
+        Дякуємо за розуміння.
+      </p>
+    </section>
+
+    <!-- ===================== アゼルバイジャン ===================== -->
+    <section class="lang-panel" id="lang-az" data-view="az" lang="az">
+      <h2>Əlaqə (Azərbaycan dili)</h2>
+      <p>
+        Oyunlarımızla bağlı rəyiniz, sualınız və ya xəta (bug) bildiriminiz varsa,<br>
+        zəhmət olmasa aşağıdakı e-poçt ünvanı ilə bizimlə əlaqə saxlayın.
+      </p>
+      <p>
+        <a href="mailto:info@tsumugistudio.com">info@tsumugistudio.com</a>
+      </p>
+      <p>
+        Müraciətin məzmunundan asılı olaraq cavab bir qədər vaxt apara bilər,<br>
+        bəzi hallarda isə hər müraciətə ayrıca cavab vermək mümkün olmaya bilər.<br>
+        Anlayışınıza görə təşəkkür edirik.
+      </p>
+    </section>
+    
+    <!-- ===================== インド（ヒンディー語） ===================== -->
+    <section class="lang-panel" id="lang-hi" data-view="hi" lang="hi">
+      <h2>संपर्क (हिन्दी)</h2>
+      <p>
+        हमारे गेम्स के बारे में यदि आपके पास फीडबैक, कोई सवाल,
+        या बग रिपोर्ट है,<br>
+        तो कृपया नीचे दिए गए ईमेल पते पर संपर्क करें।
+      </p>
+      <p>
+        <a href="mailto:info@tsumugistudio.com">info@tsumugistudio.com</a>
+      </p>
+      <p>
+        आपके संदेश की सामग्री के अनुसार उत्तर देने में कुछ समय लग सकता है,<br>
+        और कुछ मामलों में हम व्यक्तिगत रूप से जवाब नहीं दे पाएँगे।<br>
+        समझने के लिए धन्यवाद।
+      </p>
+    </section>
+
   </main>
 
   <footer>
@@ -376,7 +432,7 @@
       const stored = localStorage.getItem('tsu_view');
       const initial = fromHash || stored || 'jp';
 
-      const supported = ['jp','en','fr','de','es','hk','tw','kr'];
+      const supported = ['jp','en','fr','de','es','hk','tw','kr','uk','az','hi'];
       const view = supported.includes(initial) ? initial : 'jp';
 
       langSelect.value = view;
@@ -385,6 +441,7 @@
   </script>
 </body>
 </html>
+
 
 
 
