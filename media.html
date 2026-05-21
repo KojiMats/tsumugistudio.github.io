@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Media Coverage | TSUMUGI STUDIO</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    :root{--c:#007bff;}
+
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto,
+        "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+      margin: 20px;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    header { margin-bottom: 20px; }
+    header h1 { font-size: 24px; margin-bottom: 10px; }
+
+    .header-flex{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:12px;
+    }
+
+    .nav-links a {
+      margin-right: 15px;
+      text-decoration: none;
+      color: var(--c);
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .nav-links a:hover { text-decoration: underline; }
+
+    /* 白いヘッダーに合わせたナビ文字 */
+    header .nav-links a,
+    header .nav-links a:visited,
+    header .nav-links a:active {
+      color: #fff;
+    }
+
+    .lang-select-inline select{
+      padding:6px 8px;
+      border-radius:4px;
+      border:1px solid #ccc;
+      font-size:14px;
+      min-width: 220px;
+      background-color:#fff;
+    }
+
+    @media (max-width: 680px) {
+      .header-flex{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+    }
+
+    main{
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    
+    /* X / Instagram アイコン共通 */
+    .sns-links img {
+      height: 40px;     /* お好みで 24〜32px くらいがバランス良い */
+      width: auto;
+      display: block;
+    }
+    
+    /* SVGを直接埋め込んでいる場合はこちらも */
+    .sns-links svg {
+      height: 40px;
+      width: 40px;      /* 正方形にしたい場合 */
+    }
+
+    .sns-links {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    
+    .lang-panel{
+      display:none;
+      background:#fff;
+      border-radius:8px;
+      padding:16px;
+      border:1px solid #ddd;
+      margin-bottom:24px;
+    }
+    .lang-panel.active{ display:block; }
+
+    h2{ font-size:20px; margin:14px 0; }
+    h3{ font-size:16px; margin:14px 0 8px; }
+    p, ul { font-size:14px; line-height:1.7; }
+    ul{ padding-left:1.4em; }
+    li + li { margin-top:4px; }
+
+    .note{
+      font-size:13px;
+      color:#666;
+      margin-top:4px;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      color: #666;
+      font-size: 14px;
+      padding: 20px;
+    }
+    .footer-links a{
+      margin:0 6px;
+      text-decoration:none;
+      color:var(--c);
+    }
+    .footer-links a:hover{ text-decoration:underline; }
+
+    .table-wrap{ overflow-x:auto; margin-top:14px; }
+    .media-table{ width:100%; border-collapse:collapse; font-size:14px; background:#fff; }
+    .media-table th,
+    .media-table td{ border:1px solid #ddd; padding:9px 10px; vertical-align:top; line-height:1.55; }
+    .media-table th{ background:#f0f6ff; color:#222; text-align:left; font-weight:700; white-space:nowrap; }
+    .media-table td:first-child{ white-space:nowrap; }
+    .media-table td:nth-child(2),
+    .media-table td:nth-child(3){ white-space:nowrap; }
+    .media-table a{ color:var(--c); font-weight:600; text-decoration:none; }
+    .media-table a:hover{ text-decoration:underline; }
+    @media (max-width: 680px) {
+      .media-table{ font-size:13px; }
+      .media-table th,
+      .media-table td{ padding:8px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>TSUMUGI STUDIO</h1>
+
+    <div class="header-flex">
+      <nav class="nav-links" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="streaming-guideline.html">Guidelines</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="faq.html">FAQ</a>
+        <a href="about.html">About</a>
+        <a href="media.html">Media</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <div class="sns-links">
+        <a href="https://x.com/Tsumugi_Studio" target="_blank" aria-label="X公式">
+          <img src="images/icon_x.png" alt="X">
+        </a>
+        <a href="https://www.instagram.com/tsumugistudio_games" target="_blank" aria-label="Instagram公式">
+          <img src="images/icon_instagram.png" alt="Instagram">
+        </a>
+      </div>
+
+<div class="lang-select-inline">
+  <select id="lang-select">
+    <option value="jp">日本（日本語）</option>
+    <option value="en">United States（English）</option>
+    <option value="fr">France（Français）</option>
+    <option value="de">Deutschland（Deutsch）</option>
+    <option value="es">España（Español）</option>
+    <option value="hk">香港（繁體中文）</option>
+    <option value="tw">台灣（繁體中文）</option>
+    <option value="kr">한국（한국어）</option>
+    <option value="uk">Україна（Українська）</option>
+    <option value="az">Azərbaycan（Azərbaycan dili）</option>
+    <option value="hi">India（हिन्दी）</option>
+  </select>
+</div>
+
+    </div>
+  </header>
+
+  <main>
+    <section class="lang-panel active" id="lang-jp" data-view="jp" lang="ja">
+      <h2>メディア掲載実績</h2>
+      <p>TSUMUGI STUDIOおよび作品は、日本国内に加え、アジア・欧州などのメディアにご紹介いただいています。掲載記事・プレスリリース掲載情報の一部を以下にまとめています。</p>
+      <div class="table-wrap"><table class="media-table">
+        <thead><tr><th>掲載日</th><th>言語</th><th>媒体名</th><th>表題</th><th>記事を開く</th></tr></thead>
+        <tbody><tr><td>2026-05-20</td><td>フランス語</td><td>JeuxOnline</td><td>Tsugumi Studio lance son escape game mobile cosy Le chat était dans la chambre</td><td><a href="https://www.jeuxonline.info/actualite/66112/tsugumi-studio-lance-escape-game-mobile-cosy-chat-chambre" target="_blank" rel="noopener">記事を開く</a></td></tr>
+<tr><td>2026-05-19</td><td>繁体字</td><td>QooApp</td><td>療癒貓咪逃脫手遊《Escape Game 寢室裡有一隻貓》現已正式推出</td><td><a href="https://news.qoo-app.com/post/436683/escapegame-the-cat-was-in-the-bedroom" target="_blank" rel="noopener">記事を開く</a></td></tr>
+<tr><td>2026-05-14</td><td>繁体字</td><td>巴哈姆特</td><td>《Escape Game 寢室裡有一隻貓》正式上線 以有貓登場的安靜寢室為舞台的短篇逃脫遊戲</td><td><a href="https://gnn.gamer.com.tw/detail.php?sn=304967" target="_blank" rel="noopener">記事を開く</a></td></tr>
+<tr><td>2026-05-14</td><td>繁体字</td><td>Cmoney</td><td>《Escape Game 寢室裡有一隻貓》正式上線 以有貓登場的安靜寢室為舞台的短篇逃脫遊戲</td><td><a href="https://www.cmoney.tw/forum/article/178953546" target="_blank" rel="noopener">記事を開く</a></td></tr>
+<tr><td>2026-05-14</td><td>繁体字</td><td>PChome</td><td>《Escape Game 寢室裡有一隻貓》正式上線 以有貓登場的安靜寢室為舞台的短篇逃脫遊戲</td><td><a href="https://news.pchome.com.tw/game/gamer/20260514/index-77874781847814203104.html" target="_blank" rel="noopener">記事を開く</a></td></tr>
+<tr><td>2026-05-14</td><td>英語</td><td>POCKETGAMER.COM</td><td>The Cat Was in the Bedroom is a simple and oddly calm puzzler out now on iOS and Android</td><td><a href="https://www.pocketgamer.com/the-cat-was-in-the-bedroom/official-launch/" target="_blank" rel="noopener">記事を開く</a></td></tr>
+<tr><td>2026-05-13</td><td>ウクライナ語</td><td>mezha.net</td><td>TSUMUGI STUDIO випустила нову мобільну escape-гру «Кіт був у спальні»</td><td><a href="https://mezha.net/ua/bukvy/tsumugi-studio-vypustyla-novu-mobilnu-escape-hru-kit-buv-u-spalni/" target="_blank" rel="noopener">記事を開く</a></td></tr>
+<tr><td>2026-05-13</td><td>スペイン語</td><td>CNET Download</td><td>The Cat Was in the Bedroom para Android</td><td><a href="https://download.cnet.com/es/the-cat-was-in-the-bedroom/3000-android-the-cat-was-in-the-bedroom.html" target="_blank" rel="noopener">記事を開く</a></td></tr>
+<tr><td>2026-05-11</td><td>英語</td><td>games press</td><td>TSUMUGI STUDIO Launches New Mobile Escape Game</td><td><a href="https://www.gamespress.com/TSUMUGI-STUDIO-Launches-New-Mobile-Escape-Game" target="_blank" rel="noopener">記事を開く</a></td></tr>
+<tr><td>2026-05-08</td><td>日本語</td><td>tunagate</td><td>新作脱出ゲーム『寝室には猫がいた』が配信開始</td><td><a href="https://tunagate.com/oshikatsu_magazine/game/article_60782?ifx=rG8LmM7W8eWy6De1" target="_blank" rel="noopener">記事を開く</a></td></tr>
+<tr><td>2026-05-07</td><td>日本語</td><td>Value Press</td><td>TSUMUGI STUDIO、新作スマートフォン向け脱出ゲーム『脱出ゲーム 寝室には猫がいた』 を配信開始</td><td><a href="https://www.value-press.com/pressrelease/373908" target="_blank" rel="noopener">記事を開く</a></td></tr>
+<tr><td>2026-05-07</td><td>日本語</td><td>gamebiz</td><td>TSUMUGI STUDIO、スマートフォン向け短編脱出ゲーム『脱出ゲーム 寝室には猫がいた』をリリース</td><td><a href="https://gamebiz.jp/news/425452" target="_blank" rel="noopener">記事を開く</a></td></tr>
+<tr><td>2025-08-26</td><td>日本語</td><td></td><td>インディーゲームスタジオ「TSUMUGI STUDIO」、スマホ向け脱出ゲームアプリ『路地裏からの脱出』をGoogle Playでリリース</td><td><a href="https://gamebiz.jp/news/411384" target="_blank" rel="noopener">記事を開く</a></td></tr></tbody></table></div>
+    </section>
+
+    <section class="lang-panel" id="lang-en" data-view="en" lang="en">
+      <h2>Media Coverage</h2>
+      <p>TSUMUGI STUDIO and its games have been featured by media in Japan as well as in Asia, Europe, and other regions. Selected coverage and press release listings are collected below.</p>
+      <div class="table-wrap"><table class="media-table">
+        <thead><tr><th>Date</th><th>Language</th><th>Media</th><th>Title</th><th>Open article</th></tr></thead>
+        <tbody><tr><td>2026-05-20</td><td>French</td><td>JeuxOnline</td><td>Tsugumi Studio lance son escape game mobile cosy Le chat était dans la chambre</td><td><a href="https://www.jeuxonline.info/actualite/66112/tsugumi-studio-lance-escape-game-mobile-cosy-chat-chambre" target="_blank" rel="noopener">Open article</a></td></tr>
+<tr><td>2026-05-19</td><td>Traditional Chinese</td><td>QooApp</td><td>療癒貓咪逃脫手遊《Escape Game 寢室裡有一隻貓》現已正式推出</td><td><a href="https://news.qoo-app.com/post/436683/escapegame-the-cat-was-in-the-bedroom" target="_blank" rel="noopener">Open article</a></td></tr>
+<tr><td>2026-05-14</td><td>Traditional Chinese</td><td>巴哈姆特</td><td>《Escape Game 寢室裡有一隻貓》正式上線 以有貓登場的安靜寢室為舞台的短篇逃脫遊戲</td><td><a href="https://gnn.gamer.com.tw/detail.php?sn=304967" target="_blank" rel="noopener">Open article</a></td></tr>
+<tr><td>2026-05-14</td><td>Traditional Chinese</td><td>Cmoney</td><td>《Escape Game 寢室裡有一隻貓》正式上線 以有貓登場的安靜寢室為舞台的短篇逃脫遊戲</td><td><a href="https://www.cmoney.tw/forum/article/178953546" target="_blank" rel="noopener">Open article</a></td></tr>
+<tr><td>2026-05-14</td><td>Traditional Chinese</td><td>PChome</td><td>《Escape Game 寢室裡有一隻貓》正式上線 以有貓登場的安靜寢室為舞台的短篇逃脫遊戲</td><td><a href="https://news.pchome.com.tw/game/gamer/20260514/index-77874781847814203104.html" target="_blank" rel="noopener">Open article</a></td></tr>
+<tr><td>2026-05-14</td><td>English</td><td>POCKETGAMER.COM</td><td>The Cat Was in the Bedroom is a simple and oddly calm puzzler out now on iOS and Android</td><td><a href="https://www.pocketgamer.com/the-cat-was-in-the-bedroom/official-launch/" target="_blank" rel="noopener">Open article</a></td></tr>
+<tr><td>2026-05-13</td><td>Ukrainian</td><td>mezha.net</td><td>TSUMUGI STUDIO випустила нову мобільну escape-гру «Кіт був у спальні»</td><td><a href="https://mezha.net/ua/bukvy/tsumugi-studio-vypustyla-novu-mobilnu-escape-hru-kit-buv-u-spalni/" target="_blank" rel="noopener">Open article</a></td></tr>
+<tr><td>2026-05-13</td><td>Spanish</td><td>CNET Download</td><td>The Cat Was in the Bedroom para Android</td><td><a href="https://download.cnet.com/es/the-cat-was-in-the-bedroom/3000-android-the-cat-was-in-the-bedroom.html" target="_blank" rel="noopener">Open article</a></td></tr>
+<tr><td>2026-05-11</td><td>English</td><td>games press</td><td>TSUMUGI STUDIO Launches New Mobile Escape Game</td><td><a href="https://www.gamespress.com/TSUMUGI-STUDIO-Launches-New-Mobile-Escape-Game" target="_blank" rel="noopener">Open article</a></td></tr>
+<tr><td>2026-05-08</td><td>Japanese</td><td>tunagate</td><td>新作脱出ゲーム『寝室には猫がいた』が配信開始</td><td><a href="https://tunagate.com/oshikatsu_magazine/game/article_60782?ifx=rG8LmM7W8eWy6De1" target="_blank" rel="noopener">Open article</a></td></tr>
+<tr><td>2026-05-07</td><td>Japanese</td><td>Value Press</td><td>TSUMUGI STUDIO、新作スマートフォン向け脱出ゲーム『脱出ゲーム 寝室には猫がいた』 を配信開始</td><td><a href="https://www.value-press.com/pressrelease/373908" target="_blank" rel="noopener">Open article</a></td></tr>
+<tr><td>2026-05-07</td><td>Japanese</td><td>gamebiz</td><td>TSUMUGI STUDIO、スマートフォン向け短編脱出ゲーム『脱出ゲーム 寝室には猫がいた』をリリース</td><td><a href="https://gamebiz.jp/news/425452" target="_blank" rel="noopener">Open article</a></td></tr>
+<tr><td>2025-08-26</td><td>Japanese</td><td></td><td>インディーゲームスタジオ「TSUMUGI STUDIO」、スマホ向け脱出ゲームアプリ『路地裏からの脱出』をGoogle Playでリリース</td><td><a href="https://gamebiz.jp/news/411384" target="_blank" rel="noopener">Open article</a></td></tr></tbody></table></div>
+    </section>
+
+    <section class="lang-panel" id="lang-fr" data-view="fr" lang="fr">
+      <h2>Couverture médiatique</h2>
+      <p>TSUMUGI STUDIO et ses jeux ont été présentés par des médias au Japon ainsi qu’en Asie, en Europe et dans d’autres régions. Vous trouverez ci-dessous une sélection d’articles et de publications de communiqués.</p>
+      <div class="table-wrap"><table class="media-table">
+        <thead><tr><th>Date</th><th>Langue</th><th>Média</th><th>Titre</th><th>Ouvrir l’article</th></tr></thead>
+        <tbody><tr><td>2026-05-20</td><td>français</td><td>JeuxOnline</td><td>Tsugumi Studio lance son escape game mobile cosy Le chat était dans la chambre</td><td><a href="https://www.jeuxonline.info/actualite/66112/tsugumi-studio-lance-escape-game-mobile-cosy-chat-chambre" target="_blank" rel="noopener">Ouvrir l’article</a></td></tr>
+<tr><td>2026-05-19</td><td>chinois traditionnel</td><td>QooApp</td><td>療癒貓咪逃脫手遊《Escape Game 寢室裡有一隻貓》現已正式推出</td><td><a href="https://news.qoo-app.com/post/436683/escapegame-the-cat-was-in-the-bedroom" target="_blank" rel="noopener">Ouvrir l’article</a></td></tr>
+<tr><td>2026-05-14</td><td>chinois traditionnel</td><td>巴哈姆特</td><td>《Escape Game 寢室裡有一隻貓》正式上線 以有貓登場的安靜寢室為舞台的短篇逃脫遊戲</td><td><a href="https://gnn.gamer.com.tw/detail.php?sn=304967" target="_blank" rel="noopener">Ouvrir l’article</a></td></tr>
+<tr><td>2026-05-14</td><td>chinois traditionnel</td><td>Cmoney</td><td>《Escape Game 寢室裡有一隻貓》正式上線 以有貓登場的安靜寢室為舞台的短篇逃脫遊戲</td><td><a href="https://www.cmoney.tw/forum/article/178953546" target="_blank" rel="noopener">Ouvrir l’article</a></td></tr>
+<tr><td>2026-05-14</td><td>chinois traditionnel</td><td>PChome</td><td>《Escape Game 寢室裡有一隻貓》正式上線 以有貓登場的安靜寢室為舞台的短篇逃脫遊戲</td><td><a href="https://news.pchome.com.tw/game/gamer/20260514/index-77874781847814203104.html" target="_blank" rel="noopener">Ouvrir l’article</a></td></tr>
+<tr><td>2026-05-14</td><td>anglais</td><td>POCKETGAMER.COM</td><td>The Cat Was in the Bedroom is a simple and oddly calm puzzler out now on iOS and Android</td><td><a href="https://www.pocketgamer.com/the-cat-was-in-the-bedroom/official-launch/" target="_blank" rel="noopener">Ouvrir l’article</a></td></tr>
+<tr><td>2026-05-13</td><td>ukrainien</td><td>mezha.net</td><td>TSUMUGI STUDIO випустила нову мобільну escape-гру «Кіт був у спальні»</td><td><a href="https://mezha.net/ua/bukvy/tsumugi-studio-vypustyla-novu-mobilnu-escape-hru-kit-buv-u-spalni/" target="_blank" rel="noopener">Ouvrir l’article</a></td></tr>
+<tr><td>2026-05-13</td><td>espagnol</td><td>CNET Download</td><td>The Cat Was in the Bedroom para Android</td><td><a href="https://download.cnet.com/es/the-cat-was-in-the-bedroom/3000-android-the-cat-was-in-the-bedroom.html" target="_blank" rel="noopener">Ouvrir l’article</a></td></tr>
+<tr><td>2026-05-11</td><td>anglais</td><td>games press</td><td>TSUMUGI STUDIO Launches New Mobile Escape Game</td><td><a href="https://www.gamespress.com/TSUMUGI-STUDIO-Launches-New-Mobile-Escape-Game" target="_blank" rel="noopener">Ouvrir l’article</a></td></tr>
+<tr><td>2026-05-08</td><td>japonais</td><td>tunagate</td><td>新作脱出ゲーム『寝室には猫がいた』が配信開始</td><td><a href="https://tunagate.com/oshikatsu_magazine/game/article_60782?ifx=rG8LmM7W8eWy6De1" target="_blank" rel="noopener">Ouvrir l’article</a></td></tr>
+<tr><td>2026-05-07</td><td>japonais</td><td>Value Press</td><td>TSUMUGI STUDIO、新作スマートフォン向け脱出ゲーム『脱出ゲーム 寝室には猫がいた』 を配信開始</td><td><a href="https://www.value-press.com/pressrelease/373908" target="_blank" rel="noopener">Ouvrir l’article</a></td></tr>
+<tr><td>2026-05-07</td><td>japonais</td><td>gamebiz</td><td>TSUMUGI STUDIO、スマートフォン向け短編脱出ゲーム『脱出ゲーム 寝室には猫がいた』をリリース</td><td><a href="https://gamebiz.jp/news/425452" target="_blank" rel="noopener">Ouvrir l’article</a></td></tr>
+<tr><td>2025-08-26</td><td>japonais</td><td></td><td>インディーゲームスタジオ「TSUMUGI STUDIO」、スマホ向け脱出ゲームアプリ『路地裏からの脱出』をGoogle Playでリリース</td><td><a href="https://gamebiz.jp/news/411384" target="_blank" rel="noopener">Ouvrir l’article</a></td></tr></tbody></table></div>
+    </section>
+
+    <section class="lang-panel" id="lang-de" data-view="de" lang="de">
+      <h2>Medienberichte</h2>
+      <p>TSUMUGI STUDIO und seine Spiele wurden von Medien in Japan sowie in Asien, Europa und weiteren Regionen vorgestellt. Eine Auswahl von Artikeln und Pressemitteilungen ist unten aufgeführt.</p>
+      <div class="table-wrap"><table class="media-table">
+        <thead><tr><th>Datum</th><th>Sprache</th><th>Medium</th><th>Titel</th><th>Artikel öffnen</th></tr></thead>
+        <tbody><tr><td>2026-05-20</td><td>Französisch</td><td>JeuxOnline</td><td>Tsugumi Studio lance son escape game mobile cosy Le chat était dans la chambre</td><td><a href="https://www.jeuxonline.info/actualite/66112/tsugumi-studio-lance-escape-game-mobile-cosy-chat-chambre" target="_blank" rel="noopener">Artikel öffnen</a></td></tr>
+<tr><td>2026-05-19</td><td>Traditionelles Chinesisch</td><td>QooApp</td><td>療癒貓咪逃脫手遊《Escape Game 寢室裡有一隻貓》現已正式推出</td><td><a href="https://news.qoo-app.com/post/436683/escapegame-the-cat-was-in-the-bedroom" target="_blank" rel="noopener">Artikel öffnen</a></td></tr>
+<tr><td>2026-05-14</td><td>Traditionelles Chinesisch</td><td>巴哈姆特</td><td>《Escape Game 寢室裡有一隻貓》正式上線 以有貓登場的安靜寢室為舞台的短篇逃脫遊戲</td><td><a href="https://gnn.gamer.com.tw/detail.php?sn=304967" target="_blank" rel="noopener">Artikel öffnen</a></td></tr>
+<tr><td>2026-05-14</td><td>Traditionelles Chinesisch</td><td>Cmoney</td><td>《Escape Game 寢室裡有一隻貓》正式上線 以有貓登場的安靜寢室為舞台的短篇逃脫遊戲</td><td><a href="https://www.cmoney.tw/forum/article/178953546" target="_blank" rel="noopener">Artikel öffnen</a></td></tr>
+<tr><td>2026-05-14</td><td>Traditionelles Chinesisch</td><td>PChome</td><td>《Escape Game 寢室裡有一隻貓》正式上線 以有貓登場的安靜寢室為舞台的短篇逃脫遊戲</td><td><a href="https://news.pchome.com.tw/game/gamer/20260514/index-77874781847814203104.html" target="_blank" rel="noopener">Artikel öffnen</a></td></tr>
+<tr><td>2026-05-14</td><td>Englisch</td><td>POCKETGAMER.COM</td><td>The Cat Was in the Bedroom is a simple and oddly calm puzzler out now on iOS and Android</td><td><a href="https://www.pocketgamer.com/the-cat-was-in-the-bedroom/official-launch/" target="_blank" rel="noopener">Artikel öffnen</a></td></tr>
+<tr><td>2026-05-13</td><td>Ukrainisch</td><td>mezha.net</td><td>TSUMUGI STUDIO випустила нову мобільну escape-гру «Кіт був у спальні»</td><td><a href="https://mezha.net/ua/bukvy/tsumugi-studio-vypustyla-novu-mobilnu-escape-hru-kit-buv-u-spalni/" target="_blank" rel="noopener">Artikel öffnen</a></td></tr>
+<tr><td>2026-05-13</td><td>Spanisch</td><td>CNET Download</td><td>The Cat Was in the Bedroom para Android</td><td><a href="https://download.cnet.com/es/the-cat-was-in-the-bedroom/3000-android-the-cat-was-in-the-bedroom.html" target="_blank" rel="noopener">Artikel öffnen</a></td></tr>
+<tr><td>2026-05-11</td><td>Englisch</td><td>games press</td><td>TSUMUGI STUDIO Launches New Mobile Escape Game</td><td><a href="https://www.gamespress.com/TSUMUGI-STUDIO-Launches-New-Mobile-Escape-Game" target="_blank" rel="noopener">Artikel öffnen</a></td></tr>
+<tr><td>2026-05-08</td><td>Japanisch</td><td>tunagate</td><td>新作脱出ゲーム『寝室には猫がいた』が配信開始</td><td><a href="https://tunagate.com/oshikatsu_magazine/game/article_60782?ifx=rG8LmM7W8eWy6De1" target="_blank" rel="noopener">Artikel öffnen</a></td></tr>
+<tr><td>2026-05-07</td><td>Japanisch</td><td>Value Press</td><td>TSUMUGI STUDIO、新作スマートフォン向け脱出ゲーム『脱出ゲーム 寝室には猫がいた』 を配信開始</td><td><a href="https://www.value-press.com/pressrelease/373908" target="_blank" rel="noopener">Artikel öffnen</a></td></tr>
+<tr><td>2026-05-07</td><td>Japanisch</td><td>gamebiz</td><td>TSUMUGI STUDIO、スマートフォン向け短編脱出ゲーム『脱出ゲーム 寝室には猫がいた』をリリース</td><td><a href="https://gamebiz.jp/news/425452" target="_blank" rel="noopener">Artikel öffnen</a></td></tr>
+<tr><td>2025-08-26</td><td>Japanisch</td><td></td><td>インディーゲームスタジオ「TSUMUGI STUDIO」、スマホ向け脱出ゲームアプリ『路地裏からの脱出』をGoogle Playでリリース</td><td><a href="https://gamebiz.jp/news/411384" target="_blank" rel="noopener">Artikel öffnen</a></td></tr></tbody></table></div>
+    </section>
+
+    <section class="lang-panel" id="lang-es" data-view="es" lang="es">
+      <h2>Cobertura en medios</h2>
+      <p>TSUMUGI STUDIO y sus juegos han sido presentados por medios de Japón, Asia, Europa y otras regiones. A continuación se muestra una selección de artículos y publicaciones de notas de prensa.</p>
+      <div class="table-wrap"><table class="media-table">
+        <thead><tr><th>Fecha</th><th>Idioma</th><th>Medio</th><th>Título</th><th>Abrir artículo</th></tr></thead>
+        <tbody><tr><td>2026-05-20</td><td>francés</td><td>JeuxOnline</td><td>Tsugumi Studio lance son escape game mobile cosy Le chat était dans la chambre</td><td><a href="https://www.jeuxonline.info/actualite/66112/tsugumi-studio-lance-escape-game-mobile-cosy-chat-chambre" target="_blank" rel="noopener">Abrir artículo</a></td></tr>
+<tr><td>2026-05-19</td><td>chino tradicional</td><td>QooApp</td><td>療癒貓咪逃脫手遊《Escape Game 寢室裡有一隻貓》現已正式推出</td><td><a href="https://news.qoo-app.com/post/436683/escapegame-the-cat-was-in-the-bedroom" target="_blank" rel="noopener">Abrir artículo</a></td></tr>
+<tr><td>2026-05-14</td><td>chino tradicional</td><td>巴哈姆特</td><td>《Escape Game 寢室裡有一隻貓》正式上線 以有貓登場的安靜寢室為舞台的短篇逃脫遊戲</td><td><a href="https://gnn.gamer.com.tw/detail.php?sn=304967" target="_blank" rel="noopener">Abrir artículo</a></td></tr>
+<tr><td>2026-05-14</td><td>chino tradicional</td><td>Cmoney</td><td>《Escape Game 寢室裡有一隻貓》正式上線 以有貓登場的安靜寢室為舞台的短篇逃脫遊戲</td><td><a href="https://www.cmoney.tw/forum/article/178953546" target="_blank" rel="noopener">Abrir artículo</a></td></tr>
+<tr><td>2026-05-14</td><td>chino tradicional</td><td>PChome</td><td>《Escape Game 寢室裡有一隻貓》正式上線 以有貓登場的安靜寢室為舞台的短篇逃脫遊戲</td><td><a href="https://news.pchome.com.tw/game/gamer/20260514/index-77874781847814203104.html" target="_blank" rel="noopener">Abrir artículo</a></td></tr>
+<tr><td>2026-05-14</td><td>inglés</td><td>POCKETGAMER.COM</td><td>The Cat Was in the Bedroom is a simple and oddly calm puzzler out now on iOS and Android</td><td><a href="https://www.pocketgamer.com/the-cat-was-in-the-bedroom/official-launch/" target="_blank" rel="noopener">Abrir artículo</a></td></tr>
+<tr><td>2026-05-13</td><td>ucraniano</td><td>mezha.net</td><td>TSUMUGI STUDIO випустила нову мобільну escape-гру «Кіт був у спальні»</td><td><a href="https://mezha.net/ua/bukvy/tsumugi-studio-vypustyla-novu-mobilnu-escape-hru-kit-buv-u-spalni/" target="_blank" rel="noopener">Abrir artículo</a></td></tr>
+<tr><td>2026-05-13</td><td>español</td><td>CNET Download</td><td>The Cat Was in the Bedroom para Android</td><td><a href="https://download.cnet.com/es/the-cat-was-in-the-bedroom/3000-android-the-cat-was-in-the-bedroom.html" target="_blank" rel="noopener">Abrir artículo</a></td></tr>
+<tr><td>2026-05-11</td><td>inglés</td><td>games press</td><td>TSUMUGI STUDIO Launches New Mobile Escape Game</td><td><a href="https://www.gamespress.com/TSUMUGI-STUDIO-Launches-New-Mobile-Escape-Game" target="_blank" rel="noopener">Abrir artículo</a></td></tr>
+<tr><td>2026-05-08</td><td>japonés</td><td>tunagate</td><td>新作脱出ゲーム『寝室には猫がいた』が配信開始</td><td><a href="https://tunagate.com/oshikatsu_magazine/game/article_60782?ifx=rG8LmM7W8eWy6De1" target="_blank" rel="noopener">Abrir artículo</a></td></tr>
+<tr><td>2026-05-07</td><td>japonés</td><td>Value Press</td><td>TSUMUGI STUDIO、新作スマートフォン向け脱出ゲーム『脱出ゲーム 寝室には猫がいた』 を配信開始</td><td><a href="https://www.value-press.com/pressrelease/373908" target="_blank" rel="noopener">Abrir artículo</a></td></tr>
+<tr><td>2026-05-07</td><td>japonés</td><td>gamebiz</td><td>TSUMUGI STUDIO、スマートフォン向け短編脱出ゲーム『脱出ゲーム 寝室には猫がいた』をリリース</td><td><a href="https://gamebiz.jp/news/425452" target="_blank" rel="noopener">Abrir artículo</a></td></tr>
+<tr><td>2025-08-26</td><td>japonés</td><td></td><td>インディーゲームスタジオ「TSUMUGI STUDIO」、スマホ向け脱出ゲームアプリ『路地裏からの脱出』をGoogle Playでリリース</td><td><a href="https://gamebiz.jp/news/411384" target="_blank" rel="noopener">Abrir artículo</a></td></tr></tbody></table></div>
+    </section>
+
+    <section class="lang-panel" id="lang-hk" data-view="hk" lang="zh-Hant">
+      <h2>媒體報導</h2>
+      <p>TSUMUGI STUDIO 及其作品除了日本國內外，也獲亞洲、歐洲等地媒體介紹。以下整理了部分報導與新聞稿刊登資訊。</p>
+      <div class="table-wrap"><table class="media-table">
+        <thead><tr><th>刊登日</th><th>語言</th><th>媒體名稱</th><th>標題</th><th>開啟文章</th></tr></thead>
+        <tbody><tr><td>2026-05-20</td><td>法文</td><td>JeuxOnline</td><td>Tsugumi Studio lance son escape game mobile cosy Le chat était dans la chambre</td><td><a href="https://www.jeuxonline.info/actualite/66112/tsugumi-studio-lance-escape-game-mobile-cosy-chat-chambre" target="_blank" rel="noopener">開啟文章</a></td></tr>
+<tr><td>2026-05-19</td><td>繁體中文</td><td>QooApp</td><td>療癒貓咪逃脫手遊《Escape Game 寢室裡有一隻貓》現已正式推出</td><td><a href="https://news.qoo-app.com/post/436683/escapegame-the-cat-was-in-the-bedroom" target="_blank" rel="noopener">開啟文章</a></td></tr>
+<tr><td>2026-05-14</td><td>繁體中文</td><td>巴哈姆特</td><td>《Escape Game 寢室裡有一隻貓》正式上線 以有貓登場的安靜寢室為舞台的短篇逃脫遊戲</td><td><a href="https://gnn.gamer.com.tw/detail.php?sn=304967" target="_blank" rel="noopener">開啟文章</a></td></tr>
+<tr><td>2026-05-14</td><td>繁體中文</td><td>Cmoney</td><td>《Escape Game 寢室裡有一隻貓》正式上線 以有貓登場的安靜寢室為舞台的短篇逃脫遊戲</td><td><a href="https://www.cmoney.tw/forum/article/178953546" target="_blank" rel="noopener">開啟文章</a></td></tr>
+<tr><td>2026-05-14</td><td>繁體中文</td><td>PChome</td><td>《Escape Game 寢室裡有一隻貓》正式上線 以有貓登場的安靜寢室為舞台的短篇逃脫遊戲</td><td><a href="https://news.pchome.com.tw/game/gamer/20260514/index-77874781847814203104.html" target="_blank" rel="noopener">開啟文章</a></td></tr>
+<tr><td>2026-05-14</td><td>英文</td><td>POCKETGAMER.COM</td><td>The Cat Was in the Bedroom is a simple and oddly calm puzzler out now on iOS and Android</td><td><a href="https://www.pocketgamer.com/the-cat-was-in-the-bedroom/official-launch/" target="_blank" rel="noopener">開啟文章</a></td></tr>
+<tr><td>2026-05-13</td><td>烏克蘭文</td><td>mezha.net</td><td>TSUMUGI STUDIO випустила нову мобільну escape-гру «Кіт був у спальні»</td><td><a href="https://mezha.net/ua/bukvy/tsumugi-studio-vypustyla-novu-mobilnu-escape-hru-kit-buv-u-spalni/" target="_blank" rel="noopener">開啟文章</a></td></tr>
+<tr><td>2026-05-13</td><td>西班牙文</td><td>CNET Download</td><td>The Cat Was in the Bedroom para Android</td><td><a href="https://download.cnet.com/es/the-cat-was-in-the-bedroom/3000-android-the-cat-was-in-the-bedroom.html" target="_blank" rel="noopener">開啟文章</a></td></tr>
+<tr><td>2026-05-11</td><td>英文</td><td>games press</td><td>TSUMUGI STUDIO Launches New Mobile Escape Game</td><td><a href="https://www.gamespress.com/TSUMUGI-STUDIO-Launches-New-Mobile-Escape-Game" target="_blank" rel="noopener">開啟文章</a></td></tr>
+<tr><td>2026-05-08</td><td>日文</td><td>tunagate</td><td>新作脱出ゲーム『寝室には猫がいた』が配信開始</td><td><a href="https://tunagate.com/oshikatsu_magazine/game/article_60782?ifx=rG8LmM7W8eWy6De1" target="_blank" rel="noopener">開啟文章</a></td></tr>
+<tr><td>2026-05-07</td><td>日文</td><td>Value Press</td><td>TSUMUGI STUDIO、新作スマートフォン向け脱出ゲーム『脱出ゲーム 寝室には猫がいた』 を配信開始</td><td><a href="https://www.value-press.com/pressrelease/373908" target="_blank" rel="noopener">開啟文章</a></td></tr>
+<tr><td>2026-05-07</td><td>日文</td><td>gamebiz</td><td>TSUMUGI STUDIO、スマートフォン向け短編脱出ゲーム『脱出ゲーム 寝室には猫がいた』をリリース</td><td><a href="https://gamebiz.jp/news/425452" target="_blank" rel="noopener">開啟文章</a></td></tr>
+<tr><td>2025-08-26</td><td>日文</td><td></td><td>インディーゲームスタジオ「TSUMUGI STUDIO」、スマホ向け脱出ゲームアプリ『路地裏からの脱出』をGoogle Playでリリース</td><td><a href="https://gamebiz.jp/news/411384" target="_blank" rel="noopener">開啟文章</a></td></tr></tbody></table></div>
+    </section>
+
+    <section class="lang-panel" id="lang-tw" data-view="tw" lang="zh-Hant">
+      <h2>媒體報導</h2>
+      <p>TSUMUGI STUDIO 及其作品除了日本國內外，也獲亞洲、歐洲等地媒體介紹。以下整理部分報導與新聞稿刊登資訊。</p>
+      <div class="table-wrap"><table class="media-table">
+        <thead><tr><th>刊登日</th><th>語言</th><th>媒體名稱</th><th>標題</th><th>開啟文章</th></tr></thead>
+        <tbody><tr><td>2026-05-20</td><td>法文</td><td>JeuxOnline</td><td>Tsugumi Studio lance son escape game mobile cosy Le chat était dans la chambre</td><td><a href="https://www.jeuxonline.info/actualite/66112/tsugumi-studio-lance-escape-game-mobile-cosy-chat-chambre" target="_blank" rel="noopener">開啟文章</a></td></tr>
+<tr><td>2026-05-19</td><td>繁體中文</td><td>QooApp</td><td>療癒貓咪逃脫手遊《Escape Game 寢室裡有一隻貓》現已正式推出</td><td><a href="https://news.qoo-app.com/post/436683/escapegame-the-cat-was-in-the-bedroom" target="_blank" rel="noopener">開啟文章</a></td></tr>
+<tr><td>2026-05-14</td><td>繁體中文</td><td>巴哈姆特</td><td>《Escape Game 寢室裡有一隻貓》正式上線 以有貓登場的安靜寢室為舞台的短篇逃脫遊戲</td><td><a href="https://gnn.gamer.com.tw/detail.php?sn=304967" target="_blank" rel="noopener">開啟文章</a></td></tr>
+<tr><td>2026-05-14</td><td>繁體中文</td><td>Cmoney</td><td>《Escape Game 寢室裡有一隻貓》正式上線 以有貓登場的安靜寢室為舞台的短篇逃脫遊戲</td><td><a href="https://www.cmoney.tw/forum/article/178953546" target="_blank" rel="noopener">開啟文章</a></td></tr>
+<tr><td>2026-05-14</td><td>繁體中文</td><td>PChome</td><td>《Escape Game 寢室裡有一隻貓》正式上線 以有貓登場的安靜寢室為舞台的短篇逃脫遊戲</td><td><a href="https://news.pchome.com.tw/game/gamer/20260514/index-77874781847814203104.html" target="_blank" rel="noopener">開啟文章</a></td></tr>
+<tr><td>2026-05-14</td><td>英文</td><td>POCKETGAMER.COM</td><td>The Cat Was in the Bedroom is a simple and oddly calm puzzler out now on iOS and Android</td><td><a href="https://www.pocketgamer.com/the-cat-was-in-the-bedroom/official-launch/" target="_blank" rel="noopener">開啟文章</a></td></tr>
+<tr><td>2026-05-13</td><td>烏克蘭文</td><td>mezha.net</td><td>TSUMUGI STUDIO випустила нову мобільну escape-гру «Кіт був у спальні»</td><td><a href="https://mezha.net/ua/bukvy/tsumugi-studio-vypustyla-novu-mobilnu-escape-hru-kit-buv-u-spalni/" target="_blank" rel="noopener">開啟文章</a></td></tr>
+<tr><td>2026-05-13</td><td>西班牙文</td><td>CNET Download</td><td>The Cat Was in the Bedroom para Android</td><td><a href="https://download.cnet.com/es/the-cat-was-in-the-bedroom/3000-android-the-cat-was-in-the-bedroom.html" target="_blank" rel="noopener">開啟文章</a></td></tr>
+<tr><td>2026-05-11</td><td>英文</td><td>games press</td><td>TSUMUGI STUDIO Launches New Mobile Escape Game</td><td><a href="https://www.gamespress.com/TSUMUGI-STUDIO-Launches-New-Mobile-Escape-Game" target="_blank" rel="noopener">開啟文章</a></td></tr>
+<tr><td>2026-05-08</td><td>日文</td><td>tunagate</td><td>新作脱出ゲーム『寝室には猫がいた』が配信開始</td><td><a href="https://tunagate.com/oshikatsu_magazine/game/article_60782?ifx=rG8LmM7W8eWy6De1" target="_blank" rel="noopener">開啟文章</a></td></tr>
+<tr><td>2026-05-07</td><td>日文</td><td>Value Press</td><td>TSUMUGI STUDIO、新作スマートフォン向け脱出ゲーム『脱出ゲーム 寝室には猫がいた』 を配信開始</td><td><a href="https://www.value-press.com/pressrelease/373908" target="_blank" rel="noopener">開啟文章</a></td></tr>
+<tr><td>2026-05-07</td><td>日文</td><td>gamebiz</td><td>TSUMUGI STUDIO、スマートフォン向け短編脱出ゲーム『脱出ゲーム 寝室には猫がいた』をリリース</td><td><a href="https://gamebiz.jp/news/425452" target="_blank" rel="noopener">開啟文章</a></td></tr>
+<tr><td>2025-08-26</td><td>日文</td><td></td><td>インディーゲームスタジオ「TSUMUGI STUDIO」、スマホ向け脱出ゲームアプリ『路地裏からの脱出』をGoogle Playでリリース</td><td><a href="https://gamebiz.jp/news/411384" target="_blank" rel="noopener">開啟文章</a></td></tr></tbody></table></div>
+    </section>
+
+    <section class="lang-panel" id="lang-kr" data-view="kr" lang="ko">
+      <h2>미디어 게재 실적</h2>
+      <p>TSUMUGI STUDIO와 작품은 일본 국내뿐 아니라 아시아, 유럽 등 여러 지역의 미디어에서 소개되었습니다. 일부 기사와 보도자료 게재 정보를 아래에 정리했습니다.</p>
+      <div class="table-wrap"><table class="media-table">
+        <thead><tr><th>게재일</th><th>언어</th><th>매체명</th><th>제목</th><th>기사 열기</th></tr></thead>
+        <tbody><tr><td>2026-05-20</td><td>프랑스어</td><td>JeuxOnline</td><td>Tsugumi Studio lance son escape game mobile cosy Le chat était dans la chambre</td><td><a href="https://www.jeuxonline.info/actualite/66112/tsugumi-studio-lance-escape-game-mobile-cosy-chat-chambre" target="_blank" rel="noopener">기사 열기</a></td></tr>
+<tr><td>2026-05-19</td><td>번체 중국어</td><td>QooApp</td><td>療癒貓咪逃脫手遊《Escape Game 寢室裡有一隻貓》現已正式推出</td><td><a href="https://news.qoo-app.com/post/436683/escapegame-the-cat-was-in-the-bedroom" target="_blank" rel="noopener">기사 열기</a></td></tr>
+<tr><td>2026-05-14</td><td>번체 중국어</td><td>巴哈姆特</td><td>《Escape Game 寢室裡有一隻貓》正式上線 以有貓登場的安靜寢室為舞台的短篇逃脫遊戲</td><td><a href="https://gnn.gamer.com.tw/detail.php?sn=304967" target="_blank" rel="noopener">기사 열기</a></td></tr>
+<tr><td>2026-05-14</td><td>번체 중국어</td><td>Cmoney</td><td>《Escape Game 寢室裡有一隻貓》正式上線 以有貓登場的安靜寢室為舞台的短篇逃脫遊戲</td><td><a href="https://www.cmoney.tw/forum/article/178953546" target="_blank" rel="noopener">기사 열기</a></td></tr>
+<tr><td>2026-05-14</td><td>번체 중국어</td><td>PChome</td><td>《Escape Game 寢室裡有一隻貓》正式上線 以有貓登場的安靜寢室為舞台的短篇逃脫遊戲</td><td><a href="https://news.pchome.com.tw/game/gamer/20260514/index-77874781847814203104.html" target="_blank" rel="noopener">기사 열기</a></td></tr>
+<tr><td>2026-05-14</td><td>영어</td><td>POCKETGAMER.COM</td><td>The Cat Was in the Bedroom is a simple and oddly calm puzzler out now on iOS and Android</td><td><a href="https://www.pocketgamer.com/the-cat-was-in-the-bedroom/official-launch/" target="_blank" rel="noopener">기사 열기</a></td></tr>
+<tr><td>2026-05-13</td><td>우크라이나어</td><td>mezha.net</td><td>TSUMUGI STUDIO випустила нову мобільну escape-гру «Кіт був у спальні»</td><td><a href="https://mezha.net/ua/bukvy/tsumugi-studio-vypustyla-novu-mobilnu-escape-hru-kit-buv-u-spalni/" target="_blank" rel="noopener">기사 열기</a></td></tr>
+<tr><td>2026-05-13</td><td>스페인어</td><td>CNET Download</td><td>The Cat Was in the Bedroom para Android</td><td><a href="https://download.cnet.com/es/the-cat-was-in-the-bedroom/3000-android-the-cat-was-in-the-bedroom.html" target="_blank" rel="noopener">기사 열기</a></td></tr>
+<tr><td>2026-05-11</td><td>영어</td><td>games press</td><td>TSUMUGI STUDIO Launches New Mobile Escape Game</td><td><a href="https://www.gamespress.com/TSUMUGI-STUDIO-Launches-New-Mobile-Escape-Game" target="_blank" rel="noopener">기사 열기</a></td></tr>
+<tr><td>2026-05-08</td><td>일본어</td><td>tunagate</td><td>新作脱出ゲーム『寝室には猫がいた』が配信開始</td><td><a href="https://tunagate.com/oshikatsu_magazine/game/article_60782?ifx=rG8LmM7W8eWy6De1" target="_blank" rel="noopener">기사 열기</a></td></tr>
+<tr><td>2026-05-07</td><td>일본어</td><td>Value Press</td><td>TSUMUGI STUDIO、新作スマートフォン向け脱出ゲーム『脱出ゲーム 寝室には猫がいた』 を配信開始</td><td><a href="https://www.value-press.com/pressrelease/373908" target="_blank" rel="noopener">기사 열기</a></td></tr>
+<tr><td>2026-05-07</td><td>일본어</td><td>gamebiz</td><td>TSUMUGI STUDIO、スマートフォン向け短編脱出ゲーム『脱出ゲーム 寝室には猫がいた』をリリース</td><td><a href="https://gamebiz.jp/news/425452" target="_blank" rel="noopener">기사 열기</a></td></tr>
+<tr><td>2025-08-26</td><td>일본어</td><td></td><td>インディーゲームスタジオ「TSUMUGI STUDIO」、スマホ向け脱出ゲームアプリ『路地裏からの脱出』をGoogle Playでリリース</td><td><a href="https://gamebiz.jp/news/411384" target="_blank" rel="noopener">기사 열기</a></td></tr></tbody></table></div>
+    </section>
+
+    <section class="lang-panel" id="lang-uk" data-view="uk" lang="uk">
+      <h2>Публікації у медіа</h2>
+      <p>TSUMUGI STUDIO та її ігри були представлені в медіа Японії, а також Азії, Європи та інших регіонів. Нижче зібрано вибрані статті та публікації пресрелізів.</p>
+      <div class="table-wrap"><table class="media-table">
+        <thead><tr><th>Дата</th><th>Мова</th><th>Медіа</th><th>Заголовок</th><th>Відкрити статтю</th></tr></thead>
+        <tbody><tr><td>2026-05-20</td><td>французька</td><td>JeuxOnline</td><td>Tsugumi Studio lance son escape game mobile cosy Le chat était dans la chambre</td><td><a href="https://www.jeuxonline.info/actualite/66112/tsugumi-studio-lance-escape-game-mobile-cosy-chat-chambre" target="_blank" rel="noopener">Відкрити статтю</a></td></tr>
+<tr><td>2026-05-19</td><td>традиційна китайська</td><td>QooApp</td><td>療癒貓咪逃脫手遊《Escape Game 寢室裡有一隻貓》現已正式推出</td><td><a href="https://news.qoo-app.com/post/436683/escapegame-the-cat-was-in-the-bedroom" target="_blank" rel="noopener">Відкрити статтю</a></td></tr>
+<tr><td>2026-05-14</td><td>традиційна китайська</td><td>巴哈姆特</td><td>《Escape Game 寢室裡有一隻貓》正式上線 以有貓登場的安靜寢室為舞台的短篇逃脫遊戲</td><td><a href="https://gnn.gamer.com.tw/detail.php?sn=304967" target="_blank" rel="noopener">Відкрити статтю</a></td></tr>
+<tr><td>2026-05-14</td><td>традиційна китайська</td><td>Cmoney</td><td>《Escape Game 寢室裡有一隻貓》正式上線 以有貓登場的安靜寢室為舞台的短篇逃脫遊戲</td><td><a href="https://www.cmoney.tw/forum/article/178953546" target="_blank" rel="noopener">Відкрити статтю</a></td></tr>
+<tr><td>2026-05-14</td><td>традиційна китайська</td><td>PChome</td><td>《Escape Game 寢室裡有一隻貓》正式上線 以有貓登場的安靜寢室為舞台的短篇逃脫遊戲</td><td><a href="https://news.pchome.com.tw/game/gamer/20260514/index-77874781847814203104.html" target="_blank" rel="noopener">Відкрити статтю</a></td></tr>
+<tr><td>2026-05-14</td><td>англійська</td><td>POCKETGAMER.COM</td><td>The Cat Was in the Bedroom is a simple and oddly calm puzzler out now on iOS and Android</td><td><a href="https://www.pocketgamer.com/the-cat-was-in-the-bedroom/official-launch/" target="_blank" rel="noopener">Відкрити статтю</a></td></tr>
+<tr><td>2026-05-13</td><td>українська</td><td>mezha.net</td><td>TSUMUGI STUDIO випустила нову мобільну escape-гру «Кіт був у спальні»</td><td><a href="https://mezha.net/ua/bukvy/tsumugi-studio-vypustyla-novu-mobilnu-escape-hru-kit-buv-u-spalni/" target="_blank" rel="noopener">Відкрити статтю</a></td></tr>
+<tr><td>2026-05-13</td><td>іспанська</td><td>CNET Download</td><td>The Cat Was in the Bedroom para Android</td><td><a href="https://download.cnet.com/es/the-cat-was-in-the-bedroom/3000-android-the-cat-was-in-the-bedroom.html" target="_blank" rel="noopener">Відкрити статтю</a></td></tr>
+<tr><td>2026-05-11</td><td>англійська</td><td>games press</td><td>TSUMUGI STUDIO Launches New Mobile Escape Game</td><td><a href="https://www.gamespress.com/TSUMUGI-STUDIO-Launches-New-Mobile-Escape-Game" target="_blank" rel="noopener">Відкрити статтю</a></td></tr>
+<tr><td>2026-05-08</td><td>японська</td><td>tunagate</td><td>新作脱出ゲーム『寝室には猫がいた』が配信開始</td><td><a href="https://tunagate.com/oshikatsu_magazine/game/article_60782?ifx=rG8LmM7W8eWy6De1" target="_blank" rel="noopener">Відкрити статтю</a></td></tr>
+<tr><td>2026-05-07</td><td>японська</td><td>Value Press</td><td>TSUMUGI STUDIO、新作スマートフォン向け脱出ゲーム『脱出ゲーム 寝室には猫がいた』 を配信開始</td><td><a href="https://www.value-press.com/pressrelease/373908" target="_blank" rel="noopener">Відкрити статтю</a></td></tr>
+<tr><td>2026-05-07</td><td>японська</td><td>gamebiz</td><td>TSUMUGI STUDIO、スマートフォン向け短編脱出ゲーム『脱出ゲーム 寝室には猫がいた』をリリース</td><td><a href="https://gamebiz.jp/news/425452" target="_blank" rel="noopener">Відкрити статтю</a></td></tr>
+<tr><td>2025-08-26</td><td>японська</td><td></td><td>インディーゲームスタジオ「TSUMUGI STUDIO」、スマホ向け脱出ゲームアプリ『路地裏からの脱出』をGoogle Playでリリース</td><td><a href="https://gamebiz.jp/news/411384" target="_blank" rel="noopener">Відкрити статтю</a></td></tr></tbody></table></div>
+    </section>
+
+    <section class="lang-panel" id="lang-az" data-view="az" lang="az">
+      <h2>Media dərc olunmaları</h2>
+      <p>TSUMUGI STUDIO və oyunları Yaponiya ilə yanaşı Asiya, Avropa və digər bölgələrin mediasında təqdim olunub. Aşağıda seçilmiş məqalələr və press-reliz dərc məlumatları toplanıb.</p>
+      <div class="table-wrap"><table class="media-table">
+        <thead><tr><th>Tarix</th><th>Dil</th><th>Media</th><th>Başlıq</th><th>Məqaləni aç</th></tr></thead>
+        <tbody><tr><td>2026-05-20</td><td>Fransız dili</td><td>JeuxOnline</td><td>Tsugumi Studio lance son escape game mobile cosy Le chat était dans la chambre</td><td><a href="https://www.jeuxonline.info/actualite/66112/tsugumi-studio-lance-escape-game-mobile-cosy-chat-chambre" target="_blank" rel="noopener">Məqaləni aç</a></td></tr>
+<tr><td>2026-05-19</td><td>Ənənəvi Çin dili</td><td>QooApp</td><td>療癒貓咪逃脫手遊《Escape Game 寢室裡有一隻貓》現已正式推出</td><td><a href="https://news.qoo-app.com/post/436683/escapegame-the-cat-was-in-the-bedroom" target="_blank" rel="noopener">Məqaləni aç</a></td></tr>
+<tr><td>2026-05-14</td><td>Ənənəvi Çin dili</td><td>巴哈姆特</td><td>《Escape Game 寢室裡有一隻貓》正式上線 以有貓登場的安靜寢室為舞台的短篇逃脫遊戲</td><td><a href="https://gnn.gamer.com.tw/detail.php?sn=304967" target="_blank" rel="noopener">Məqaləni aç</a></td></tr>
+<tr><td>2026-05-14</td><td>Ənənəvi Çin dili</td><td>Cmoney</td><td>《Escape Game 寢室裡有一隻貓》正式上線 以有貓登場的安靜寢室為舞台的短篇逃脫遊戲</td><td><a href="https://www.cmoney.tw/forum/article/178953546" target="_blank" rel="noopener">Məqaləni aç</a></td></tr>
+<tr><td>2026-05-14</td><td>Ənənəvi Çin dili</td><td>PChome</td><td>《Escape Game 寢室裡有一隻貓》正式上線 以有貓登場的安靜寢室為舞台的短篇逃脫遊戲</td><td><a href="https://news.pchome.com.tw/game/gamer/20260514/index-77874781847814203104.html" target="_blank" rel="noopener">Məqaləni aç</a></td></tr>
+<tr><td>2026-05-14</td><td>İngilis dili</td><td>POCKETGAMER.COM</td><td>The Cat Was in the Bedroom is a simple and oddly calm puzzler out now on iOS and Android</td><td><a href="https://www.pocketgamer.com/the-cat-was-in-the-bedroom/official-launch/" target="_blank" rel="noopener">Məqaləni aç</a></td></tr>
+<tr><td>2026-05-13</td><td>Ukrayna dili</td><td>mezha.net</td><td>TSUMUGI STUDIO випустила нову мобільну escape-гру «Кіт був у спальні»</td><td><a href="https://mezha.net/ua/bukvy/tsumugi-studio-vypustyla-novu-mobilnu-escape-hru-kit-buv-u-spalni/" target="_blank" rel="noopener">Məqaləni aç</a></td></tr>
+<tr><td>2026-05-13</td><td>İspan dili</td><td>CNET Download</td><td>The Cat Was in the Bedroom para Android</td><td><a href="https://download.cnet.com/es/the-cat-was-in-the-bedroom/3000-android-the-cat-was-in-the-bedroom.html" target="_blank" rel="noopener">Məqaləni aç</a></td></tr>
+<tr><td>2026-05-11</td><td>İngilis dili</td><td>games press</td><td>TSUMUGI STUDIO Launches New Mobile Escape Game</td><td><a href="https://www.gamespress.com/TSUMUGI-STUDIO-Launches-New-Mobile-Escape-Game" target="_blank" rel="noopener">Məqaləni aç</a></td></tr>
+<tr><td>2026-05-08</td><td>Yapon dili</td><td>tunagate</td><td>新作脱出ゲーム『寝室には猫がいた』が配信開始</td><td><a href="https://tunagate.com/oshikatsu_magazine/game/article_60782?ifx=rG8LmM7W8eWy6De1" target="_blank" rel="noopener">Məqaləni aç</a></td></tr>
+<tr><td>2026-05-07</td><td>Yapon dili</td><td>Value Press</td><td>TSUMUGI STUDIO、新作スマートフォン向け脱出ゲーム『脱出ゲーム 寝室には猫がいた』 を配信開始</td><td><a href="https://www.value-press.com/pressrelease/373908" target="_blank" rel="noopener">Məqaləni aç</a></td></tr>
+<tr><td>2026-05-07</td><td>Yapon dili</td><td>gamebiz</td><td>TSUMUGI STUDIO、スマートフォン向け短編脱出ゲーム『脱出ゲーム 寝室には猫がいた』をリリース</td><td><a href="https://gamebiz.jp/news/425452" target="_blank" rel="noopener">Məqaləni aç</a></td></tr>
+<tr><td>2025-08-26</td><td>Yapon dili</td><td></td><td>インディーゲームスタジオ「TSUMUGI STUDIO」、スマホ向け脱出ゲームアプリ『路地裏からの脱出』をGoogle Playでリリース</td><td><a href="https://gamebiz.jp/news/411384" target="_blank" rel="noopener">Məqaləni aç</a></td></tr></tbody></table></div>
+    </section>
+
+    <section class="lang-panel" id="lang-hi" data-view="hi" lang="hi">
+      <h2>मीडिया कवरेज</h2>
+      <p>TSUMUGI STUDIO और इसके गेम जापान के साथ-साथ एशिया, यूरोप और अन्य क्षेत्रों की मीडिया में प्रस्तुत किए गए हैं। चयनित लेखों और प्रेस रिलीज़掲載 जानकारी को नीचे संकलित किया गया है।</p>
+      <div class="table-wrap"><table class="media-table">
+        <thead><tr><th>तारीख</th><th>भाषा</th><th>मीडिया</th><th>शीर्षक</th><th>लेख खोलें</th></tr></thead>
+        <tbody><tr><td>2026-05-20</td><td>फ़्रेंच</td><td>JeuxOnline</td><td>Tsugumi Studio lance son escape game mobile cosy Le chat était dans la chambre</td><td><a href="https://www.jeuxonline.info/actualite/66112/tsugumi-studio-lance-escape-game-mobile-cosy-chat-chambre" target="_blank" rel="noopener">लेख खोलें</a></td></tr>
+<tr><td>2026-05-19</td><td>पारंपरिक चीनी</td><td>QooApp</td><td>療癒貓咪逃脫手遊《Escape Game 寢室裡有一隻貓》現已正式推出</td><td><a href="https://news.qoo-app.com/post/436683/escapegame-the-cat-was-in-the-bedroom" target="_blank" rel="noopener">लेख खोलें</a></td></tr>
+<tr><td>2026-05-14</td><td>पारंपरिक चीनी</td><td>巴哈姆特</td><td>《Escape Game 寢室裡有一隻貓》正式上線 以有貓登場的安靜寢室為舞台的短篇逃脫遊戲</td><td><a href="https://gnn.gamer.com.tw/detail.php?sn=304967" target="_blank" rel="noopener">लेख खोलें</a></td></tr>
+<tr><td>2026-05-14</td><td>पारंपरिक चीनी</td><td>Cmoney</td><td>《Escape Game 寢室裡有一隻貓》正式上線 以有貓登場的安靜寢室為舞台的短篇逃脫遊戲</td><td><a href="https://www.cmoney.tw/forum/article/178953546" target="_blank" rel="noopener">लेख खोलें</a></td></tr>
+<tr><td>2026-05-14</td><td>पारंपरिक चीनी</td><td>PChome</td><td>《Escape Game 寢室裡有一隻貓》正式上線 以有貓登場的安靜寢室為舞台的短篇逃脫遊戲</td><td><a href="https://news.pchome.com.tw/game/gamer/20260514/index-77874781847814203104.html" target="_blank" rel="noopener">लेख खोलें</a></td></tr>
+<tr><td>2026-05-14</td><td>अंग्रेज़ी</td><td>POCKETGAMER.COM</td><td>The Cat Was in the Bedroom is a simple and oddly calm puzzler out now on iOS and Android</td><td><a href="https://www.pocketgamer.com/the-cat-was-in-the-bedroom/official-launch/" target="_blank" rel="noopener">लेख खोलें</a></td></tr>
+<tr><td>2026-05-13</td><td>यूक्रेनी</td><td>mezha.net</td><td>TSUMUGI STUDIO випустила нову мобільну escape-гру «Кіт був у спальні»</td><td><a href="https://mezha.net/ua/bukvy/tsumugi-studio-vypustyla-novu-mobilnu-escape-hru-kit-buv-u-spalni/" target="_blank" rel="noopener">लेख खोलें</a></td></tr>
+<tr><td>2026-05-13</td><td>स्पेनिश</td><td>CNET Download</td><td>The Cat Was in the Bedroom para Android</td><td><a href="https://download.cnet.com/es/the-cat-was-in-the-bedroom/3000-android-the-cat-was-in-the-bedroom.html" target="_blank" rel="noopener">लेख खोलें</a></td></tr>
+<tr><td>2026-05-11</td><td>अंग्रेज़ी</td><td>games press</td><td>TSUMUGI STUDIO Launches New Mobile Escape Game</td><td><a href="https://www.gamespress.com/TSUMUGI-STUDIO-Launches-New-Mobile-Escape-Game" target="_blank" rel="noopener">लेख खोलें</a></td></tr>
+<tr><td>2026-05-08</td><td>जापानी</td><td>tunagate</td><td>新作脱出ゲーム『寝室には猫がいた』が配信開始</td><td><a href="https://tunagate.com/oshikatsu_magazine/game/article_60782?ifx=rG8LmM7W8eWy6De1" target="_blank" rel="noopener">लेख खोलें</a></td></tr>
+<tr><td>2026-05-07</td><td>जापानी</td><td>Value Press</td><td>TSUMUGI STUDIO、新作スマートフォン向け脱出ゲーム『脱出ゲーム 寝室には猫がいた』 を配信開始</td><td><a href="https://www.value-press.com/pressrelease/373908" target="_blank" rel="noopener">लेख खोलें</a></td></tr>
+<tr><td>2026-05-07</td><td>जापानी</td><td>gamebiz</td><td>TSUMUGI STUDIO、スマートフォン向け短編脱出ゲーム『脱出ゲーム 寝室には猫がいた』をリリース</td><td><a href="https://gamebiz.jp/news/425452" target="_blank" rel="noopener">लेख खोलें</a></td></tr>
+<tr><td>2025-08-26</td><td>जापानी</td><td></td><td>インディーゲームスタジオ「TSUMUGI STUDIO」、スマホ向け脱出ゲームアプリ『路地裏からの脱出』をGoogle Playでリリース</td><td><a href="https://gamebiz.jp/news/411384" target="_blank" rel="noopener">लेख खोलें</a></td></tr></tbody></table></div>
+    </section>
+  </main>
+
+
+  <footer>
+    <p>&copy; 2025 TSUMUGI STUDIO</p>
+    <div class="footer-links">
+      <a href="https://x.com/Tsumugi_Studio" target="_blank" rel="noopener">X</a> /
+      <a href="https://www.instagram.com/tsumugistudio_games/" target="_blank" rel="noopener">Instagram</a>
+    </div>
+  </footer>
+
+  <script>
+    const $  = (s,root=document)=>root.querySelector(s);
+    const $$ = (s,root=document)=>Array.from(root.querySelectorAll(s));
+
+    const langSelect = $('#lang-select');
+    const langPanels = $$('.lang-panel');
+
+    function parseHashView(){
+      const h = location.hash.replace('#','');
+      if(!h) return null;
+      const params = new URLSearchParams(h);
+      return params.get('view');
+    }
+    function setHashView(view){
+      const params = new URLSearchParams();
+      if(view) params.set('view', view);
+      history.replaceState(null, '', '#'+params.toString());
+    }
+    function showView(view){
+      langPanels.forEach(p=>{
+        p.classList.toggle('active', p.dataset.view === view);
+      });
+      localStorage.setItem('tsu_view', view);
+      setHashView(view);
+    }
+    langSelect.addEventListener('change', e=> showView(e.target.value));
+    (function init(){
+      const fromHash = parseHashView();
+      const stored = localStorage.getItem('tsu_view');
+      const initial = fromHash || stored || 'jp';
+      const supported = ['jp','en','fr','de','es','hk','tw','kr','uk','az','hi'];
+      const view = supported.includes(initial) ? initial : 'jp';
+      langSelect.value = view;
+      showView(view);
+    })();
+  </script>
+</body>
+</html>
